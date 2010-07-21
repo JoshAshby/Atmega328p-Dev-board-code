@@ -1,0 +1,26 @@
+//-------------------------------------------
+/*
+PWM.h
+2010 - Josh Ashby
+joshuaashby@joshashby.com
+http://joshashby.com
+http://github.com/JoshAshby
+freenode/#linuxandsci - JoshAshby
+*/
+//-------------------------------------------
+#ifndef PWM_H
+#define PWM_H
+#include <avr/io.h>
+#include <util/delay.h>
+#include <stdio.h>
+void pwm_setup_all(void);
+void pwm_setup0(void);
+void pwm0A(unsigned int value);
+void pwm0B(unsigned int value);
+void pwm_setup1(void);
+void pwm1A(int value);
+void pwm1B(unsigned int value);
+void pwm_setup2(void);
+void pwm2A(unsigned int value);
+void pwm2B(unsigned int value);
+#endif

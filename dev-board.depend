@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1279691371 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/adc.c
+	"adc.h"
+	"pwm.h"
+	"digital.h"
+	"global.h"
+
+1271730046 /home/joshua/Desktop/Stuff/github/repos/dev-board/adc.h
+	<avr/io.h>
+	<avr/interrupt.h>
+
+1279691643 /home/joshua/Desktop/Stuff/github/repos/dev-board/pwm.h
+	<avr/io.h>
+	<util/delay.h>
+	<stdio.h>
+
+1271730046 /home/joshua/Desktop/Stuff/github/repos/dev-board/digital.h
+	<avr/io.h>
+
+1279691396 /home/joshua/Desktop/Stuff/github/repos/dev-board/global.h
+	<avr/io.h>
+	<util/delay.h>
+
+1279691371 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/digital.c
+	"adc.h"
+	"pwm.h"
+	"digital.h"
+	"global.h"
+
+1279691663 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/main.c
+	"adc.h"
+	"pwm.h"
+	"digital.h"
+	"global.h"
+
+1279691648 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/pwm.c
+	"adc.h"
+	"pwm.h"
+	"digital.h"
+	"global.h"
+
