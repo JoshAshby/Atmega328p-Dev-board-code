@@ -11,8 +11,7 @@ freenode/#linuxandsci - JoshAshby
 #include "adc.h"
 #include "pwm.h"
 #include "global.h"
-#include <util/delay.h>
-
+#include "i2c.h"
 
 int main(void)
 {
@@ -20,18 +19,16 @@ int main(void)
     PORTD |= (1<<2);
     //as soon as the board comes on this runs to keep the regulator running
     pwm_setup_all();
-    adc_start();
-    PORTB |= (0<<1);
-    PORTB |= (0<<2);
+    adc_start("left");
+    PORTB |= (1<<1);
+    unsigned char data_a;
+    int first,second,set;
     while(1){
-        adc_change(0);
-        _delay_ms(50);
-        pwm1A(ADCH);
-        adc_change(1);
-        _delay_ms(50);
-        pwm1B(ADCH);
-    }
-    ;
+        data_a = ((ADCL << 2) | ADCH);
+        //twi_mcp_ee(MCP_ADDRESS, data_a);
+        twi_mcp_read(MCP_ADDRESS, &set, &first, &second);
+        pwm1A((first << 4) | second);
+    };
 
     return 0;
 }

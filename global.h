@@ -16,6 +16,10 @@ freenode/#linuxandsci - JoshAshby
 
 #define debug 1
 
+#define MCP_ADDRESS 0xC0
+
+#define TWI_DAC_POD 0x40
+#define TWI_EE_POD 0x60
 
 #endif
 

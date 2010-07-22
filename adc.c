@@ -11,16 +11,20 @@ freenode/#linuxandsci - JoshAshby
 #include "adc.h"
 #include "pwm.h"
 #include "global.h"
+#include "i2c.h"
+
 ISR(ADC_vect)
 {
 }
-void adc_start(void)
+void adc_start(char left)
 {
     ADCSRA |= (1 << ADPS2)
             | (1 << ADPS1)
             | (1 << ADPS0); // Set ADC prescaler to 128 - 125KHz sample rate @ 16MHz
     ADMUX |= (1 << REFS0); // Set ADC reference to AVCC
-    ADMUX |= (1 << ADLAR); // Left adjust ADC result to allow easy 8 bit reading
+    if (left == "left") {
+        ADMUX |= (1 << ADLAR); // Left adjust ADC result to allow easy 8 bit reading
+    }
     ADCSRA |= (1 << ADATE);
     ADCSRA |= (1 << ADEN);  // Enable ADC
     ADCSRA |= (1 << ADIE);  // Enable ADC Interrupt
