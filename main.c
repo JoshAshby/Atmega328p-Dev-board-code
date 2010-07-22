@@ -19,15 +19,19 @@ int main(void)
     PORTD |= (1<<2);
     //as soon as the board comes on this runs to keep the regulator running
     pwm_setup_all();
-    adc_start("left");
+    adc_start("");
     PORTB |= (1<<1);
-    unsigned char data_a;
-    int first,second,set;
+    uint16_t data_a;
+    uint16_t first;
+    uint16_t second;
+    int set;
     while(1){
-        data_a = ((ADCL << 2) | ADCH);
-        //twi_mcp_ee(MCP_ADDRESS, data_a);
+        data_a = ADCL;
+        data_a += (ADCH<<8);
+        twi_mcp_ee(MCP_ADDRESS, data_a);
         twi_mcp_read(MCP_ADDRESS, &set, &first, &second);
-        pwm1A((first << 4) | second);
+        first += (second<<8);
+        pwm1A(first);
     };
 
     return 0;

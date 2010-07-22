@@ -43,12 +43,12 @@ void pwm_setup0(void)
     DDRD |= (1<<5);
     DDRD |= (1<<6);
 }
-void pwm0A(uint16_t value)//set the duty cycle on the PWM
+void pwm0A(uint8_t value)//set the duty cycle on the PWM
 {
     TCCR0A |= (1<<COM0A1);
     OCR0A = value;
 }
-void pwm0B(uint16_t value)//set the duty cycle on the PWM
+void pwm0B(uint8_t value)//set the duty cycle on the PWM
 {
     TCCR0A |= (1<<COM0B1);
     OCR0B = value;
@@ -80,12 +80,12 @@ void pwm_setup2(void)
     DDRD |= (1<<3);
     DDRB |= (1<<3);
 }
-void pwm2A(uint16_t value)//set the duty cycle on the PWM
+void pwm2A(uint8_t value)//set the duty cycle on the PWM
 {
     TCCR2A |= (1<<COM2A1);
     OCR2A = value;
 }
-void pwm2B(uint16_t value)//set the duty cycle on the PWM
+void pwm2B(uint8_t value)//set the duty cycle on the PWM
 {
     TCCR2A |= (1<<COM2B1);
     OCR2B = value;

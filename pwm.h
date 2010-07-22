@@ -15,12 +15,12 @@ freenode/#linuxandsci - JoshAshby
 #include <stdio.h>
 void pwm_setup_all(void);
 void pwm_setup0(void);
-void pwm0A(uint16_t value);
-void pwm0B(uint16_t value);
+void pwm0A(uint8_t value);
+void pwm0B(uint8_t value);
 void pwm_setup1(void);
 void pwm1A(uint16_t value);
 void pwm1B(uint16_t value);
 void pwm_setup2(void);
-void pwm2A(uint16_t value);
-void pwm2B(uint16_t value);
+void pwm2A(uint8_t value);
+void pwm2B(uint8_t value);
 #endif

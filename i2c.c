@@ -115,11 +115,13 @@ int twi_mcp_ee(unsigned int twi_address, uint16_t data) {
 
         //next we send the 12bit data in two transfers to get it all across
         TWDR = data;  //Send the first byte of data
+        //TWDR = 0x4d;
         twi_status=twi_tran(TWI_DATA);  //Transmit
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;  //TWSR status
 
         //and second part
         TWDR = (data >> 8);  //Send second byte of data
+        //TWDR = 0x10;
         twi_status=twi_tran(TWI_DATA);  //Transmit
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;  //TWSR status
 
@@ -127,10 +129,12 @@ int twi_mcp_ee(unsigned int twi_address, uint16_t data) {
         TWDR = TWI_EE_POD;  //Send the POD data
         twi_status=twi_tran(TWI_DATA);  //Transmit
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;  //TWSR status
-        TWDR = data;  //Send the first bytes of Data
+        TWDR = data;  //Send the first bytes of Data | Sending this doesn't work
+        //TWDR = 0x4d; //Sending this works
         twi_status=twi_tran(TWI_DATA);  //Transmit
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;  //TWSR status
         TWDR = (data >> 8);  //Send second byte of data
+        //TWDR = 0x10;
         twi_status=twi_tran(TWI_DATA);  //Transmit
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;  //TWSR status
         r_val=1;
@@ -157,7 +161,7 @@ int twi_mcp_read(unsigned int twi_address, int *set, int *first, int *second) {
         if ((twi_status != TW_START) && (twi_status != TW_REP_START)) goto twi_quit;
 
         //next we send the slave address, which in this case has 0 to only write to the dac
-        TWDR = twi_address | 0;  //Send slave address
+        TWDR = twi_address | 1;  //Send slave address
         twi_status=twi_tran(TWI_DATA);  //Transmit
         if ((twi_status == TW_MT_SLA_NACK) || (twi_status == TW_MT_ARB_LOST)) goto twi_retry;  //TWSR status
         if (twi_status != TW_MT_SLA_ACK) goto twi_quit;
