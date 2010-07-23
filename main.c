@@ -12,6 +12,7 @@ freenode/#linuxandsci - JoshAshby
 #include "pwm.h"
 #include "global.h"
 #include "i2c.h"
+#include "uart.h"
 
 int main(void)
 {
@@ -20,18 +21,15 @@ int main(void)
     //as soon as the board comes on this runs to keep the regulator running
     pwm_setup_all();
     adc_start("");
-    PORTB |= (1<<1);
-    uint16_t data_a;
-    uint16_t first;
-    uint16_t second;
-    int set;
+    uart_start();
+    twi_start();
+    uart_send("hello");
+    unsigned int data_a;
     while(1){
         data_a = ADCL;
         data_a += (ADCH<<8);
-        twi_mcp_ee(MCP_ADDRESS, data_a);
-        twi_mcp_read(MCP_ADDRESS, &set, &first, &second);
-        first += (second<<8);
-        pwm1A(first);
+        twi_mcp_dac(MCP_ADDRESS, data_a, "eeprom");
+        pwm1A(data_a);
     };
 
     return 0;
