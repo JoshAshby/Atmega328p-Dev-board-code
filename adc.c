@@ -12,12 +12,12 @@ freenode/#linuxandsci - JoshAshby
 #include "pwm.h"
 #include "global.h"
 #include "i2c.h"
+#include "uart.h"
 
-ISR(ADC_vect)
-{
+ISR(ADC_vect) {
 }
-void adc_start(_Bool left)
-{
+
+void adc_start(_Bool left) {
     ADCSRA |= (1 << ADPS2)
             | (1 << ADPS1)
             | (1 << ADPS0); // Set ADC prescaler to 128 - 125KHz sample rate @ 16MHz
@@ -31,11 +31,13 @@ void adc_start(_Bool left)
     sei();
     ADCSRA |= (1 << ADSC);  // Start A2D Conversions
 }
-void adc_stop(){
+
+void adc_stop() {
     //stop the ADC
     ADCSRA &= ~(1 << ADSC);
 }
-void adc_change(int chan){
+
+void adc_change(int chan) {
     //stop the ADC
     ADCSRA &= ~(1 << ADSC);
     //and now change the ADMUX bits to fit which channal you want to use, this should probably be replaced by a switch soon

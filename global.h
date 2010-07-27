@@ -18,6 +18,7 @@ freenode/#linuxandsci - JoshAshby
 
 #define MCP_ADDRESS 0xC0
 
+uint8_t getByte;
+uint16_t data_analog;
+
 #endif
-
-

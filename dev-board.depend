@@ -1,15 +1,16 @@
 # depslib dependency file v1.0
-1280188882 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/adc.c
+1280211428 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/adc.c
 	"adc.h"
 	"pwm.h"
 	"global.h"
 	"i2c.h"
+	"uart.h"
 
-1280188882 /home/joshua/Desktop/Stuff/github/repos/dev-board/adc.h
+1280211428 /home/joshua/Desktop/Stuff/github/repos/dev-board/adc.h
 	<avr/io.h>
 	<avr/interrupt.h>
 
-1279812128 /home/joshua/Desktop/Stuff/github/repos/dev-board/pwm.h
+1280211428 /home/joshua/Desktop/Stuff/github/repos/dev-board/pwm.h
 	<avr/io.h>
 	<util/delay.h>
 	<stdio.h>
@@ -17,7 +18,7 @@
 1271730046 /home/joshua/Desktop/Stuff/github/repos/dev-board/digital.h
 	<avr/io.h>
 
-1280188744 /home/joshua/Desktop/Stuff/github/repos/dev-board/global.h
+1280211428 /home/joshua/Desktop/Stuff/github/repos/dev-board/global.h
 	<avr/io.h>
 	<util/delay.h>
 
@@ -40,20 +41,21 @@
 	"global.h"
 	"i2c.h"
 
-1280197556 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/i2c.c
+1280211428 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/i2c.c
 	"adc.h"
 	"pwm.h"
 	"global.h"
 	"i2c.h"
+	"uart.h"
 
-1280197556 /home/joshua/Desktop/Stuff/github/repos/dev-board/i2c.h
+1280211428 /home/joshua/Desktop/Stuff/github/repos/dev-board/i2c.h
 	<avr/io.h>
 	<inttypes.h>
 	<stdio.h>
 	<stdlib.h>
 	<compat/twi.h>
 
-1280207875 /home/joshua/Desktop/Stuff/github/repos/dev-board/uart.h
+1280211428 /home/joshua/Desktop/Stuff/github/repos/dev-board/uart.h
 	<avr/io.h>
 	<inttypes.h>
 	<stdio.h>

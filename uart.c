@@ -14,8 +14,6 @@ freenode/#linuxandsci - JoshAshby
 #include "i2c.h"
 #include "uart.h"
 
-#define BAUD_PRESCALE (((F_CPU / (BAUD * 16UL))) - 1)
-
 void uart_start(void) {
     UCSR0B |= (1 << RXEN0) | (1 << TXEN0);
     UCSR0C |= (1 << UCSZ00) | (1 << UCSZ01);
@@ -76,7 +74,3 @@ ISR(SIG_USART_RECV) {
 	read_spot++;
 	if(read_spot == BUFF_LEN) read_spot = 0;
 }
-
-//ISR(SIG_USART_RECV) {
-//	uart_get();
-//}

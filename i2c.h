@@ -29,4 +29,3 @@ uint8_t twi_mcp_read(unsigned int twi_address);
 uint16_t mcp_data[2];
 
 #endif
-
