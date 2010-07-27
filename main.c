@@ -24,7 +24,9 @@ int main(void)
     uart_start();
     twi_start();
     uart_send("hello\r\n");
-    unsigned int data_a;
+    uint8_t getByte;
+    getByte = uart_get();
+    uint16_t data_a;
     while(1){
         data_a = ADCL;
         data_a += (ADCH<<8);

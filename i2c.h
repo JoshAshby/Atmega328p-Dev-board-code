@@ -24,8 +24,9 @@ freenode/#linuxandsci - JoshAshby
 void twi_start(void);
 unsigned char twi_tran(unsigned char type);
 int twi_mcp_dac(unsigned int twi_address, uint16_t data, _Bool type);
-int twi_mcp_ee(unsigned int twi_address, uint16_t data);
-int twi_mcp_read(unsigned int twi_address, int *set, int *first, int *second);
+uint8_t twi_mcp_read(unsigned int twi_address);
+
+uint16_t mcp_data[2];
 
 #endif
 

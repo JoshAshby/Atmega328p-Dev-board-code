@@ -152,13 +152,12 @@ int twi_mcp_ee(unsigned int twi_address, uint16_t data) {
         twi_status=twi_tran(TWI_STOP);  //Transmit
         return r_val;
 }
-
-int twi_mcp_read(unsigned int twi_address, int *set, int *first, int *second) {
+*/
+uint8_t twi_mcp_read(unsigned int twi_address) {
     unsigned char n = 0;
     unsigned char twi_status;
-    uint16_t data;
     char r_val = -1;
-    int all_first, all_second;
+    uint8_t set, first, second, all_first, all_second;
     twi_retry:
         if (n++ >= MAX_TRIES) return r_val;
 
@@ -174,18 +173,21 @@ int twi_mcp_read(unsigned int twi_address, int *set, int *first, int *second) {
         if (twi_status != TW_MT_SLA_ACK) goto twi_quit;
 
         set = TWDR;
+        mcp_data[0] = set;
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;
 
         first = TWDR;
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;
 
         second = TWDR;
+        mcp_data[1] = (first | (second >> 8));
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;
 
         all_first = TWDR;
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;
 
         all_second = TWDR;
+
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;
         r_val=1;
 
@@ -194,4 +196,3 @@ int twi_mcp_read(unsigned int twi_address, int *set, int *first, int *second) {
         twi_status=twi_tran(TWI_STOP);  //Transmit
         return r_val;
 }
-*/

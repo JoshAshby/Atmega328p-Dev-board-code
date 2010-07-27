@@ -14,13 +14,18 @@ freenode/#linuxandsci - JoshAshby
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <avr/sleep.h>
 
 #define BAUD 9600
+#define BUFF_LEN 700
 
 void uart_start(void);
-void uart_send(char *data);
+void uart_send(uint8_t data);
+uint8_t uart_get(void);
 
-char getByte;
+char input_buffer[BUFF_LEN];
+
+uint16_t read_spot;
 
 
 #endif
