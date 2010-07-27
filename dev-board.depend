@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1280211428 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/adc.c
+1280212473 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/adc.c
 	"adc.h"
 	"pwm.h"
 	"global.h"
 	"i2c.h"
 	"uart.h"
 
-1280211428 /home/joshua/Desktop/Stuff/github/repos/dev-board/adc.h
+1280212199 /home/joshua/Desktop/Stuff/github/repos/dev-board/adc.h
 	<avr/io.h>
 	<avr/interrupt.h>
 
@@ -28,18 +28,19 @@
 	"digital.h"
 	"global.h"
 
-1280209471 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/main.c
+1280212517 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/main.c
 	"adc.h"
 	"pwm.h"
 	"global.h"
 	"i2c.h"
 	"uart.h"
 
-1279812128 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/pwm.c
+1280211428 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/pwm.c
 	"adc.h"
 	"pwm.h"
 	"global.h"
 	"i2c.h"
+	"uart.h"
 
 1280211428 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/i2c.c
 	"adc.h"
@@ -62,7 +63,7 @@
 	<stdlib.h>
 	<avr/sleep.h>
 
-1280208952 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/uart.c
+1280211428 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/uart.c
 	"adc.h"
 	"pwm.h"
 	"global.h"

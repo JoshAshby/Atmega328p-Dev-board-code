@@ -37,60 +37,60 @@ void adc_stop() {
     ADCSRA &= ~(1 << ADSC);
 }
 
-void adc_change(int chan) {
+void adc_change(char chan) {
     //stop the ADC
     ADCSRA &= ~(1 << ADSC);
     //and now change the ADMUX bits to fit which channal you want to use, this should probably be replaced by a switch soon
     switch (chan) {
-        case 0:
+        case '0':
             ADMUX &= ~(1 << MUX0)
                   &  ~(1 << MUX1)
                   &  ~(1 << MUX2)
                   &  ~(1 << MUX3);
             break;
-        case 1:
+        case '1':
             ADMUX |=  (1 << MUX0);
             ADMUX &= ~(1 << MUX1)
                   &  ~(1 << MUX2)
                   &  ~(1 << MUX3);
             break;
-        case 2:
+        case '2':
             ADMUX &= ~(1 << MUX0);
             ADMUX |=  (1 << MUX1);
             ADMUX &= ~(1 << MUX2)
                   &  ~(1 << MUX3);
             break;
-        case 3:
+        case '3':
             ADMUX |=  (1 << MUX0)
                   |   (1 << MUX1);
             ADMUX &= ~(1 << MUX2)
                   &  ~(1 << MUX3);
             break;
-        case 4:
+        case '4':
             ADMUX &= ~(1 << MUX0)
                   &  ~(1 << MUX1);
             ADMUX |=  (1 << MUX2);
             ADMUX &= ~(1 << MUX3);
             break;
-        case 5:
+        case '5':
             ADMUX |=  (1 << MUX0);
             ADMUX &= ~(1 << MUX1);
             ADMUX |=  (1 << MUX2);
             ADMUX &= ~(1 << MUX3);
             break;
-        case 6:
+        case '6':
             ADMUX &= ~(1 << MUX0);
             ADMUX |=  (1 << MUX1)
                   |   (1 << MUX2);
             ADMUX &= ~(1 << MUX3);
             break;
-        case 7:
+        case '7':
             ADMUX |=  (1 << MUX0)
                   |   (1 << MUX1)
                   |   (1 << MUX2);
             ADMUX &= ~(1 << MUX3);
             break;
-        case 8:
+        case '8':
             ADMUX &= ~(1 << MUX0)
                   &  ~(1 << MUX1)
                   &  ~(1 << MUX2);

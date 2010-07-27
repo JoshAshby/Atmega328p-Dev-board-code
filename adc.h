@@ -15,6 +15,6 @@ freenode/#linuxandsci - JoshAshby
 
 void adc_start(_Bool left);
 void adc_stop(void);
-void adc_change(int chan);
+void adc_change(char chan);
 
 #endif

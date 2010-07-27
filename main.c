@@ -24,6 +24,7 @@ int main(void) {
     adc_start(0);
     uart_start();
     twi_start();
+    adc_change('2');
 
     uart_sendchar("Booted Up");
     getByte = uart_get();
