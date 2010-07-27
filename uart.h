@@ -20,7 +20,8 @@ freenode/#linuxandsci - JoshAshby
 #define BUFF_LEN 700
 
 void uart_start(void);
-void uart_send(uint8_t data);
+void uart_sendint(uint8_t data);
+void uart_sendchar(char *data);
 uint8_t uart_get(void);
 
 char input_buffer[BUFF_LEN];

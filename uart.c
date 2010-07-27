@@ -25,14 +25,34 @@ void uart_start(void) {
 
     UCSR0B |= (1 << RXCIE0);
     sei();
+    while ((UCSR0A & (1 << UDRE0)) == 0);
+    UDR0 = "\r\n";
 }
 
-void uart_send(uint8_t data) {
-    while (data) {
+void uart_sendint(uint8_t data) {
+    while ((UCSR0A & (1 << UDRE0)) == 0);
+    UDR0 = data;
+    while ((UCSR0A & (1 << UDRE0)) == 0);
+	UDR0 = "\n\r";
+}
+
+void uart_sendint16(uint16_t data) {
+    while ((UCSR0A & (1 << UDRE0)) == 0);
+    UDR0 = data;
+    while ((UCSR0A & (1 << UDRE0)) == 0);
+    UDR0 = (data >> 8);
+    while ((UCSR0A & (1 << UDRE0)) == 0);
+	UDR0 = "\n\r";
+}
+
+void uart_sendchar(char *data) {
+    while (*data) {
         while ((UCSR0A & (1 << UDRE0)) == 0);
-		UDR0 = data;
+		UDR0 = *data;
 		data += 1;
 	}
+	while ((UCSR0A & (1 << UDRE0)) == 0);
+	UDR0 = "\n\r";
 }
 
 uint8_t uart_get(void) {

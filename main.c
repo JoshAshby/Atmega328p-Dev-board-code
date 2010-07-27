@@ -23,15 +23,18 @@ int main(void)
     adc_start(0);
     uart_start();
     twi_start();
-    uart_send("hello\r\n");
+    uart_sendchar("hello");
     uint8_t getByte;
     getByte = uart_get();
+    uart_sendint(getByte);
     uint16_t data_a;
     while(1){
         data_a = ADCL;
         data_a += (ADCH<<8);
-        twi_mcp_dac(MCP_ADDRESS, data_a, 0);
+        twi_mcp_dac(MCP_ADDRESS, data_a, 1);
         pwm1A(data_a);
+        uart_sendint16(data_a);
+        _delay_ms(50);
     };
 
     return 0;

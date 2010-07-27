@@ -61,9 +61,9 @@ int twi_mcp_dac(unsigned int twi_address, uint16_t data, _Bool type) {
 
         //next we send the POD byte which tells the MCP we will only be writing to the DAC and not EEPROM and not in fast mode either
         if (type) {
-            TWDR = 0x40;  //Send the POD data
+            TWDR = 0x60;  //Send the POD data
         } else {
-            TWDR = 0x60;
+            TWDR = 0x40;
         }
         twi_status=twi_tran(TWI_DATA);  //Transmit
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;  //status
@@ -80,9 +80,9 @@ int twi_mcp_dac(unsigned int twi_address, uint16_t data, _Bool type) {
 
         //finally we have to repeat the whole thing over to make sure it got it all according to the datasheet so we do this all again
         if (type) {
-            TWDR = 0x40;  //Send the POD data
+            TWDR = 0x60;  //Send the POD data
         } else {
-            TWDR = 0x60;
+            TWDR = 0x40;
         }
         twi_status=twi_tran(TWI_DATA);  //Transmit
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;  //TWSR status
