@@ -20,15 +20,15 @@ int main(void)
     PORTD |= (1<<2);
     //as soon as the board comes on this runs to keep the regulator running
     pwm_setup_all();
-    adc_start("");
+    adc_start(0);
     uart_start();
     twi_start();
-    uart_send("hello");
+    uart_send("hello\r\n");
     unsigned int data_a;
     while(1){
         data_a = ADCL;
         data_a += (ADCH<<8);
-        twi_mcp_dac(MCP_ADDRESS, data_a, "eeprom");
+        twi_mcp_dac(MCP_ADDRESS, data_a, 0);
         pwm1A(data_a);
     };
 

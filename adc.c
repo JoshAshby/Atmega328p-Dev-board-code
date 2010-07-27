@@ -16,13 +16,13 @@ freenode/#linuxandsci - JoshAshby
 ISR(ADC_vect)
 {
 }
-void adc_start(char left)
+void adc_start(_Bool left)
 {
     ADCSRA |= (1 << ADPS2)
             | (1 << ADPS1)
             | (1 << ADPS0); // Set ADC prescaler to 128 - 125KHz sample rate @ 16MHz
     ADMUX |= (1 << REFS0); // Set ADC reference to AVCC
-    if (left == "left") {
+    if (left) {
         ADMUX |= (1 << ADLAR); // Left adjust ADC result to allow easy 8 bit reading
     }
     ADCSRA |= (1 << ADATE);

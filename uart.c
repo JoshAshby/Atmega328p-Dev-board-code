@@ -27,7 +27,7 @@ void uart_start(void) {
     sei();
 }
 
-void uart_send(unsigned char *data) {
+void uart_send(char *data) {
     while (*data) {
         while ((UCSR0A & (1 << UDRE0)) == 0);
 		UDR0 = *data;

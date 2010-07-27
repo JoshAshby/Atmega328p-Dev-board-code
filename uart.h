@@ -18,9 +18,9 @@ freenode/#linuxandsci - JoshAshby
 #define BAUD 9600
 
 void uart_start(void);
-void uart_send(unsigned char *data);
+void uart_send(char *data);
 
-unsigned char getByte;
+char getByte;
 
 
 #endif
