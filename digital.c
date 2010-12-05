@@ -1,6 +1,6 @@
 //-------------------------------------------
 /*
-DIGITAL.h
+digital.c
 2010 - Josh Ashby
 joshuaashby@joshashby.com
 http://joshashby.com
@@ -10,9 +10,12 @@ freenode/#linuxandsci - JoshAshby
 //-------------------------------------------
 #include "adc.h"
 #include "pwm.h"
-#include "digital.h"
 #include "global.h"
+#include "i2c.h"
+#include "uart.h"
+#include "digital.h"
 //add the ability for it to auto detect which port based on what pin number you give
+
 void portB_out(int pin, int value)
 {
     if (value == 0)

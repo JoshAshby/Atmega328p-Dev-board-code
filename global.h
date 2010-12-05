@@ -18,7 +18,11 @@ freenode/#linuxandsci - JoshAshby
 
 #define MCP_ADDRESS 0xC0
 
-uint8_t getByte;
-uint16_t data_analog;
+#define	GX_H	0x1D
+#define	GX_L	0x1E
+#define	GY_H	0x1F
+#define	GY_L	0x20
+#define GZ_H	0x21
+#define GZ_L	0x22
 
 #endif

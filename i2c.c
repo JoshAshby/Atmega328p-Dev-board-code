@@ -13,6 +13,7 @@ freenode/#linuxandsci - JoshAshby
 #include "global.h"
 #include "i2c.h"
 #include "uart.h"
+#include "digital.h"
 
 void twi_start(void) {
     TWSR = 0x00;
@@ -143,3 +144,79 @@ uint8_t twi_mcp_read(unsigned int twi_address) {
         twi_status=twi_tran(TWI_STOP);  //Transmit
         return r_val;
 }
+/*
+uint8_t twi_ITG_read(unsigned int twi_address) {
+    unsigned char n = 0;
+    unsigned char twi_status;
+    char r_val = -1;
+    uint8_t set, first, second, all_first, all_second;
+    twi_retry:
+        if (n++ >= MAX_TRIES) return r_val;
+
+        //first we must try to start the TWI interface
+        twi_status=twi_tran(TWI_START);  //Start Condition
+        if (twi_status == TW_MT_ARB_LOST) goto twi_retry;  //TWI Status
+        if ((twi_status != TW_START) && (twi_status != TW_REP_START)) goto twi_quit;
+
+        //next we send the slave address, which in this case has 0 to only write to the dac
+        TWDR = twi_address;  //Send slave address
+        twi_status=twi_tran(TWI_DATA);  //Transmit
+        if ((twi_status == TW_MT_SLA_NACK) || (twi_status == TW_MT_ARB_LOST)) goto twi_retry;  //TWSR status
+        if (twi_status != TW_MT_SLA_ACK) goto twi_quit;
+
+        set = TWDR;
+        if (twi_status != TW_MT_DATA_ACK) goto twi_quit;
+
+        first = TWDR;
+        if (twi_status != TW_MT_DATA_ACK) goto twi_quit;
+
+        itg_data[0] = (set | (first >> 8));
+
+        r_val=1;
+
+    twi_quit:
+        //and finally stop
+        twi_status=twi_tran(TWI_STOP);  //Transmit
+        return r_val;
+}
+
+void getITG3200(int average) {
+	char temp;
+	signed int gx[average], gy[average], gz[average];
+	unsigned int i;
+
+	for (i = 0; i<average; i++)
+	{
+		while (!(ITG3200Read(INT_S) & 0x01))
+		;
+		temp = 0;
+		temp = ITG3200Read(GY_H);
+		gy[i] = temp << 8;
+		gy[i] |= ITG3200Read(GY_L);
+
+		//while (!(ITG3200Read(INT_S) & 0x01))
+		//;
+		temp = 0;
+		temp = ITG3200Read(GZ_H);
+		gz[i] = temp << 8;
+		gz[i] |= ITG3200Read(GZ_L);
+
+		//while (!(ITG3200Read(INT_S) & 0x01))
+		//;
+		temp = 0;
+		temp = ITG3200Read(GX_H);
+		gx[i] = temp << 8;
+		gx[i] |= ITG3200Read(GX_L);
+
+
+		gyrox += gx[i];
+		gyroy += gy[i];
+		gyroz += gz[i];
+	}
+
+	gyrox = gyrox/average;
+	gyroy = gyroy/average;
+	gyroz = gyroz/average;
+
+	//printf("%d	%d	%d\n", gyrox, gyroy, gyroz);
+}*/

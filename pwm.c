@@ -13,24 +13,26 @@ freenode/#linuxandsci - JoshAshby
 #include "global.h"
 #include "i2c.h"
 #include "uart.h"
+#include "digital.h"
 
 void pwm_setup_all(void) {
     TCCR0B |= (1<<CS00)
-            | (1<<CS01);
-    TCCR0A |= (1<<WGM00);
+            | (1<<CS01); //set timerO clock prescaler to 64
+    TCCR0A |= (1<<WGM00);//fast pwm with top as 0xFF
 
     DDRD |= (1<<5);
     DDRD |= (1<<6);
 
     TCCR1B |= (1<<CS11)
-            | (1<<CS10);
-    TCCR1A |= (1<<WGM10);
+            | (1<<CS10);//set timer1 clock prescaler to 64
+    TCCR1A |= (1<<WGM10)
+            | (1<<WGM11); //fast pwm (10bit) with top as 0x03FF
 
     DDRB |= (1<<1);
     DDRB |= (1<<2);
 
-    TCCR2B |= (1<<CS22);
-    TCCR2A |= (1<<WGM20);
+    TCCR2B |= (1<<CS22);//set timer2 clock prescaler to 64
+    TCCR2A |= (1<<WGM20);//fast pwm with top as 0xFF
 
     DDRD |= (1<<3);
     DDRB |= (1<<3);
@@ -38,8 +40,8 @@ void pwm_setup_all(void) {
 
 void pwm_setup0(void) {
     TCCR0B |= (1<<CS00)
-            | (1<<CS01);
-    TCCR0A |= (1<<WGM00);
+            | (1<<CS01);//set timerO clock prescaler to 64
+    TCCR0A |= (1<<WGM00);//fast pwm with top as 0xFF
 
     DDRD |= (1<<5);
     DDRD |= (1<<6);
@@ -57,8 +59,12 @@ void pwm0B(uint8_t value) {
 
 void pwm_setup1(void) {
     TCCR1B |= (1<<CS11)
-            | (1<<CS10);
-    TCCR1A |= (1<<WGM10);
+            | (1<<CS10);//set timer1 clock prescaler to 64
+    TCCR1A |= (1<<WGM11)
+            | (1<<WGM12)
+            | (1<<WGM13); //fast pwm (16bit) with top as 0x03FF
+    //ICR1H = 0xFF; //set IRC1 to max for full 16bit resolution
+    //IRC1L = 0xFF;
 
     DDRB |= (1<<1);
     DDRB |= (1<<2);
@@ -74,8 +80,8 @@ void pwm1B(uint16_t value) {
 }
 
 void pwm_setup2(void) {
-    TCCR2B |= (1<<CS22);
-    TCCR2A |= (1<<WGM20);
+    TCCR2B |= (1<<CS22);//set timer2 clock prescaler to 64
+    TCCR2A |= (1<<WGM20);//fast pwm with top as 0xFF
 
     DDRD |= (1<<3);
     DDRB |= (1<<3);

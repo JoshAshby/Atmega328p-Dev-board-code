@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1280212473 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/adc.c
+1281717931 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/adc.c
 	"adc.h"
 	"pwm.h"
 	"global.h"
 	"i2c.h"
 	"uart.h"
+	"digital.h"
 
 1280212199 /home/joshua/Desktop/Stuff/github/repos/dev-board/adc.h
 	<avr/io.h>
@@ -15,41 +16,46 @@
 	<util/delay.h>
 	<stdio.h>
 
-1271730046 /home/joshua/Desktop/Stuff/github/repos/dev-board/digital.h
+1291487972 /home/joshua/Desktop/Stuff/github/repos/dev-board/digital.h
 	<avr/io.h>
 
-1280211428 /home/joshua/Desktop/Stuff/github/repos/dev-board/global.h
+1291487851 /home/joshua/Desktop/Stuff/github/repos/dev-board/global.h
 	<avr/io.h>
 	<util/delay.h>
 
-1279691371 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/digital.c
+1291487972 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/digital.c
 	"adc.h"
 	"pwm.h"
+	"global.h"
+	"i2c.h"
+	"uart.h"
 	"digital.h"
-	"global.h"
 
-1280212517 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/main.c
+1291487972 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/main.c
 	"adc.h"
 	"pwm.h"
 	"global.h"
 	"i2c.h"
 	"uart.h"
+	"digital.h"
 
-1280211428 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/pwm.c
+1281717931 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/pwm.c
 	"adc.h"
 	"pwm.h"
 	"global.h"
 	"i2c.h"
 	"uart.h"
+	"digital.h"
 
-1280211428 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/i2c.c
+1282164836 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/i2c.c
 	"adc.h"
 	"pwm.h"
 	"global.h"
 	"i2c.h"
 	"uart.h"
+	"digital.h"
 
-1280211428 /home/joshua/Desktop/Stuff/github/repos/dev-board/i2c.h
+1282165422 /home/joshua/Desktop/Stuff/github/repos/dev-board/i2c.h
 	<avr/io.h>
 	<inttypes.h>
 	<stdio.h>
@@ -63,10 +69,22 @@
 	<stdlib.h>
 	<avr/sleep.h>
 
-1280211428 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/uart.c
+1281717931 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/uart.c
 	"adc.h"
 	"pwm.h"
 	"global.h"
 	"i2c.h"
 	"uart.h"
+	"digital.h"
+
+1282075969 /home/joshua/Desktop/Stuff/github/repos/dev-board/robot.h
+	<avr/io.h>
+
+1282076419 source:/home/joshua/Desktop/Stuff/github/repos/dev-board/robot.c
+	"adc.h"
+	"pwm.h"
+	"global.h"
+	"i2c.h"
+	"uart.h"
+	"digital.h"
 

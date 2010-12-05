@@ -13,6 +13,7 @@ freenode/#linuxandsci - JoshAshby
 #include "global.h"
 #include "i2c.h"
 #include "uart.h"
+#include "digital.h"
 
 void uart_start(void) {
     UCSR0B |= (1 << RXEN0) | (1 << TXEN0);

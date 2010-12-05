@@ -13,31 +13,28 @@ freenode/#linuxandsci - JoshAshby
 #include "global.h"
 #include "i2c.h"
 #include "uart.h"
+#include "digital.h"
 
-int main(void) {
+uint8_t temp;
+
+int main(void) { //Main loop, runs once but can have an infinit loop in it
     DDRD |= (1<<2);
     PORTD |= (1<<2);
     //as soon as the board comes on the above runs to keep the regulator running
     //after the power on button is released
-
     pwm_setup_all();
     adc_start(0);
     uart_start();
     twi_start();
-    adc_change('2');
 
-    uart_sendchar("Booted Up");
-    getByte = uart_get();
-    uart_sendint(getByte);
-
-    while(1) {
-        data_analog = ADCL;
-        data_analog += (ADCH<<8);
-        twi_mcp_dac(MCP_ADDRESS, data_analog, 0);
-        pwm1A(data_analog);
-        uart_sendint16(data_analog);
-        _delay_ms(50);
+    while(1) { //infinit loop that doesn't stop running.
+        temp = (PIND & 0x0c);
+        if (temp == 1){
+            out('B',1,1);
+        }
+        if (temp == 0){
+            out('B',1,0);
+        }
     };
-
     return 0;
 }

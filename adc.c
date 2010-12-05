@@ -13,11 +13,12 @@ freenode/#linuxandsci - JoshAshby
 #include "global.h"
 #include "i2c.h"
 #include "uart.h"
+#include "digital.h"
 
 ISR(ADC_vect) {
 }
 
-void adc_start(_Bool left) {
+void adc_start(_Bool left) {//Passing a 0 will not left align results
     ADCSRA |= (1 << ADPS2)
             | (1 << ADPS1)
             | (1 << ADPS0); // Set ADC prescaler to 128 - 125KHz sample rate @ 16MHz
@@ -30,6 +31,7 @@ void adc_start(_Bool left) {
     ADCSRA |= (1 << ADIE);  // Enable ADC Interrupt
     sei();
     ADCSRA |= (1 << ADSC);  // Start A2D Conversions
+
 }
 
 void adc_stop() {
@@ -40,21 +42,22 @@ void adc_stop() {
 void adc_change(char chan) {
     //stop the ADC
     ADCSRA &= ~(1 << ADSC);
-    //and now change the ADMUX bits to fit which channal you want to use, this should probably be replaced by a switch soon
+    //and now change the ADMUX bits to fit which channal you want to use
+    //sets the MUX0-3 bits inthe ADMUX register
     switch (chan) {
-        case '0':
+        case '0'://binary 0
             ADMUX &= ~(1 << MUX0)
                   &  ~(1 << MUX1)
                   &  ~(1 << MUX2)
                   &  ~(1 << MUX3);
             break;
-        case '1':
+        case '1'://binary 1
             ADMUX |=  (1 << MUX0);
             ADMUX &= ~(1 << MUX1)
                   &  ~(1 << MUX2)
                   &  ~(1 << MUX3);
             break;
-        case '2':
+        case '2'://binary 2
             ADMUX &= ~(1 << MUX0);
             ADMUX |=  (1 << MUX1);
             ADMUX &= ~(1 << MUX2)
@@ -97,5 +100,6 @@ void adc_change(char chan) {
             ADMUX |=  (1 << MUX3);
             break;
     }
+    //re-enable ADC conversions now that the channel is selected
     ADCSRA |= (1 << ADSC);
 }
