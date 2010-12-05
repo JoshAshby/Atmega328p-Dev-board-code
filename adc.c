@@ -8,13 +8,11 @@ http://github.com/JoshAshby
 freenode/#linuxandsci - JoshAshby
 */
 //-------------------------------------------
-#include "adc.h"
-#include "pwm.h"
 #include "global.h"
-#include "i2c.h"
-#include "uart.h"
-#include "digital.h"
 
+//anything that needs to be ran when ever a new conversion happens goes in here
+//other wise, simply read from the data registers if data isn't all that important
+//aka: you can miss a few bits of data and still be good to go
 ISR(ADC_vect) {
 }
 
@@ -63,7 +61,7 @@ void adc_change(char chan) {
             ADMUX &= ~(1 << MUX2)
                   &  ~(1 << MUX3);
             break;
-        case '3':
+        case '3': //should have the picture by now
             ADMUX |=  (1 << MUX0)
                   |   (1 << MUX1);
             ADMUX &= ~(1 << MUX2)

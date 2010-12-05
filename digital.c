@@ -8,12 +8,8 @@ http://github.com/JoshAshby
 freenode/#linuxandsci - JoshAshby
 */
 //-------------------------------------------
-#include "adc.h"
-#include "pwm.h"
 #include "global.h"
-#include "i2c.h"
-#include "uart.h"
-#include "digital.h"
+
 //add the ability for it to auto detect which port based on what pin number you give
 
 void portB_out(int pin, int value)

@@ -8,14 +8,9 @@ http://github.com/JoshAshby
 freenode/#linuxandsci - JoshAshby
 */
 //-------------------------------------------
-#include "adc.h"
-#include "pwm.h"
 #include "global.h"
-#include "i2c.h"
-#include "uart.h"
-#include "digital.h"
 
-void twi_start(void) {
+void twi_start(void) { //set up the clock speed for the I2C/TWI
     TWSR = 0x00;
     TWBR = (F_CPU / 100000UL - 16) / 2;
 }

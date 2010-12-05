@@ -10,11 +10,7 @@ freenode/#linuxandsci - JoshAshby
 //-------------------------------------------
 #ifndef UART_H
 #define UART_H
-#include <avr/io.h>
-#include <inttypes.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <avr/sleep.h>
+#include "global.h"
 
 #define BAUD 9600
 #define BUFF_LEN 700

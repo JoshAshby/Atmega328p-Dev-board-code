@@ -10,11 +10,7 @@ freenode/#linuxandsci - JoshAshby
 //-------------------------------------------
 #ifndef I2C_H
 #define I2C_H
-#include <avr/io.h>
-#include <inttypes.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <compat/twi.h>
+#include "global.h"
 
 #define MAX_TRIES 50
 #define TWI_START 0

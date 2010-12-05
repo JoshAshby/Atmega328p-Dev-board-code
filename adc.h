@@ -10,8 +10,7 @@ freenode/#linuxandsci - JoshAshby
 //-------------------------------------------
 #ifndef ADC_H
 #define ADC_H
-#include <avr/io.h>
-#include <avr/interrupt.h>
+#include "global.h"
 
 void adc_start(_Bool left);
 void adc_stop(void);

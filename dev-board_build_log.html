@@ -4,10 +4,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 <tt>
-Build started on: <u>04-12-2010 at 11:48.21</u><br />
-Build ended on: <u>04-12-2010 at 11:48.23</u><p />
+Build started on: <u>05-12-2010 at 14:47.06</u><br />
+Build ended on: <u>05-12-2010 at 14:47.08</u><p />
 <b>-------------- Build: Release in dev-board ---------------</b><br />
-Target is up to date.<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c adc.c -o obj/Release/adc.o<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c pwm.c -o obj/Release/pwm.o<br />
+avr-g++ -L/usr/lib  -o bin/Release/dev-board.elf obj/Release/adc.o obj/Release/digital.o obj/Release/i2c.o obj/Release/main.o obj/Release/pwm.o obj/Release/uart.o   -mmcu=atmega328p -Wl,-Map=bin/Release/dev-board.elf.map,--cref<br />
+/usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libm.so when searching for -lm<br />
+/usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libm.a when searching for -lm<br />
+/usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libc.so when searching for -lc<br />
+/usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libc.a when searching for -lc<br />
+Output size is 7.11 KB<br />
 avr-size bin/Release/dev-board.elf<br />
    text	   data	    bss	    dec	    hex	filename<br />
    1676	      6	    707	   2389	    955	bin/Release/dev-board.elf<br />
@@ -15,13 +22,7 @@ avr-objcopy -O ihex -R .eeprom -R .eesafe bin/Release/dev-board.elf bin/Release/
 avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex bin/Release/dev-board.elf bin/Release/dev-board.elf.eep.hex<br />
 avr-objdump -h -S bin/Release/dev-board.elf > bin/Release/dev-board.elf.lss<br />
 avrdude -P /dev/ttyACM0 -c stk500v2 -p m328p -U flash:w:bin/Release/dev-board.elf.hex:i<br />
-avrdude: stk500v2_command(): unknown status 0x80<br />
-avrdude: stk500v2_command(): unknown status 0xc9<br />
-avrdude: stk500v2_program_enable(): cannot get connection status<br />
-avrdude: initialization failed, rc=-1<br />
-         Double check connections and try again, or use -F to override<br />
-         this check.<br />
-avrdude done.  Thank you.<br />
+avrdude: ser_open(): can't open device "/dev/ttyACM0": No such file or directory<br />
 <font color="#a00000">Process terminated with status 1 (0 minutes, 1 seconds)</font><br />
 <font color="#a00000">0 errors, 0 warnings (0 minutes, 1 seconds)</font><br />
 </tt>

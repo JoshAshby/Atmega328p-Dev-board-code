@@ -11,7 +11,7 @@ Allocating common symbols
 Common symbol       size              file
 
 read_spot           0x2               obj/Release/adc.o
-temp                0x1               obj/Release/main.o
+temp                0x1               obj/Release/adc.o
 mcp_data            0x4               obj/Release/adc.o
 input_buffer        0x2bc             obj/Release/adc.o
 
@@ -317,12 +317,11 @@ LOAD /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a
  .bss           0x00800106        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_clear_bss.o)
  *(.bss*)
  *(COMMON)
- COMMON         0x00800106      0x2c2 obj/Release/adc.o
+ COMMON         0x00800106      0x2c3 obj/Release/adc.o
                 0x00800106                read_spot
-                0x00800108                mcp_data
-                0x0080010c                input_buffer
- COMMON         0x008003c8        0x1 obj/Release/main.o
-                0x008003c8                temp
+                0x00800108                temp
+                0x00800109                mcp_data
+                0x0080010d                input_buffer
                 0x008003c9                PROVIDE (__bss_end, .)
                 0x0000068c                __data_load_start = LOADADDR (.data)
                 0x00000692                __data_load_end = (__data_load_start + SIZEOF (.data))
@@ -507,7 +506,12 @@ read_spot                                         obj/Release/uart.o
                                                   obj/Release/i2c.o
                                                   obj/Release/digital.o
                                                   obj/Release/adc.o
-temp                                              obj/Release/main.o
+temp                                              obj/Release/uart.o
+                                                  obj/Release/pwm.o
+                                                  obj/Release/main.o
+                                                  obj/Release/i2c.o
+                                                  obj/Release/digital.o
+                                                  obj/Release/adc.o
 twi_mcp_dac                                       obj/Release/i2c.o
 twi_mcp_read                                      obj/Release/i2c.o
 twi_start                                         obj/Release/i2c.o

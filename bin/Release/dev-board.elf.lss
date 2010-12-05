@@ -482,8 +482,8 @@ Disassembly of section .text:
  414:	88 31       	cpi	r24, 0x18	; 24
  416:	31 f4       	brne	.+12     	; 0x424 <twi_mcp_read+0x44>
  418:	80 91 bb 00 	lds	r24, 0x00BB
- 41c:	80 93 08 01 	sts	0x0108, r24
- 420:	10 92 09 01 	sts	0x0109, r1
+ 41c:	80 93 09 01 	sts	0x0109, r24
+ 420:	10 92 0a 01 	sts	0x010A, r1
  424:	82 e0       	ldi	r24, 0x02	; 2
  426:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <twi_tran>
  42a:	8f ef       	ldi	r24, 0xFF	; 255
@@ -502,7 +502,7 @@ Disassembly of section .text:
  448:	89 b1       	in	r24, 0x09	; 9
  44a:	8c 70       	andi	r24, 0x0C	; 12
  44c:	e9 f7       	brne	.-6      	; 0x448 <main+0x16>
- 44e:	10 92 c8 03 	sts	0x03C8, r1
+ 44e:	10 92 08 01 	sts	0x0108, r1
  452:	82 e4       	ldi	r24, 0x42	; 66
  454:	61 e0       	ldi	r22, 0x01	; 1
  456:	70 e0       	ldi	r23, 0x00	; 0
@@ -729,9 +729,9 @@ Disassembly of section .text:
  618:	f0 91 07 01 	lds	r31, 0x0107
  61c:	30 97       	sbiw	r30, 0x00	; 0
  61e:	19 f4       	brne	.+6      	; 0x626 <uart_get+0x2e>
- 620:	80 91 c7 03 	lds	r24, 0x03C7
+ 620:	80 91 c8 03 	lds	r24, 0x03C8
  624:	03 c0       	rjmp	.+6      	; 0x62c <uart_get+0x34>
- 626:	e5 5f       	subi	r30, 0xF5	; 245
+ 626:	e4 5f       	subi	r30, 0xF4	; 244
  628:	fe 4f       	sbci	r31, 0xFE	; 254
  62a:	80 81       	ld	r24, Z
  62c:	8d 30       	cpi	r24, 0x0D	; 13
@@ -754,7 +754,7 @@ Disassembly of section .text:
  64c:	90 91 07 01 	lds	r25, 0x0107
  650:	20 91 c6 00 	lds	r18, 0x00C6
  654:	fc 01       	movw	r30, r24
- 656:	e4 5f       	subi	r30, 0xF4	; 244
+ 656:	e3 5f       	subi	r30, 0xF3	; 243
  658:	fe 4f       	sbci	r31, 0xFE	; 254
  65a:	20 83       	st	Z, r18
  65c:	01 96       	adiw	r24, 0x01	; 1

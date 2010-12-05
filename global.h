@@ -11,18 +11,41 @@ freenode/#linuxandsci - JoshAshby
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
+//-----------------------------------------------
+//Libraries
+//-----------------------------------------------
 #include <avr/io.h>
 #include <util/delay.h>
+#include <stdio.h>
+#include <avr/interrupt.h>
+#include <compat/twi.h>
+#include <inttypes.h>
+#include <stdlib.h>
+#include <avr/sleep.h>
 
-#define debug 1
+#include "adc.h"
+#include "pwm.h"
+#include "i2c.h"
+#include "uart.h"
+#include "digital.h"
+//-----------------------------------------------
+//Defines
+//-----------------------------------------------
+#define debug 1 //if true, anything inside of an if(debug){} tag will run
 
-#define MCP_ADDRESS 0xC0
+#define MCP_ADDRESS 0xC0 //address of the MCP I2C DAC
 
+//addresses of the IGT I2C gyroscope
 #define	GX_H	0x1D
 #define	GX_L	0x1E
 #define	GY_H	0x1F
 #define	GY_L	0x20
 #define GZ_H	0x21
 #define GZ_L	0x22
+
+//-----------------------------------------------
+//Variables
+//-----------------------------------------------
+uint8_t temp; //button testing
 
 #endif

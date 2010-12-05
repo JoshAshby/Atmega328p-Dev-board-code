@@ -10,9 +10,7 @@ freenode/#linuxandsci - JoshAshby
 //-------------------------------------------
 #ifndef PWM_H
 #define PWM_H
-#include <avr/io.h>
-#include <util/delay.h>
-#include <stdio.h>
+#include "global.h"
 
 void pwm_setup_all(void);
 

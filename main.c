@@ -8,14 +8,7 @@ http://github.com/JoshAshby
 freenode/#linuxandsci - JoshAshby
 */
 //-------------------------------------------
-#include "adc.h"
-#include "pwm.h"
 #include "global.h"
-#include "i2c.h"
-#include "uart.h"
-#include "digital.h"
-
-uint8_t temp;
 
 int main(void) { //Main loop, runs once but can have an infinit loop in it
     DDRD |= (1<<2);
