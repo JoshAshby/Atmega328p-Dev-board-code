@@ -4,11 +4,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 <tt>
-Build started on: <u>05-12-2010 at 14:47.06</u><br />
-Build ended on: <u>05-12-2010 at 14:47.08</u><p />
+Build started on: <u>05-12-2010 at 14:57.53</u><br />
+Build ended on: <u>05-12-2010 at 14:57.55</u><p />
 <b>-------------- Build: Release in dev-board ---------------</b><br />
 avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c adc.c -o obj/Release/adc.o<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c digital.c -o obj/Release/digital.o<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c i2c.c -o obj/Release/i2c.o<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c main.c -o obj/Release/main.o<br />
 avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c pwm.c -o obj/Release/pwm.o<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c uart.c -o obj/Release/uart.o<br />
+uart.c: In function "uart_start":<br />
+<font color="#0000ff">uart.c:24: warning: assignment makes integer from pointer without a cast</font><br />
+uart.c: In function "uart_sendint":<br />
+<font color="#0000ff">uart.c:31: warning: assignment makes integer from pointer without a cast</font><br />
+uart.c: In function "uart_sendint16":<br />
+<font color="#0000ff">uart.c:40: warning: assignment makes integer from pointer without a cast</font><br />
+uart.c: In function "uart_sendchar":<br />
+<font color="#0000ff">uart.c:50: warning: assignment makes integer from pointer without a cast</font><br />
 avr-g++ -L/usr/lib  -o bin/Release/dev-board.elf obj/Release/adc.o obj/Release/digital.o obj/Release/i2c.o obj/Release/main.o obj/Release/pwm.o obj/Release/uart.o   -mmcu=atmega328p -Wl,-Map=bin/Release/dev-board.elf.map,--cref<br />
 /usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libm.so when searching for -lm<br />
 /usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libm.a when searching for -lm<br />
@@ -17,14 +29,14 @@ avr-g++ -L/usr/lib  -o bin/Release/dev-board.elf obj/Release/adc.o obj/Release/d
 Output size is 7.11 KB<br />
 avr-size bin/Release/dev-board.elf<br />
    text	   data	    bss	    dec	    hex	filename<br />
-   1676	      6	    707	   2389	    955	bin/Release/dev-board.elf<br />
+   1680	      6	    707	   2393	    959	bin/Release/dev-board.elf<br />
 avr-objcopy -O ihex -R .eeprom -R .eesafe bin/Release/dev-board.elf bin/Release/dev-board.elf.hex<br />
 avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex bin/Release/dev-board.elf bin/Release/dev-board.elf.eep.hex<br />
 avr-objdump -h -S bin/Release/dev-board.elf > bin/Release/dev-board.elf.lss<br />
 avrdude -P /dev/ttyACM0 -c stk500v2 -p m328p -U flash:w:bin/Release/dev-board.elf.hex:i<br />
 avrdude: ser_open(): can't open device "/dev/ttyACM0": No such file or directory<br />
 <font color="#a00000">Process terminated with status 1 (0 minutes, 1 seconds)</font><br />
-<font color="#a00000">0 errors, 0 warnings (0 minutes, 1 seconds)</font><br />
+<font color="#a00000">0 errors, 4 warnings (0 minutes, 1 seconds)</font><br />
 </tt>
 </body>
 </html>

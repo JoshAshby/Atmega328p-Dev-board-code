@@ -12,7 +12,7 @@ freenode/#linuxandsci - JoshAshby
 #define DIGITAL_H
 #include "global.h"
 
-void portB_out(int pin, int value);
-void portD_out(int pin, int value);
-void out(char port, int pin, int value);
+void portB_out(int pin, _Bool value);
+void portD_out(int pin, _Bool value);
+void out(char port, int pin, _Bool value);
 #endif
