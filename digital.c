@@ -44,6 +44,7 @@ void portD_out(int pin, _Bool value)
 void out(char port, int pin, _Bool value){
     switch (port) {
         case 'D':
+            DDRD |= (1<<pin);
             if(value == 1){
                 PORTD |= (1<<pin);
             }
@@ -52,6 +53,7 @@ void out(char port, int pin, _Bool value){
             }
             break;
         case 'B':
+            DDRB |= (1<<pin);
             if(value == 1){
                 PORTB |= (1<<pin);
             }
@@ -60,4 +62,9 @@ void out(char port, int pin, _Bool value){
             }
             break;
     }
+}
+
+ISR(PCINT2_vect) {
+    button_one = (button_one * 9 + (PIND & 0b00001000) * 16)/16;
+    button_two = (button_two * 9 + (PIND & 0b00010000) * 16)/16;
 }

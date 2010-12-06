@@ -46,6 +46,7 @@ freenode/#linuxandsci - JoshAshby
 //-----------------------------------------------
 //Variables
 //-----------------------------------------------
-uint8_t temp; //button testing
+uint8_t button_one; //button testing
+uint8_t button_two;
 
 #endif
