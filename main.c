@@ -21,12 +21,12 @@ int main(void) { //Main loop, runs once but can have an infinit loop in it
     twi_start();
 
     DDRD |= (0<<3)
-         |  (0<<4);
+         |  (0<<4); //setup the button pins as inputs
 
 
-    PCMSK2 |= (1<<PCINT19);
-    PCMSK2 |= (1<<PCINT20);
-    PCICR |= (1<<PCIE2);
+    PCMSK2 |= (1<<PCINT19)
+           |  (1<<PCINT20); //setup the pin change interrupts for PORTD pins 3 and 4
+    PCICR |= (1<<PCIE2); //enable the pin change interrupts we just setup
 
     while(1) { //infinit loop that doesn't stop running. (always true since 1 is always 1
 
@@ -34,13 +34,13 @@ int main(void) { //Main loop, runs once but can have an infinit loop in it
         //digital.c running as an interrupt code which also debounces the button
         //and letting the main code know that a button has been pressed, and which one
         //button_one = (button_one * 9 + (PIND & 0b00001000) * 16)/16;
-        if (button_one > 5){ //If either are pulled high then turn pin 1 on port B on
+        if (button_one){ //If either are pulled high then turn pin 1 on port B on
             out('B',1,1);
         } else { //if either are off, turn pin1 port B off
             out('B',1,0);
         }
         //button_two = (button_two * 9 + (PIND & 0b00010000) * 16)/16;
-        if (button_two > 5){ //If either are pulled high then turn pin 1 on port B on
+        if (button_two){ //If either are pulled high then turn pin 1 on port B on
             out('B',2,1);
         } else { //if either are off, turn pin1 port B off
             out('B',2,0);

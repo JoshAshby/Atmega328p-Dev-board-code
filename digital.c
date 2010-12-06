@@ -64,7 +64,22 @@ void out(char port, int pin, _Bool value){
     }
 }
 
+//pin change interrupt; whats in here will get ran everytime either of the pins we
+//setup in main.c change state. ie: when a buttons been pressed
 ISR(PCINT2_vect) {
-    button_one = (button_one * 9 + (PIND & 0b00001000) * 16)/16;
-    button_two = (button_two * 9 + (PIND & 0b00010000) * 16)/16;
+    //figure out what pins been changed, and take the correct action
+    if ((PIND & 0b00001000)) {
+        //button_one = (button_one * 9 + (PIND & 0b00001000) * 8)/8;
+        button_one = !button_one;
+        _delay_ms(10);//the delay works fairly well for debouncing
+        //but I would like to impliment a solution that doesn't
+        //use a delay
+    }
+    if ((PIND & 0b00010000)) {
+        //button_two = (button_two * 9 + (PIND & 0b00010000) * 8)/8;
+        button_two = !button_two;
+        _delay_ms(10);//the delay works fairly well for debouncing
+        //but I would like to impliment a solution that doesn't
+        //use a delay
+    }
 }

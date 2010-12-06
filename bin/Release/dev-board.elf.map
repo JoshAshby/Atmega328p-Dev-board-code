@@ -133,7 +133,7 @@ LOAD /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x750
+.text           0x00000000      0x714
  *(.vectors)
  .vectors       0x00000000       0x68 /usr/lib/gcc/avr/4.3.5/../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vectors
@@ -217,49 +217,49 @@ LOAD /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a
                 0x000000ba                adc_start
                 0x00000108                adc_stop
                 0x00000114                adc_change
- .text          0x000001fe      0x14c obj/Release/digital.o
+ .text          0x000001fe      0x11a obj/Release/digital.o
                 0x000001fe                portB_out
                 0x00000232                portD_out
                 0x00000266                out
                 0x000002c4                __vector_5
- .text          0x0000034a      0x166 obj/Release/i2c.o
-                0x0000034a                twi_start
-                0x00000356                twi_tran
-                0x0000038a                twi_mcp_dac
-                0x0000045e                twi_mcp_read
- .text          0x000004b0       0x76 obj/Release/main.o
-                0x000004b0                main
- .text          0x00000526       0xe4 obj/Release/pwm.o
-                0x00000526                pwm_setup_all
-                0x00000568                pwm_setup0
-                0x0000057a                pwm0A
-                0x00000584                pwm0B
-                0x0000058e                pwm_setup1
-                0x000005a8                pwm1A
-                0x000005bc                pwm1B
-                0x000005d0                pwm_setup2
-                0x000005ea                pwm2A
-                0x000005fa                pwm2B
- .text          0x0000060a      0x142 obj/Release/uart.o
-                0x0000060a                uart_start
-                0x00000646                uart_sendint
-                0x00000666                uart_sendint16
-                0x00000692                uart_sendchar
-                0x000006bc                uart_get
-                0x000006f8                __vector_18
- .text          0x0000074c        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
- .text          0x0000074c        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_copy_data.o)
- .text          0x0000074c        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_clear_bss.o)
-                0x0000074c                . = ALIGN (0x2)
+ .text          0x00000318      0x166 obj/Release/i2c.o
+                0x00000318                twi_start
+                0x00000324                twi_tran
+                0x00000358                twi_mcp_dac
+                0x0000042c                twi_mcp_read
+ .text          0x0000047e       0x6c obj/Release/main.o
+                0x0000047e                main
+ .text          0x000004ea       0xe4 obj/Release/pwm.o
+                0x000004ea                pwm_setup_all
+                0x0000052c                pwm_setup0
+                0x0000053e                pwm0A
+                0x00000548                pwm0B
+                0x00000552                pwm_setup1
+                0x0000056c                pwm1A
+                0x00000580                pwm1B
+                0x00000594                pwm_setup2
+                0x000005ae                pwm2A
+                0x000005be                pwm2B
+ .text          0x000005ce      0x142 obj/Release/uart.o
+                0x000005ce                uart_start
+                0x0000060a                uart_sendint
+                0x0000062a                uart_sendint16
+                0x00000656                uart_sendchar
+                0x00000680                uart_get
+                0x000006bc                __vector_18
+ .text          0x00000710        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
+ .text          0x00000710        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_copy_data.o)
+ .text          0x00000710        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_clear_bss.o)
+                0x00000710                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x0000074c        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x0000074c        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_copy_data.o)
- .text.libgcc   0x0000074c        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_clear_bss.o)
-                0x0000074c                . = ALIGN (0x2)
+ .text.libgcc   0x00000710        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x00000710        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000710        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_clear_bss.o)
+                0x00000710                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000074c        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
-                0x0000074c                exit
-                0x0000074c                _exit
+ .fini9         0x00000710        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
+                0x00000710                exit
+                0x00000710                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -278,11 +278,11 @@ LOAD /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000074c        0x4 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
+ .fini0         0x00000710        0x4 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x00000750                _etext = .
+                0x00000714                _etext = .
 
-.data           0x00800100        0x6 load address 0x00000750
+.data           0x00800100        0x6 load address 0x00000714
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x0 /usr/lib/gcc/avr/4.3.5/../../../avr/lib/avr5/crtm328p.o
@@ -325,8 +325,8 @@ LOAD /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a
                 0x0080010d                input_buffer
                 0x008003c9                button_two
                 0x008003ca                PROVIDE (__bss_end, .)
-                0x00000750                __data_load_start = LOADADDR (.data)
-                0x00000756                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000714                __data_load_start = LOADADDR (.data)
+                0x0000071a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x008003ca        0x0
                 0x008003ca                PROVIDE (__noinit_start, .)
