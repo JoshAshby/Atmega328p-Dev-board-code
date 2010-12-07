@@ -15,4 +15,6 @@ freenode/#linuxandsci - JoshAshby
 void portB_out(int pin, _Bool value);
 void portD_out(int pin, _Bool value);
 void out(char port, int pin, _Bool value);
+void InitTimer0(void);
+void Buttons(void);
 #endif
