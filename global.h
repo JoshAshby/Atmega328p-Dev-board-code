@@ -35,6 +35,9 @@ freenode/#linuxandsci - JoshAshby
 
 #define MCP_ADDRESS 0xC0 //address of the MCP I2C DAC
 
+#define button_one 0b00001000
+#define button_two 0b00010000
+
 //addresses of the IGT I2C gyroscope
 #define	GX_H	0x1D
 #define	GX_L	0x1E
@@ -47,6 +50,6 @@ freenode/#linuxandsci - JoshAshby
 //Variables
 //-----------------------------------------------
 uint8_t count[5];
-char button[5];
+unsigned char button[5];
 
 #endif

@@ -54,27 +54,45 @@ void out(char port, int pin, _Bool value) {
     }
 }
 
-void InitTimer0(void) {
+void init_button_timer0(void) {
     TCNT0 = 0;
     TCCR0B |= (1<<CS01);
     TIMSK0 |= (1<<TOIE0);
 }
 
-void Buttons(void) {
-    if (count[0] > 5 && count[0] < 300) {
-        if ((PIND & 0b00001000) == 0) {
+void buttons(void) {
+    //button one
+    if (count[0] > 5) {
+        if ((PIND & button_one) == 0) {
             count[0] = 0;
         }
         button[0] = 1;
     }
-    if (count[0] > 500) {
-        if ((PIND & 0b00001000) == 0) {
+    if (count[0] > 250) {
+        if ((PIND & button_one) == 0) {
             count[0] = 0;
         }
         button[0] = 2;
     }
-    if ((PIND & 0b00001000) == 0) {
+    if ((PIND & button_one) == 0) {
             button[0] = 0;
+    }
+
+    //button two
+    if (count[1] > 5) {
+        if ((PIND & button_two) == 0) {
+            count[1] = 0;
+        }
+        button[1] = 1;
+    }
+    if (count[1] > 250) {
+        if ((PIND & button_two) == 0) {
+            count[1] = 0;
+        }
+        button[1] = 2;
+    }
+    if ((PIND & button_two) == 0) {
+            button[1] = 0;
     }
 }
 
@@ -82,7 +100,7 @@ void Buttons(void) {
 //setup in main.c change state. ie: when a buttons been pressed
 ISR(TIMER0_OVF_vect) {
     //figure out what pins been changed, and take the correct action
-    if ((PIND & 0b00001000)) {
+    if ((PIND & button_one)) {
         //simply increases or resets a counter, the main code then looks at the counter
         //and determines if the buttons been pressed, or held down
         count[0]++; //if buttton_ones been pressed, increase the count, as long as
@@ -91,8 +109,7 @@ ISR(TIMER0_OVF_vect) {
         count[0] = 0;
         //if the button changes state, reset the count
     }
-    if ((PIND & 0b00010000)) {
-        if ((PIND & 0b00010000)) {
+    if ((PIND & button_two)) {
         //simply increases or resets a counter, the main code then looks at the counter
         //and determines if the buttons been pressed, or held down
         count[1]++; //if buttton_ones been pressed, increase the count, as long as
@@ -100,6 +117,5 @@ ISR(TIMER0_OVF_vect) {
     } else {
         count[1] = 0;
         //if the button changes state, reset the count
-    }
     }
 }
