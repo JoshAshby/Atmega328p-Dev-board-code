@@ -10,13 +10,6 @@ freenode/#linuxandsci - JoshAshby
 //-------------------------------------------
 #include "global.h"
 
-/*
-Pretty useless library, all it does it clean up the main code a little, and makes
-sure I don't have to remember how to turn a pin high or low ;D
-The out() function is the most usefull I find, since i just have to tell it which port
-and what pin and value to set it at
-*/
-
 void portB_out(int pin, _Bool value) {
     if (value == 0) {
         PORTB &= ~(1<<pin);
@@ -62,7 +55,8 @@ void init_button_timer0(void) {
 
 void buttons(void) {
     //button one
-    if (count[0] > 5) {
+    if (count[0] > 5) { //if the buttons stable, set the array for button 1 as stable
+        //and reset the counter if the buttons been released
         if ((PIND & button_one) == 0) {
             count[0] = 0;
         }
@@ -74,12 +68,13 @@ void buttons(void) {
         }
         button[0] = 2;
     }
-    if ((PIND & button_one) == 0) {
+    if ((PIND & button_one) == 0) { //reset the counter as soon as button one is released
             button[0] = 0;
     }
 
     //button two
-    if (count[1] > 5) {
+    if (count[1] > 5) {//if the buttons stable, set the array for button 2 as stable
+        //and reset the counter if the buttons been released
         if ((PIND & button_two) == 0) {
             count[1] = 0;
         }
@@ -91,7 +86,7 @@ void buttons(void) {
         }
         button[1] = 2;
     }
-    if ((PIND & button_two) == 0) {
+    if ((PIND & button_two) == 0) {//reset the counter as soon as button two is released
             button[1] = 0;
     }
 }

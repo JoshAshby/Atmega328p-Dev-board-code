@@ -23,11 +23,6 @@ int main(void) { //Main loop, runs once but can have an infinit loop in it
     DDRD |= (0<<3)
          |  (0<<4); //setup the button pins as inputs
 
-
-    //PCMSK2 |= (1<<PCINT19)
-    //       |  (1<<PCINT20); //setup the pin change interrupts for PORTD pins 3 and 4
-    //PCICR |= (1<<PCIE2); //enable the pin change interrupts we just setup
-
     init_button_timer0();
 
     while(1) { //infinit loop that doesn't stop running. (always true since 1 is always 1
@@ -45,7 +40,9 @@ int main(void) { //Main loop, runs once but can have an infinit loop in it
         } else { //if either are off, turn pin1 port B off
             out('B',2,debug);
         }
-        pwm2A(ADCH);
+        pwm2A(ADCH); //test to see if the code still will allow me to do both PWM
+        //and ADC result at the same time and not slow down the core too much
+        //it worked, and very well if i might say so
     };
     return 0;
 }

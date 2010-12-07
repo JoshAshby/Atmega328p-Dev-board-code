@@ -4,10 +4,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 <tt>
-Build started on: <u>06-12-2010 at 22:13.53</u><br />
-Build ended on: <u>06-12-2010 at 22:13.59</u><p />
+Build started on: <u>06-12-2010 at 22:37.41</u><br />
+Build ended on: <u>06-12-2010 at 22:37.43</u><p />
 <b>-------------- Build: Release in dev-board ---------------</b><br />
-Target is up to date.<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c digital.c -o obj/Release/digital.o<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c main.c -o obj/Release/main.o<br />
+avr-g++ -L/usr/lib  -o bin/Release/dev-board.elf obj/Release/adc.o obj/Release/digital.o obj/Release/i2c.o obj/Release/main.o obj/Release/pwm.o obj/Release/uart.o   -mmcu=atmega328p -Wl,-Map=bin/Release/dev-board.elf.map,--cref<br />
+/usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libm.so when searching for -lm<br />
+/usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libm.a when searching for -lm<br />
+/usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libc.so when searching for -lc<br />
+/usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libc.a when searching for -lc<br />
+Output size is 7.20 KB<br />
 avr-size bin/Release/dev-board.elf<br />
    text	   data	    bss	    dec	    hex	filename<br />
    1940	      0	    716	   2656	    a60	bin/Release/dev-board.elf<br />
@@ -15,51 +22,9 @@ avr-objcopy -O ihex -R .eeprom -R .eesafe bin/Release/dev-board.elf bin/Release/
 avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex bin/Release/dev-board.elf bin/Release/dev-board.elf.eep.hex<br />
 avr-objdump -h -S bin/Release/dev-board.elf > bin/Release/dev-board.elf.lss<br />
 avrdude -P /dev/ttyACM0 -c stk500v2 -p m328p -U flash:w:bin/Release/dev-board.elf.hex:i<br />
-avrdude: AVR device initialized and ready to accept instructions<br />
-Reading | ################################################## | 100% 0.02s<br />
-avrdude: Device signature = 0x1e950f<br />
-avrdude: NOTE: FLASH memory has been specified, an erase cycle will be performed<br />
-         To disable this feature, specify the -D option.<br />
-avrdude: erasing chip<br />
-avrdude: reading input file "bin/Release/dev-board.elf.hex"<br />
-avrdude: writing flash (1940 bytes):<br />
-Writing | <br />
-###<br />
-###<br />
-###<br />
-####<br />
-###<br />
-###<br />
-####<br />
-###<br />
-###<br />
-###<br />
-####<br />
-###<br />
-###<br />
-####<br />
-#### | 100% 2.03s<br />
-avrdude: 1940 bytes of flash written<br />
-avrdude: verifying flash memory against bin/Release/dev-board.elf.hex:<br />
-avrdude: load data flash data from input file bin/Release/dev-board.elf.hex:<br />
-avrdude: input file bin/Release/dev-board.elf.hex contains 1940 bytes<br />
-avrdude: reading on-chip flash data:<br />
-Reading | <br />
-######<br />
-#######<br />
-######<br />
-#######<br />
-######<br />
-#######<br />
-#######<br />
-#### | 100% 1.86s<br />
-avrdude: verifying ...<br />
-avrdude: verification error, first mismatch at byte 0x0008<br />
-         0x0c != 0x04<br />
-avrdude: verification error; content mismatch<br />
-avrdude done.  Thank you.<br />
-<font color="#a00000">Process terminated with status 1 (0 minutes, 5 seconds)</font><br />
-<font color="#a00000">0 errors, 0 warnings (0 minutes, 5 seconds)</font><br />
+avrdude: ser_open(): can't open device "/dev/ttyACM0": No such file or directory<br />
+<font color="#a00000">Process terminated with status 1 (0 minutes, 1 seconds)</font><br />
+<font color="#a00000">0 errors, 0 warnings (0 minutes, 1 seconds)</font><br />
 </tt>
 </body>
 </html>
