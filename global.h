@@ -48,5 +48,8 @@ freenode/#linuxandsci - JoshAshby
 //-----------------------------------------------
 uint8_t button_one; //button testing
 uint8_t button_two;
+uint8_t count;
+char button_one_state;
+char button_two_state;
 
 #endif

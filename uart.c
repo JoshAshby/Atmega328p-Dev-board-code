@@ -21,14 +21,18 @@ void uart_start(void) {
     UCSR0B |= (1 << RXCIE0);
     sei(); //enable system interrupts
     while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
-    UDR0 = "\r\n"; //send a new line just to be sure
+	UDR0 = '\n';//send a new line just to be sure
+	while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
+	UDR0 = '\r';//send a new line just to be sure
 }
 
 void uart_sendint(uint8_t data) {
     while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
     UDR0 = data; //send the data
     while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
-	UDR0 = "\n\r";//send a new line just to be sure
+	UDR0 = '\n';//send a new line just to be sure
+	while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
+	UDR0 = '\r';//send a new line just to be sure
 }
 
 void uart_sendint16(uint16_t data) {
@@ -37,7 +41,9 @@ void uart_sendint16(uint16_t data) {
     while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
     UDR0 = (data >> 8); //send the higher bits
     while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
-	UDR0 = "\n\r";//send a new line just to be sure
+	UDR0 = '\n';//send a new line just to be sure
+	while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
+	UDR0 = '\r';//send a new line just to be sure
 }
 
 void uart_sendchar(char *data) {
@@ -47,7 +53,9 @@ void uart_sendchar(char *data) {
 		data += 1;//go to new bit in string
 	}
 	while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
-	UDR0 = "\n\r";//send a new line just to be sure
+	UDR0 = '\n';//send a new line just to be sure
+	while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
+	UDR0 = '\r';//send a new line just to be sure
 }
 
 uint8_t uart_get(void) { //gets data from the register that the interrupt stored it

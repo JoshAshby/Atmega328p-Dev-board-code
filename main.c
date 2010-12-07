@@ -33,14 +33,28 @@ int main(void) { //Main loop, runs once but can have an infinit loop in it
         //sample button text, eventually this will become the meet and bones of
         //digital.c running as an interrupt code which also debounces the button
         //and letting the main code know that a button has been pressed, and which one
-        //button_one = (button_one * 9 + (PIND & 0b00001000) * 16)/16;
-        if (button_one){ //If either are pulled high then turn pin 1 on port B on
+
+        if (count > 10 && count < 500){
+            //button_one = 0;
+            if ((PIND & 0b00001000) == 0) {
+                count = 0;
+            }
+            button_one_state = 'p';
+        }
+        if (count > 500) {
+            //button_one = 0;
+            if ((PIND & 0b00001000) == 0) {
+                count = 0;
+            }
+            button_one_state = 'h';
+        }
+        if (button_one_state == 'p'){ //If either are pulled high then turn pin 1 on port B on
             out('B',1,1);
         } else { //if either are off, turn pin1 port B off
             out('B',1,0);
         }
         //button_two = (button_two * 9 + (PIND & 0b00010000) * 16)/16;
-        if (button_two){ //If either are pulled high then turn pin 1 on port B on
+        if (button_one_state == 'h'){ //If either are pulled high then turn pin 1 on port B on
             out('B',2,1);
         } else { //if either are off, turn pin1 port B off
             out('B',2,0);
