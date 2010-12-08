@@ -43,6 +43,11 @@ freenode/#linuxandsci - JoshAshby
 #define stat_led1 5 //PORTD
 #define stat_led2 6 //PORTD
 
+//CPU power LED
+//On my Dev board this pin bootstraps the regulator so the power button can be released
+//On BOB this is the LED which lets you know the CPU is alive
+#define CPU_POW 2 //PORTD
+
 //addresses of the IGT I2C gyroscope
 #define	GX_H	0x1D
 #define	GX_L	0x1E

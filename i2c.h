@@ -28,18 +28,12 @@ freenode/#linuxandsci - JoshAshby
 void twi_start(void);
 unsigned char twi_tran(unsigned char type);
 int twi_mcp_dac(unsigned int twi_address, uint16_t data, _Bool type);
-uint8_t twi_mcp_read(unsigned int twi_address);
+uint16_t twi_mcp_read(unsigned int twi_address);
 
 //-------------------------------------------
 //Variables
 //-------------------------------------------
 
 uint16_t mcp_data[2];
-
-//uint16_t itg_data[3];
-
-//signed int gyrox = 0;
-//signed int gyroy = 0;
-//signed int gyroz = 0;
 
 #endif

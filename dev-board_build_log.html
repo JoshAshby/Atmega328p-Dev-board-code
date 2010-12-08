@@ -4,24 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 <tt>
-Build started on: <u>07-12-2010 at 17:45.06</u><br />
-Build ended on: <u>07-12-2010 at 17:45.14</u><p />
+Build started on: <u>08-12-2010 at 15:16.36</u><br />
+Build ended on: <u>08-12-2010 at 15:16.42</u><p />
 <b>-------------- Build: Release in dev-board ---------------</b><br />
-avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c adc.c -o obj/Release/adc.o<br />
-avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c digital.c -o obj/Release/digital.o<br />
-avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c i2c.c -o obj/Release/i2c.o<br />
-avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c main.c -o obj/Release/main.o<br />
-avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c pwm.c -o obj/Release/pwm.o<br />
-avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -Os    -I/usr/include  -c uart.c -o obj/Release/uart.o<br />
-avr-g++ -L/usr/lib  -o bin/Release/dev-board.elf obj/Release/adc.o obj/Release/digital.o obj/Release/i2c.o obj/Release/main.o obj/Release/pwm.o obj/Release/uart.o   -mmcu=atmega328p -Wl,-Map=bin/Release/dev-board.elf.map,--cref<br />
-/usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libm.so when searching for -lm<br />
-/usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libm.a when searching for -lm<br />
-/usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libc.so when searching for -lc<br />
-/usr/lib/gcc/avr/4.3.5/../../../avr/bin/ld: skipping incompatible /usr/lib/libc.a when searching for -lc<br />
-Output size is 7.23 KB<br />
+Target is up to date.<br />
 avr-size bin/Release/dev-board.elf<br />
    text	   data	    bss	    dec	    hex	filename<br />
-   1938	      0	    710	   2648	    a58	bin/Release/dev-board.elf<br />
+   1924	      0	    710	   2634	    a4a	bin/Release/dev-board.elf<br />
 avr-objcopy -O ihex -R .eeprom -R .eesafe bin/Release/dev-board.elf bin/Release/dev-board.elf.hex<br />
 avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex bin/Release/dev-board.elf bin/Release/dev-board.elf.eep.hex<br />
 avr-objdump -h -S bin/Release/dev-board.elf > bin/Release/dev-board.elf.lss<br />
@@ -33,7 +22,7 @@ avrdude: NOTE: FLASH memory has been specified, an erase cycle will be performed
          To disable this feature, specify the -D option.<br />
 avrdude: erasing chip<br />
 avrdude: reading input file "bin/Release/dev-board.elf.hex"<br />
-avrdude: writing flash (1938 bytes):<br />
+avrdude: writing flash (1924 bytes):<br />
 Writing | <br />
 ###<br />
 ###<br />
@@ -47,14 +36,14 @@ Writing | <br />
 ####<br />
 ###<br />
 ###<br />
-###<br />
 ####<br />
 ###<br />
-# | 100% 2.02s<br />
-avrdude: 1938 bytes of flash written<br />
+###<br />
+# | 100% 2.01s<br />
+avrdude: 1924 bytes of flash written<br />
 avrdude: verifying flash memory against bin/Release/dev-board.elf.hex:<br />
 avrdude: load data flash data from input file bin/Release/dev-board.elf.hex:<br />
-avrdude: input file bin/Release/dev-board.elf.hex contains 1938 bytes<br />
+avrdude: input file bin/Release/dev-board.elf.hex contains 1924 bytes<br />
 avrdude: reading on-chip flash data:<br />
 Reading | <br />
 ######<br />
@@ -64,12 +53,12 @@ Reading | <br />
 #######<br />
 ######<br />
 #######<br />
-#### | 100% 1.84s<br />
+#### | 100% 1.81s<br />
 avrdude: verifying ...<br />
-avrdude: 1938 bytes of flash verified<br />
+avrdude: 1924 bytes of flash verified<br />
 avrdude done.  Thank you.<br />
-<font color="#0000ff">Process terminated with status 0 (0 minutes, 7 seconds)</font><br />
-<font color="#0000ff">0 errors, 0 warnings (0 minutes, 7 seconds)</font><br />
+<font color="#0000ff">Process terminated with status 0 (0 minutes, 5 seconds)</font><br />
+<font color="#0000ff">0 errors, 0 warnings (0 minutes, 5 seconds)</font><br />
 </tt>
 </body>
 </html>

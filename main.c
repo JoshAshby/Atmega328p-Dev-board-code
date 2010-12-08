@@ -11,8 +11,8 @@ freenode/#linuxandsci - JoshAshby
 #include "global.h"
 
 int main(void) { //Main loop, runs once but can have an infinit loop in it
-    DDRD |= (1<<2);
-    PORTD |= (1<<2);
+    DDRD |= (1<<CPU_POW);
+    PORTD |= (1<<CPU_POW);
 
     //various start up parts, these run once since they are not with in the main
     //while loop that runs forever. (see below)

@@ -125,9 +125,10 @@ void buttons(void) {
     }
     if (button[1] == 1) { //If the second button is pulled high then
         //turn pin 2 on port B on
-        out('D',stat_led2,!debug);
+        //out('D',stat_led2,!debug);
+        uart_sendint(88);
     } else { //if either are off, turn pin1 port B off
-        out('D',stat_led2,debug);
+        //out('D',stat_led2,debug);
     }
 }
 
