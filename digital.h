@@ -12,6 +12,10 @@ freenode/#linuxandsci - JoshAshby
 #define DIGITAL_H
 #include "global.h"
 
+//-------------------------------------------
+//Prototypes
+//-------------------------------------------
+
 void portB_out(int pin, _Bool value);
 void portD_out(int pin, _Bool value);
 void out(char port, int pin, _Bool value);

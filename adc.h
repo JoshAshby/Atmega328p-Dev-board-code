@@ -12,6 +12,10 @@ freenode/#linuxandsci - JoshAshby
 #define ADC_H
 #include "global.h"
 
+//-------------------------------------------
+//Prototypes
+//-------------------------------------------
+
 void adc_start(_Bool left);
 void adc_stop(void);
 void adc_change(char chan);

@@ -54,6 +54,12 @@ void init_button_timer0(void) {
 }
 
 void check_buttons(void) {
+    /*
+    This little bit of code takes care of debouncing the button, with the aid of the
+    Timer0 ISR which keeps track of how stable the button is. If the button is stable
+    then this bit of code will change it's matching variable which indicates the state
+    for the rest of the code. If the button isn't stable then it doesn't do anything.
+    */
     //button one
     if (count[0] > 5) { //if the buttons stable, set the array for button 1 as stable
         //and reset the counter if the buttons been released
@@ -92,6 +98,10 @@ void check_buttons(void) {
 }
 
 void buttons(void) {
+    /*
+    This little function holds all of the handlers for the buttons, ie: what to do when
+    a button has been pressed.
+    */
     if (button[0] == 1) { //If the first button is pulled high then
         //turn pin 1 on port B on
         out('D',stat_led1,!debug);
@@ -106,9 +116,13 @@ void buttons(void) {
     }
 }
 
-//pin change interrupt; whats in here will get ran everytime either of the pins we
-//setup in main.c change state. ie: when a buttons been pressed
 ISR(TIMER0_OVF_vect) {
+    /*
+    Timer0 overflow interrupt servic routine. Whats in here is a very fancy little
+    for each button which will increase if the button is stable in it's state,
+    everytime this is ran, or will reset the timer if the button isn't stable, ie
+    bouncing, which is what we don't want.
+    */
     //figure out what pins been changed, and take the correct action
     if ((PIND & button_one)) {
         //simply increases or resets a counter, the main code then looks at the counter

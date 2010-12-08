@@ -12,6 +12,10 @@ freenode/#linuxandsci - JoshAshby
 #define PWM_H
 #include "global.h"
 
+//-------------------------------------------
+//Prototypes
+//-------------------------------------------
+
 void pwm_setup_all(void);
 
 void pwm_setup0(void);
