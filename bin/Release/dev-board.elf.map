@@ -9,10 +9,10 @@ Allocating common symbols
 Common symbol       size              file
 
 read_spot           0x2               obj/Release/adc.o
-button              0x5               obj/Release/adc.o
+button              0x2               obj/Release/adc.o
 mcp_data            0x4               obj/Release/adc.o
 input_buffer        0x2bc             obj/Release/adc.o
-count               0x5               obj/Release/adc.o
+count               0x2               obj/Release/adc.o
 
 Memory Configuration
 
@@ -299,7 +299,7 @@ LOAD /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a
                 0x00800100                _edata = .
                 0x00800100                PROVIDE (__data_end, .)
 
-.bss            0x00800100      0x2cc
+.bss            0x00800100      0x2c6
                 0x00800100                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x00800100        0x0 /usr/lib/gcc/avr/4.3.5/../../../avr/lib/avr5/crtm328p.o
@@ -313,22 +313,22 @@ LOAD /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a
  .bss           0x00800100        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_clear_bss.o)
  *(.bss*)
  *(COMMON)
- COMMON         0x00800100      0x2cc obj/Release/adc.o
+ COMMON         0x00800100      0x2c6 obj/Release/adc.o
                 0x00800100                read_spot
                 0x00800102                button
-                0x00800107                mcp_data
-                0x0080010b                input_buffer
-                0x008003c7                count
-                0x008003cc                PROVIDE (__bss_end, .)
+                0x00800104                mcp_data
+                0x00800108                input_buffer
+                0x008003c4                count
+                0x008003c6                PROVIDE (__bss_end, .)
                 0x00000792                __data_load_start = LOADADDR (.data)
                 0x00000792                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008003cc        0x0
-                0x008003cc                PROVIDE (__noinit_start, .)
+.noinit         0x008003c6        0x0
+                0x008003c6                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008003cc                PROVIDE (__noinit_end, .)
-                0x008003cc                _end = .
-                0x008003cc                PROVIDE (__heap_start, .)
+                0x008003c6                PROVIDE (__noinit_end, .)
+                0x008003c6                _end = .
+                0x008003c6                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)

@@ -12,14 +12,15 @@ freenode/#linuxandsci - JoshAshby
 
 //Got through and set up the registers for UART
 void uart_start(void) {
-    UCSR0B |= (1 << RXEN0) | (1 << TXEN0);
-    UCSR0C |= (1 << UCSZ00) | (1 << UCSZ01);
+    UCSR0B |= (1 << RXEN0) | (1 << TXEN0); //transmit side of hardware
+    UCSR0C |= (1 << UCSZ00) | (1 << UCSZ01); //receive side of hardware
 
     UBRR0L = BAUD_PRESCALE; //set the baud to 9600, have to split it into the two registers
-    UBRR0H = (BAUD_PRESCALE >> 8);
+    UBRR0H = (BAUD_PRESCALE >> 8); //high end of baud register
 
-    UCSR0B |= (1 << RXCIE0);
+    UCSR0B |= (1 << RXCIE0); //recieve data interrupt, makes sure we don't loose data
     sei(); //enable system interrupts
+
     while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
 	UDR0 = '\n';//send a new line just to be sure
 	while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
@@ -27,6 +28,9 @@ void uart_start(void) {
 }
 
 void uart_sendint(uint8_t data) {
+    /*
+    Use this to send a 8bit long piece of data
+    */
     while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
     UDR0 = data; //send the data
     while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
@@ -36,6 +40,9 @@ void uart_sendint(uint8_t data) {
 }
 
 void uart_sendint16(uint16_t data) {
+    /*
+    Use this to send a 16bit long piece of data
+    */
     while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
     UDR0 = data;//send the lower bits
     while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
@@ -47,6 +54,10 @@ void uart_sendint16(uint16_t data) {
 }
 
 void uart_sendchar(char *data) {
+    /*
+    Use this to send a string, it will split it up into individual parts
+    send those parts, and then send the new line code
+    */
     while (*data) {
         while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
 		UDR0 = *data; //goes through and splits the string into individual bits, sends them
@@ -58,8 +69,11 @@ void uart_sendchar(char *data) {
 	UDR0 = '\r';//send a new line just to be sure
 }
 
-uint8_t uart_get(void) { //gets data from the register that the interrupt stored it
-    //in coming data into, returning it to the calling function as 8 bit long data
+uint8_t uart_get(void) {
+    /*
+    gets data from the register that the interrupt stored it
+    in coming data into, returning it to the calling function as 8 bit long data
+    */
     UCSR0B |= (1<<RXCIE0);
 
     sei();

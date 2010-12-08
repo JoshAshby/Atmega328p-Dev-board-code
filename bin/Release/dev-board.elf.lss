@@ -5,7 +5,7 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .text         00000792  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          000002cc  00800100  00800100  00000806  2**0
+  1 .bss          000002c6  00800100  00800100  00000806  2**0
                   ALLOC
   2 .stab         000006b4  00000000  00000000  00000808  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -60,7 +60,7 @@ Disassembly of section .text:
   7c:	1d 92       	st	X+, r1
 
 0000007e <.do_clear_bss_start>:
-  7e:	ac 3c       	cpi	r26, 0xCC	; 204
+  7e:	a6 3c       	cpi	r26, 0xC6	; 198
   80:	b1 07       	cpc	r27, r17
   82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
   84:	0e 94 88 02 	call	0x510	; 0x510 <main>
@@ -323,39 +323,39 @@ Disassembly of section .text:
  2c0:	08 95       	ret
 
 000002c2 <check_buttons>:
- 2c2:	80 91 c7 03 	lds	r24, 0x03C7
+ 2c2:	80 91 c4 03 	lds	r24, 0x03C4
  2c6:	86 30       	cpi	r24, 0x06	; 6
  2c8:	38 f0       	brcs	.+14     	; 0x2d8 <check_buttons+0x16>
  2ca:	4b 99       	sbic	0x09, 3	; 9
  2cc:	02 c0       	rjmp	.+4      	; 0x2d2 <check_buttons+0x10>
- 2ce:	10 92 c7 03 	sts	0x03C7, r1
+ 2ce:	10 92 c4 03 	sts	0x03C4, r1
  2d2:	81 e0       	ldi	r24, 0x01	; 1
  2d4:	80 93 02 01 	sts	0x0102, r24
- 2d8:	80 91 c7 03 	lds	r24, 0x03C7
+ 2d8:	80 91 c4 03 	lds	r24, 0x03C4
  2dc:	8b 3f       	cpi	r24, 0xFB	; 251
  2de:	38 f0       	brcs	.+14     	; 0x2ee <check_buttons+0x2c>
  2e0:	4b 99       	sbic	0x09, 3	; 9
  2e2:	02 c0       	rjmp	.+4      	; 0x2e8 <check_buttons+0x26>
- 2e4:	10 92 c7 03 	sts	0x03C7, r1
+ 2e4:	10 92 c4 03 	sts	0x03C4, r1
  2e8:	82 e0       	ldi	r24, 0x02	; 2
  2ea:	80 93 02 01 	sts	0x0102, r24
  2ee:	4b 99       	sbic	0x09, 3	; 9
  2f0:	02 c0       	rjmp	.+4      	; 0x2f6 <check_buttons+0x34>
  2f2:	10 92 02 01 	sts	0x0102, r1
- 2f6:	80 91 c8 03 	lds	r24, 0x03C8
+ 2f6:	80 91 c5 03 	lds	r24, 0x03C5
  2fa:	86 30       	cpi	r24, 0x06	; 6
  2fc:	38 f0       	brcs	.+14     	; 0x30c <check_buttons+0x4a>
  2fe:	4c 99       	sbic	0x09, 4	; 9
  300:	02 c0       	rjmp	.+4      	; 0x306 <check_buttons+0x44>
- 302:	10 92 c8 03 	sts	0x03C8, r1
+ 302:	10 92 c5 03 	sts	0x03C5, r1
  306:	81 e0       	ldi	r24, 0x01	; 1
  308:	80 93 03 01 	sts	0x0103, r24
- 30c:	80 91 c8 03 	lds	r24, 0x03C8
+ 30c:	80 91 c5 03 	lds	r24, 0x03C5
  310:	8b 3f       	cpi	r24, 0xFB	; 251
  312:	38 f0       	brcs	.+14     	; 0x322 <check_buttons+0x60>
  314:	4c 99       	sbic	0x09, 4	; 9
  316:	02 c0       	rjmp	.+4      	; 0x31c <check_buttons+0x5a>
- 318:	10 92 c8 03 	sts	0x03C8, r1
+ 318:	10 92 c5 03 	sts	0x03C5, r1
  31c:	82 e0       	ldi	r24, 0x02	; 2
  31e:	80 93 03 01 	sts	0x0103, r24
  322:	4c 99       	sbic	0x09, 4	; 9
@@ -401,18 +401,18 @@ Disassembly of section .text:
  374:	8f 93       	push	r24
  376:	4b 9b       	sbis	0x09, 3	; 9
  378:	06 c0       	rjmp	.+12     	; 0x386 <__vector_16+0x1c>
- 37a:	80 91 c7 03 	lds	r24, 0x03C7
+ 37a:	80 91 c4 03 	lds	r24, 0x03C4
  37e:	8f 5f       	subi	r24, 0xFF	; 255
- 380:	80 93 c7 03 	sts	0x03C7, r24
+ 380:	80 93 c4 03 	sts	0x03C4, r24
  384:	02 c0       	rjmp	.+4      	; 0x38a <__vector_16+0x20>
- 386:	10 92 c7 03 	sts	0x03C7, r1
+ 386:	10 92 c4 03 	sts	0x03C4, r1
  38a:	4c 9b       	sbis	0x09, 4	; 9
  38c:	06 c0       	rjmp	.+12     	; 0x39a <__vector_16+0x30>
- 38e:	80 91 c8 03 	lds	r24, 0x03C8
+ 38e:	80 91 c5 03 	lds	r24, 0x03C5
  392:	8f 5f       	subi	r24, 0xFF	; 255
- 394:	80 93 c8 03 	sts	0x03C8, r24
+ 394:	80 93 c5 03 	sts	0x03C5, r24
  398:	02 c0       	rjmp	.+4      	; 0x39e <__vector_16+0x34>
- 39a:	10 92 c8 03 	sts	0x03C8, r1
+ 39a:	10 92 c5 03 	sts	0x03C5, r1
  39e:	8f 91       	pop	r24
  3a0:	0f 90       	pop	r0
  3a2:	0f be       	out	0x3f, r0	; 63
@@ -569,8 +569,8 @@ Disassembly of section .text:
  4f2:	88 31       	cpi	r24, 0x18	; 24
  4f4:	31 f4       	brne	.+12     	; 0x502 <twi_mcp_read+0x44>
  4f6:	80 91 bb 00 	lds	r24, 0x00BB
- 4fa:	80 93 07 01 	sts	0x0107, r24
- 4fe:	10 92 08 01 	sts	0x0108, r1
+ 4fa:	80 93 04 01 	sts	0x0104, r24
+ 4fe:	10 92 05 01 	sts	0x0105, r1
  502:	82 e0       	ldi	r24, 0x02	; 2
  504:	0e 94 db 01 	call	0x3b6	; 0x3b6 <twi_tran>
  508:	8f ef       	ldi	r24, 0xFF	; 255
@@ -827,9 +827,9 @@ Disassembly of section .text:
  71e:	f0 91 01 01 	lds	r31, 0x0101
  722:	30 97       	sbiw	r30, 0x00	; 0
  724:	19 f4       	brne	.+6      	; 0x72c <uart_get+0x2e>
- 726:	80 91 c6 03 	lds	r24, 0x03C6
+ 726:	80 91 c3 03 	lds	r24, 0x03C3
  72a:	03 c0       	rjmp	.+6      	; 0x732 <uart_get+0x34>
- 72c:	e6 5f       	subi	r30, 0xF6	; 246
+ 72c:	e9 5f       	subi	r30, 0xF9	; 249
  72e:	fe 4f       	sbci	r31, 0xFE	; 254
  730:	80 81       	ld	r24, Z
  732:	8d 30       	cpi	r24, 0x0D	; 13
@@ -852,7 +852,7 @@ Disassembly of section .text:
  752:	90 91 01 01 	lds	r25, 0x0101
  756:	20 91 c6 00 	lds	r18, 0x00C6
  75a:	fc 01       	movw	r30, r24
- 75c:	e5 5f       	subi	r30, 0xF5	; 245
+ 75c:	e8 5f       	subi	r30, 0xF8	; 248
  75e:	fe 4f       	sbci	r31, 0xFE	; 254
  760:	20 83       	st	Z, r18
  762:	01 96       	adiw	r24, 0x01	; 1

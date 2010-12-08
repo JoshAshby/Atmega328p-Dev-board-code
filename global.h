@@ -35,11 +35,13 @@ freenode/#linuxandsci - JoshAshby
 
 #define MCP_ADDRESS 0xC0 //address of the MCP I2C DAC
 
-#define button_one 0b00001000
-#define button_two 0b00010000
+//Buttons
+#define button_one 0b00001000 //PORTD pin 3
+#define button_two 0b00010000 //PORTD pin 4
 
-#define stat_led1 5
-#define stat_led2 6
+//Status LEDs
+#define stat_led1 5 //PORTD
+#define stat_led2 6 //PORTD
 
 //addresses of the IGT I2C gyroscope
 #define	GX_H	0x1D
@@ -52,7 +54,7 @@ freenode/#linuxandsci - JoshAshby
 //-----------------------------------------------
 //Variables
 //-----------------------------------------------
-uint8_t count[5];
-unsigned char button[5];
+uint8_t count[2];
+unsigned char button[2];
 
 #endif

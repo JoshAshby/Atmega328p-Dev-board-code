@@ -11,6 +11,10 @@ freenode/#linuxandsci - JoshAshby
 #include "global.h"
 
 void portB_out(int pin, _Bool value) {
+    /*
+    Change the state of a pin on PORTB
+    simply pass the pin number, and either a 0 to sink current or 1 to source it
+    */
     if (value == 0) {
         PORTB &= ~(1<<pin);
     } else  {
@@ -19,6 +23,10 @@ void portB_out(int pin, _Bool value) {
 }
 
 void portD_out(int pin, _Bool value) {
+    /*
+    Change the state of a pin on PORTD
+    simply pass the pin number, and either a 0 to sink current or 1 to source it
+    */
     if (value == 0) {
         PORTD &= ~(1<<pin);
     } else {
@@ -27,18 +35,25 @@ void portD_out(int pin, _Bool value) {
 }
 
 void out(char port, int pin, _Bool value) {
-    switch (port) {
+    /*
+    Change the state of a pin on given port
+    simply pass the Port as either D or B (make sure to enclose it in single
+    quotes like so: 'D')
+    The pin number you would like to change state of,
+    and either a 0 to sink current or 1 to source it on that pin
+    */
+    switch (port) { //switch determines if which port it is
         case 'D':
-            DDRD |= (1<<pin);
-            if(value == 1) {
+            DDRD |= (1<<pin); //change the pin to output
+            if(value == 1) { //sink or source current
                 PORTD |= (1<<pin);
             } else {
                 PORTD &= ~(1<<pin);
             }
             break;
         case 'B':
-            DDRB |= (1<<pin);
-            if(value == 1) {
+            DDRB |= (1<<pin); //change pin to output
+            if(value == 1) { //sink or source current
                 PORTB |= (1<<pin);
             } else {
                 PORTB &= ~(1<<pin);
@@ -48,9 +63,9 @@ void out(char port, int pin, _Bool value) {
 }
 
 void init_button_timer0(void) {
-    TCNT0 = 0;
-    TCCR0B |= (1<<CS01);
-    TIMSK0 |= (1<<TOIE0);
+    TCNT0 = 0; //set the inital timer value to 0
+    TCCR0B |= (1<<CS01); //set the clock prescaler to clock/8 or 2mHz
+    TIMSK0 |= (1<<TOIE0); //start the timer with the interrupt overflow turned on
 }
 
 void check_buttons(void) {
