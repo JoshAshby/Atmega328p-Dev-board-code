@@ -53,7 +53,7 @@ void init_button_timer0(void) {
     TIMSK0 |= (1<<TOIE0);
 }
 
-void buttons(void) {
+void check_buttons(void) {
     //button one
     if (count[0] > 5) { //if the buttons stable, set the array for button 1 as stable
         //and reset the counter if the buttons been released
@@ -88,6 +88,21 @@ void buttons(void) {
     }
     if ((PIND & button_two) == 0) {//reset the counter as soon as button two is released
             button[1] = 0;
+    }
+}
+
+void buttons(void) {
+    if (button[0] == 1) { //If the first button is pulled high then
+        //turn pin 1 on port B on
+        out('D',stat_led1,!debug);
+    } else { //if either are off, turn pin1 port B off
+        out('D',stat_led1,debug);
+    }
+    if (button[1] == 1) { //If the second button is pulled high then
+        //turn pin 2 on port B on
+        out('D',stat_led2,!debug);
+    } else { //if either are off, turn pin1 port B off
+        out('D',stat_led2,debug);
     }
 }
 

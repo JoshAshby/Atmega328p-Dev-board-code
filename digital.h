@@ -17,5 +17,6 @@ void portD_out(int pin, _Bool value);
 void out(char port, int pin, _Bool value);
 void init_button_timer0(void);
 void buttons(void);
+void check_buttons(void);
 
 #endif

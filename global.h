@@ -38,6 +38,9 @@ freenode/#linuxandsci - JoshAshby
 #define button_one 0b00001000
 #define button_two 0b00010000
 
+#define stat_led1 5
+#define stat_led2 6
+
 //addresses of the IGT I2C gyroscope
 #define	GX_H	0x1D
 #define	GX_L	0x1E
