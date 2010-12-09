@@ -13,6 +13,7 @@ button              0x2               obj/Release/adc.o
 mcp_data            0x4               obj/Release/adc.o
 input_buffer        0x2bc             obj/Release/adc.o
 count               0x2               obj/Release/adc.o
+i_one               0x1               obj/Release/adc.o
 
 Memory Configuration
 
@@ -131,7 +132,7 @@ LOAD /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x784
+.text           0x00000000      0x7be
  *(.vectors)
  .vectors       0x00000000       0x68 /usr/lib/gcc/avr/4.3.5/../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vectors
@@ -213,50 +214,51 @@ LOAD /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a
                 0x000000a4                adc_start
                 0x000000f2                adc_stop
                 0x000000fe                adc_change
- .text          0x000001e8      0x1b2 obj/Release/digital.o
+ .text          0x000001e8      0x1ec obj/Release/digital.o
                 0x000001e8                portB_out
                 0x0000021c                portD_out
                 0x00000250                out
                 0x000002ae                init_button_timer0
                 0x000002c2                check_buttons
                 0x0000032c                __vector_16
-                0x0000036c                buttons
- .text          0x0000039a      0x168 obj/Release/i2c.o
-                0x0000039a                twi_start
-                0x000003a6                twi_tran
-                0x000003da                twi_mcp_dac
-                0x000004ae                twi_mcp_read
- .text          0x00000502       0x28 obj/Release/main.o
-                0x00000502                main
- .text          0x0000052a       0xe4 obj/Release/pwm.o
-                0x0000052a                pwm_setup_all
-                0x0000056c                pwm_setup0
-                0x0000057e                pwm0A
-                0x00000588                pwm0B
-                0x00000592                pwm_setup1
-                0x000005ac                pwm1A
-                0x000005c0                pwm1B
-                0x000005d4                pwm_setup2
-                0x000005ee                pwm2A
-                0x000005fe                pwm2B
- .text          0x0000060e      0x172 obj/Release/uart.o
-                0x0000060e                uart_start
-                0x00000656                uart_sendint
-                0x00000682                uart_sendint16
-                0x000006ba                uart_sendchar
-                0x000006f0                uart_get
-                0x0000072c                __vector_18
- .text          0x00000780        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
- .text          0x00000780        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_clear_bss.o)
-                0x00000780                . = ALIGN (0x2)
+                0x0000036c                run_once
+                0x0000039a                buttons
+ .text          0x000003d4      0x168 obj/Release/i2c.o
+                0x000003d4                twi_start
+                0x000003e0                twi_tran
+                0x00000414                twi_mcp_dac
+                0x000004e8                twi_mcp_read
+ .text          0x0000053c       0x28 obj/Release/main.o
+                0x0000053c                main
+ .text          0x00000564       0xe4 obj/Release/pwm.o
+                0x00000564                pwm_setup_all
+                0x000005a6                pwm_setup0
+                0x000005b8                pwm0A
+                0x000005c2                pwm0B
+                0x000005cc                pwm_setup1
+                0x000005e6                pwm1A
+                0x000005fa                pwm1B
+                0x0000060e                pwm_setup2
+                0x00000628                pwm2A
+                0x00000638                pwm2B
+ .text          0x00000648      0x172 obj/Release/uart.o
+                0x00000648                uart_start
+                0x00000690                uart_sendint
+                0x000006bc                uart_sendint16
+                0x000006f4                uart_sendchar
+                0x0000072a                uart_get
+                0x00000766                __vector_18
+ .text          0x000007ba        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
+ .text          0x000007ba        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_clear_bss.o)
+                0x000007ba                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x00000780        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x00000780        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_clear_bss.o)
-                0x00000780                . = ALIGN (0x2)
+ .text.libgcc   0x000007ba        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x000007ba        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_clear_bss.o)
+                0x000007ba                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000780        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
-                0x00000780                exit
-                0x00000780                _exit
+ .fini9         0x000007ba        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
+                0x000007ba                exit
+                0x000007ba                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -275,11 +277,11 @@ LOAD /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000780        0x4 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
+ .fini0         0x000007ba        0x4 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x00000784                _etext = .
+                0x000007be                _etext = .
 
-.data           0x00800100        0x0 load address 0x00000784
+.data           0x00800100        0x0 load address 0x000007be
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x0 /usr/lib/gcc/avr/4.3.5/../../../avr/lib/avr5/crtm328p.o
@@ -299,7 +301,7 @@ LOAD /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a
                 0x00800100                _edata = .
                 0x00800100                PROVIDE (__data_end, .)
 
-.bss            0x00800100      0x2c6
+.bss            0x00800100      0x2c7
                 0x00800100                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x00800100        0x0 /usr/lib/gcc/avr/4.3.5/../../../avr/lib/avr5/crtm328p.o
@@ -313,22 +315,23 @@ LOAD /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a
  .bss           0x00800100        0x0 /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_clear_bss.o)
  *(.bss*)
  *(COMMON)
- COMMON         0x00800100      0x2c6 obj/Release/adc.o
+ COMMON         0x00800100      0x2c7 obj/Release/adc.o
                 0x00800100                read_spot
                 0x00800102                button
                 0x00800104                mcp_data
                 0x00800108                input_buffer
                 0x008003c4                count
-                0x008003c6                PROVIDE (__bss_end, .)
-                0x00000784                __data_load_start = LOADADDR (.data)
-                0x00000784                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x008003c6                i_one
+                0x008003c7                PROVIDE (__bss_end, .)
+                0x000007be                __data_load_start = LOADADDR (.data)
+                0x000007be                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008003c6        0x0
-                0x008003c6                PROVIDE (__noinit_start, .)
+.noinit         0x008003c7        0x0
+                0x008003c7                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008003c6                PROVIDE (__noinit_end, .)
-                0x008003c6                _end = .
-                0x008003c6                PROVIDE (__heap_start, .)
+                0x008003c7                PROVIDE (__noinit_end, .)
+                0x008003c7                _end = .
+                0x008003c7                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -480,6 +483,12 @@ count                                             obj/Release/uart.o
                                                   obj/Release/adc.o
 exit                                              /usr/lib/gcc/avr/4.3.5/avr5/libgcc.a(_exit.o)
                                                   /usr/lib/gcc/avr/4.3.5/../../../avr/lib/avr5/crtm328p.o
+i_one                                             obj/Release/uart.o
+                                                  obj/Release/pwm.o
+                                                  obj/Release/main.o
+                                                  obj/Release/i2c.o
+                                                  obj/Release/digital.o
+                                                  obj/Release/adc.o
 init_button_timer0                                obj/Release/digital.o
                                                   obj/Release/main.o
 input_buffer                                      obj/Release/uart.o
@@ -516,6 +525,7 @@ read_spot                                         obj/Release/uart.o
                                                   obj/Release/i2c.o
                                                   obj/Release/digital.o
                                                   obj/Release/adc.o
+run_once                                          obj/Release/digital.o
 twi_mcp_dac                                       obj/Release/i2c.o
 twi_mcp_read                                      obj/Release/i2c.o
 twi_start                                         obj/Release/i2c.o
