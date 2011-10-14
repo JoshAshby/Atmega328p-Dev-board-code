@@ -1,7 +1,7 @@
 //-------------------------------------------
 /*
 ADC.c
-2010 - Josh Ashby
+2011 - Josh Ashby
 joshuaashby@joshashby.com
 http://joshashby.com
 http://github.com/JoshAshby
@@ -10,9 +10,11 @@ freenode/#linuxandsci - JoshAshby
 //-------------------------------------------
 #include "global.h"
 
-//anything that needs to be ran when ever a new conversion happens goes in here
-//other wise, simply read from the data registers if data isn't all that important
-//aka: you can miss a few bits of data and still be good to go
+/*
+anything that needs to be ran when ever a new conversion happens goes in here
+other wise, simply read from the data registers if data isn't all that important
+aka: you can miss a few bits of data and still be good to go
+*/
 ISR(ADC_vect) {
 }
 
@@ -29,7 +31,12 @@ void adc_start(_Bool left) {//Passing a 0 will not left align results
     ADCSRA |= (1 << ADIE);  // Enable ADC Interrupt
     sei();
     ADCSRA |= (1 << ADSC);  // Start A2D Conversions
-
+    #if DEBUG
+        uart_sendint(ADC_KEY);
+        #if DEBUG_BEG
+            uart_sendstr("0x03 - ADC is up...");
+        #endif
+    #endif
 }
 
 void adc_stop() {
@@ -43,55 +50,55 @@ void adc_change(char chan) {
     //and now change the ADMUX bits to fit which channal you want to use
     //sets the MUX0-3 bits inthe ADMUX register
     switch (chan) {
-        case '0'://binary 0
+        case 0://binary 0 (reading downwards)
             ADMUX &= ~(1 << MUX0)
                   &  ~(1 << MUX1)
                   &  ~(1 << MUX2)
                   &  ~(1 << MUX3);
             break;
-        case '1'://binary 1
+        case 1://binary 1
             ADMUX |=  (1 << MUX0);
             ADMUX &= ~(1 << MUX1)
                   &  ~(1 << MUX2)
                   &  ~(1 << MUX3);
             break;
-        case '2'://binary 2
+        case 2://binary 2
             ADMUX &= ~(1 << MUX0);
             ADMUX |=  (1 << MUX1);
             ADMUX &= ~(1 << MUX2)
                   &  ~(1 << MUX3);
             break;
-        case '3': //should have the picture by now
+        case 3: //should have the picture by now
             ADMUX |=  (1 << MUX0)
                   |   (1 << MUX1);
             ADMUX &= ~(1 << MUX2)
                   &  ~(1 << MUX3);
             break;
-        case '4':
+        case 4:
             ADMUX &= ~(1 << MUX0)
                   &  ~(1 << MUX1);
             ADMUX |=  (1 << MUX2);
             ADMUX &= ~(1 << MUX3);
             break;
-        case '5':
+        case 5:
             ADMUX |=  (1 << MUX0);
             ADMUX &= ~(1 << MUX1);
             ADMUX |=  (1 << MUX2);
             ADMUX &= ~(1 << MUX3);
             break;
-        case '6':
+        case 6:
             ADMUX &= ~(1 << MUX0);
             ADMUX |=  (1 << MUX1)
                   |   (1 << MUX2);
             ADMUX &= ~(1 << MUX3);
             break;
-        case '7':
+        case 7:
             ADMUX |=  (1 << MUX0)
                   |   (1 << MUX1)
                   |   (1 << MUX2);
             ADMUX &= ~(1 << MUX3);
             break;
-        case '8':
+        case 8:
             ADMUX &= ~(1 << MUX0)
                   &  ~(1 << MUX1)
                   &  ~(1 << MUX2);

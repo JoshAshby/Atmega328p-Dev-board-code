@@ -1,7 +1,7 @@
 //-------------------------------------------
 /*
 ADC.h
-2010 - Josh Ashby
+2011 - Josh Ashby
 joshuaashby@joshashby.com
 http://joshashby.com
 http://github.com/JoshAshby
@@ -15,7 +15,6 @@ freenode/#linuxandsci - JoshAshby
 //-------------------------------------------
 //Prototypes
 //-------------------------------------------
-
 void adc_start(_Bool left);
 void adc_stop(void);
 void adc_change(char chan);

@@ -1,0 +1,29 @@
+//-------------------------------------------
+/*
+main.c
+2011 - Josh Ashby
+joshuaashby@joshashby.com
+http://joshashby.com
+http://github.com/JoshAshby
+freenode/#linuxandsci - JoshAshby
+*/
+//-------------------------------------------
+#include "global.h"
+
+int main(void) { //Main loop, runs once but can have an infinit loop in it
+
+    //First we need to set the hardaware up, this is a macro in global.h which takes care of calling the various funtions that
+    //setup the registers to the proper seting, and also pulls the CPU_POW pin high
+    bios();
+
+    #if DEBUG
+        uart_sendint(MAIN_KEY);
+    #endif
+
+    uart_sendint('c');
+    //infinit loop that doesn't stop running. (always true since 1 is always 1
+    while(1) {
+
+    };
+    return 0; //never reached since 1 is always true
+}

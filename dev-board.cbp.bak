@@ -64,10 +64,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="i2c.h" />
-		<Unit filename="kernel.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="kernel.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

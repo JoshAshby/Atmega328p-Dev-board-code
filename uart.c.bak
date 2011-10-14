@@ -1,6 +1,6 @@
 //-------------------------------------------
 /*
-UART.c
+uart.c
 2011 - Josh Ashby
 joshuaashby@joshashby.com
 http://joshashby.com
@@ -21,11 +21,15 @@ void uart_start(void) {
     UCSR0B |= (1 << RXCIE0); //recieve data interrupt, makes sure we don't loose data
     sei(); //enable system interrupts
 
+//These are here just because at the time I thought I needed them
+//however at the moment I dont
+
+//    while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
+//	UDR0 = '\n';//send a new line just to be sure
+//	while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
+//	UDR0 = '\r';//send a new line just to be sure
     #if DEBUG
         uart_sendint(UART_KEY);
-        #if DEBUG_BEG
-            uart_sendstr("0x04 - UART is up...");
-        #endif
     #endif
 }
 
@@ -37,6 +41,8 @@ void uart_sendint(uint8_t data) {
     UDR0 = data; //send the data
     while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
     UDR0 = '\n';//send a new line just to be sure
+//	while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
+//	UDR0 = '\r';//send a new line just to be sure
 }
 
 void uart_sendint16(uint16_t data) {
@@ -49,6 +55,8 @@ void uart_sendint16(uint16_t data) {
     UDR0 = (data >> 8); //send the higher bits
     while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
     UDR0 = '\n';//send a new line just to be sure
+//	while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
+//	UDR0 = '\r';//send a new line just to be sure
 }
 
 void uart_sendstr(char *data) {
@@ -63,6 +71,8 @@ void uart_sendstr(char *data) {
     }
     while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
     UDR0 = '\n';//send a new line just to be sure
+//    while ((UCSR0A & (1 << UDRE0)) == 0);//make sure the data register is cleared
+//    UDR0 = '\r';//send a new line just to be sure
 }
 
 uint8_t uart_get(void) {

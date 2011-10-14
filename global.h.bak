@@ -37,7 +37,7 @@ freenode/#linuxandsci - JoshAshby
 //========================
 #define DEBUG 1 //if true, anything inside of an if(DEBUG){} or #if DEBUG tag will run, DEBUG_KEYS are sent this way
 #define DEBUG_BEG 0 //if true, DEBUG_KEYS will also come with more info and a fancy LED. This comes at the price of a few extra CPU cycles for debug
-#define DEBUG_KERNEL 1 //set to debug the KERNEL and THREADs
+#define DEBUG_KERNEL 0 //set to debug the KERNEL and THREADs
 
 //CPU power and Debug LEDs
 //========================
@@ -117,7 +117,6 @@ and the button debouncer uses TIMER2 for the overflow interrupt
             DDRD |= (1<<DEBUG_PIN); \
             PORTD |= (1<<DEBUG_PIN); \
         }\
-    } \
-    sei();
+    }
 
 #endif

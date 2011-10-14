@@ -1,6 +1,6 @@
 //-------------------------------------------
 /*
-I2C.c
+i2c.c
 2011 - Josh Ashby
 joshuaashby@joshashby.com
 http://joshashby.com
@@ -14,10 +14,7 @@ void twi_start(void) { //set up the clock speed for the I2C/TWI
     TWSR = 0x00;
     TWBR = (F_CPU / 100000UL - 16) / 2;
     #if DEBUG
-        uart_sendint(TWI_KEY);
-        #if DEBUG_BEG
-            uart_sendstr("0x05 - TWI is up...");
-        #endif
+        uart_sendint(I2C_KEY);
     #endif
 }
 
@@ -38,14 +35,12 @@ unsigned char twi_tran(unsigned char type) {
   return (TWSR & 0xF8); // Return TWI Status Register, mask the prescaler bits (TWPS1,TWPS0)
 }
 
-/*
-TWI code for writing DAC data to the MCP4725 I2C DAC
+/* TWI code for writing DAC data to the MCP4725 I2C DAC
 First to write to the dac only we must specify this in the POD byte
 for DAC only we send 0x40 which is 0b01000000 because we don't want
 any of the Power Down stuff and we only want DAC which means C2, C1, C0,
 should be 0, 1, 0 respectably. for writing to the DAC and the EEPROM
-they would be 0, 1, 1 and the last byte on the address should be 1
-*/
+they would be 0, 1, 1 and the last byte on the address should be 1 */
 int twi_mcp_dac(unsigned int twi_address, uint16_t data, _Bool type) {
     /*
     Pass the address, the 16 bit long data for the DAC/EEPROM
@@ -145,7 +140,7 @@ uint16_t twi_mcp_read(unsigned int twi_address) {
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;
 
         all_second = TWDR;
-        mcp_data[2] = (all_first | (all_second >> 8));
+
         if (twi_status != TW_MT_DATA_ACK) goto twi_quit;
         r_val=1;
 

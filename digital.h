@@ -1,7 +1,7 @@
 //-------------------------------------------
 /*
 DIGITAL.h
-2010 - Josh Ashby
+2011 - Josh Ashby
 joshuaashby@joshashby.com
 http://joshashby.com
 http://github.com/JoshAshby
@@ -13,21 +13,18 @@ freenode/#linuxandsci - JoshAshby
 #include "global.h"
 
 //-------------------------------------------
-//Prototypes
+//Macros (defines)
 //-------------------------------------------
 
-void portB_out(int pin, _Bool value);
-void portD_out(int pin, _Bool value);
+//-------------------------------------------
+//Prototypes
+//-------------------------------------------
 void out(char port, int pin, _Bool value);
-void init_button_timer0(void);
-void buttons(void);
-void check_buttons(void);
-void run_once(void);
+void init_debounce(void);
 
 //-------------------------------------------
 //Variables
 //-------------------------------------------
-
-uint8_t i_one;
+uint8_t dig_count[1];
 
 #endif
