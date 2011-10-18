@@ -29,10 +29,11 @@ int main(void) { //Main loop, runs once but can have an infinit loop in it
     #endif
 
     //button code, not called by the bios because the use oif this may vary
-    DDRD |= (0<<3);
-    init_debounce();
+    init_buttons();
 
-    kernel('i');
+    //start the kernel and thread system. After this is going nothing else should happen in this
+    //file because everything should be in the threads... hopefully.
+    init_kernel();
 
     //infinit loop that doesn't stop running. (always true since 1 is always 1
     while(1) {

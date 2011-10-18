@@ -11,11 +11,10 @@ Allocating common symbols
 Common symbol       size              file
 
 read_spot           0x2               obj/Debug/adc.o
-button              0x1               obj/Debug/adc.o
 mcp_data            0x6               obj/Debug/adc.o
 input_buffer        0x2bc             obj/Debug/adc.o
-count               0x1               obj/Debug/adc.o
-i_one               0x1               obj/Debug/adc.o
+dig_count           0x1               obj/Debug/adc.o
+kernel_stack        0xd               obj/Debug/adc.o
 
 Memory Configuration
 
@@ -30,11 +29,13 @@ Linker script and memory map
 Address of section .data set to 0x800100
 LOAD /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
 LOAD obj/Debug/adc.o
+LOAD obj/Debug/button.o
 LOAD obj/Debug/digital.o
 LOAD obj/Debug/i2c.o
 LOAD obj/Debug/kernel.o
 LOAD obj/Debug/main.o
 LOAD obj/Debug/pwm.o
+LOAD obj/Debug/thread.o
 LOAD obj/Debug/uart.o
 LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
 LOAD /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/libm.a
@@ -132,7 +133,7 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xfaa
+.text           0x00000000     0x1180
  *(.vectors)
  .vectors       0x00000000       0x68 /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vectors
@@ -209,56 +210,63 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
                 0x000000a2                __vector_8
                 0x000000a2                __vector_14
                 0x000000a2                __vector_10
-                0x000000a2                __vector_16
                 0x000000a2                __vector_20
- .text          0x000000a6      0x312 obj/Debug/adc.o
+ .text          0x000000a6      0x30a obj/Debug/adc.o
                 0x000000a6                __vector_21
                 0x000000c6                adc_start
-                0x00000166                adc_stop
-                0x00000186                adc_change
- .text          0x000003b8      0x1fe obj/Debug/digital.o
-                0x000003b8                out
-                0x000004e2                init_debounce
-                0x00000522                __vector_9
- .text          0x000005b6      0x384 obj/Debug/i2c.o
-                0x000005b6                twi_start
-                0x000005dc                twi_tran
-                0x00000644                twi_mcp_dac
-                0x000007d6                twi_mcp_read
- .text          0x0000093a        0x0 obj/Debug/kernel.o
- .text          0x0000093a       0x62 obj/Debug/main.o
-                0x0000093a                main
- .text          0x0000099c      0x368 obj/Debug/pwm.o
-                0x0000099c                pwm_setup
-                0x00000ac0                pwm_setup0
-                0x00000b1c                pwm0A
-                0x00000b4c                pwm0B
-                0x00000b7c                pwm_setup1
-                0x00000bd8                pwm1A
-                0x00000c10                pwm1B
-                0x00000c48                pwm_setup2
-                0x00000ca4                pwm2A
-                0x00000cd4                pwm2B
- .text          0x00000d04      0x2a2 obj/Debug/uart.o
-                0x00000d04                uart_start
-                0x00000d62                uart_sendint
-                0x00000db6                uart_sendint16
-                0x00000e34                uart_sendstr
-                0x00000eaa                uart_get
-                0x00000f2c                __vector_18
- .text          0x00000fa6        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
- .text          0x00000fa6        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
- .text          0x00000fa6        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
-                0x00000fa6                . = ALIGN (0x2)
+                0x00000160                adc_stop
+                0x00000180                adc_change
+ .text          0x000003b0      0x1fa obj/Debug/button.o
+                0x000003b0                button
+                0x00000438                check_buttons
+                0x0000050a                init_buttons
+                0x00000556                __vector_9
+ .text          0x000005aa      0x12a obj/Debug/digital.o
+                0x000005aa                out
+ .text          0x000006d4      0x37e obj/Debug/i2c.o
+                0x000006d4                twi_start
+                0x000006f4                twi_tran
+                0x0000075c                twi_mcp_dac
+                0x000008ee                twi_mcp_read
+ .text          0x00000a52      0x172 obj/Debug/kernel.o
+                0x00000a52                init_kernel
+                0x00000ad2                kernel_core
+                0x00000b70                __vector_16
+ .text          0x00000bc4       0x4c obj/Debug/main.o
+                0x00000bc4                main
+ .text          0x00000c10      0x290 obj/Debug/pwm.o
+                0x00000c66                pwm_setup
+                0x00000d70                pwm0A
+                0x00000da0                pwm0B
+                0x00000dd0                pwm1A
+                0x00000e08                pwm1B
+                0x00000e40                pwm2A
+                0x00000e70                pwm2B
+ .text          0x00000ea0       0x40 obj/Debug/thread.o
+                0x00000ea0                thread0
+                0x00000eb0                thread1
+                0x00000ec0                thread2
+                0x00000ed0                thread3
+ .text          0x00000ee0      0x29c obj/Debug/uart.o
+                0x00000ee0                uart_start
+                0x00000f38                uart_sendint
+                0x00000f8c                uart_sendint16
+                0x0000100a                uart_sendstr
+                0x00001080                uart_get
+                0x00001102                __vector_18
+ .text          0x0000117c        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+ .text          0x0000117c        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
+ .text          0x0000117c        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
+                0x0000117c                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x00000fa6        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x00000fa6        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
- .text.libgcc   0x00000fa6        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
-                0x00000fa6                . = ALIGN (0x2)
+ .text.libgcc   0x0000117c        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x0000117c        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000117c        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
+                0x0000117c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000fa6        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
-                0x00000fa6                exit
-                0x00000fa6                _exit
+ .fini9         0x0000117c        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+                0x0000117c                exit
+                0x0000117c                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -277,20 +285,22 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000fa6        0x4 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+ .fini0         0x0000117c        0x4 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x00000faa                _etext = .
+                0x00001180                _etext = .
 
-.data           0x00800100        0x0 load address 0x00000faa
+.data           0x00800100        0x0 load address 0x00001180
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
  .data          0x00800100        0x0 obj/Debug/adc.o
+ .data          0x00800100        0x0 obj/Debug/button.o
  .data          0x00800100        0x0 obj/Debug/digital.o
  .data          0x00800100        0x0 obj/Debug/i2c.o
  .data          0x00800100        0x0 obj/Debug/kernel.o
  .data          0x00800100        0x0 obj/Debug/main.o
  .data          0x00800100        0x0 obj/Debug/pwm.o
+ .data          0x00800100        0x0 obj/Debug/thread.o
  .data          0x00800100        0x0 obj/Debug/uart.o
  .data          0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
  .data          0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
@@ -303,71 +313,76 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
                 0x00800100                _edata = .
                 0x00800100                PROVIDE (__data_end, .)
 
-.bss            0x00800100      0x2c7
+.bss            0x00800100      0x2d2
                 0x00800100                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
  .bss           0x00800100        0x0 obj/Debug/adc.o
+ .bss           0x00800100        0x0 obj/Debug/button.o
  .bss           0x00800100        0x0 obj/Debug/digital.o
  .bss           0x00800100        0x0 obj/Debug/i2c.o
  .bss           0x00800100        0x0 obj/Debug/kernel.o
  .bss           0x00800100        0x0 obj/Debug/main.o
  .bss           0x00800100        0x0 obj/Debug/pwm.o
+ .bss           0x00800100        0x0 obj/Debug/thread.o
  .bss           0x00800100        0x0 obj/Debug/uart.o
  .bss           0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
  .bss           0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
  .bss           0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
  *(.bss*)
  *(COMMON)
- COMMON         0x00800100      0x2c7 obj/Debug/adc.o
+ COMMON         0x00800100      0x2d2 obj/Debug/adc.o
                 0x00800100                read_spot
-                0x00800102                button
-                0x00800103                mcp_data
-                0x00800109                input_buffer
-                0x008003c5                count
-                0x008003c6                i_one
-                0x008003c7                PROVIDE (__bss_end, .)
-                0x00000faa                __data_load_start = LOADADDR (.data)
-                0x00000faa                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800102                mcp_data
+                0x00800108                input_buffer
+                0x008003c4                dig_count
+                0x008003c5                kernel_stack
+                0x008003d2                PROVIDE (__bss_end, .)
+                0x00001180                __data_load_start = LOADADDR (.data)
+                0x00001180                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008003c7        0x0
-                0x008003c7                PROVIDE (__noinit_start, .)
+.noinit         0x008003d2        0x0
+                0x008003d2                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008003c7                PROVIDE (__noinit_end, .)
-                0x008003c7                _end = .
-                0x008003c7                PROVIDE (__heap_start, .)
+                0x008003d2                PROVIDE (__noinit_end, .)
+                0x008003d2                _end = .
+                0x008003d2                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
                 0x00810000                __eeprom_end = .
 
-.stab           0x00000000     0x2bb0
+.stab           0x00000000     0x34a4
  *(.stab)
  .stab          0x00000000      0x6cc /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
- .stab          0x000006cc      0x774 obj/Debug/adc.o
-                                0x780 (size before relaxing)
- .stab          0x00000e40      0x3cc obj/Debug/digital.o
-                                0x63c (size before relaxing)
- .stab          0x0000120c      0x858 obj/Debug/i2c.o
-                                0xac8 (size before relaxing)
- .stab          0x00001a64       0xe4 obj/Debug/kernel.o
-                                 0xf0 (size before relaxing)
- .stab          0x00001b48      0x234 obj/Debug/main.o
-                                0x4a4 (size before relaxing)
- .stab          0x00001d7c      0x6fc obj/Debug/pwm.o
-                                0x96c (size before relaxing)
- .stab          0x00002478      0x5d0 obj/Debug/uart.o
-                                0x840 (size before relaxing)
- .stab          0x00002a48       0x54 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+ .stab          0x000006cc      0x780 obj/Debug/adc.o
+                                0x78c (size before relaxing)
+ .stab          0x00000e4c      0x468 obj/Debug/button.o
+                                0x6f0 (size before relaxing)
+ .stab          0x000012b4      0x2c4 obj/Debug/digital.o
+                                0x54c (size before relaxing)
+ .stab          0x00001578      0x84c obj/Debug/i2c.o
+                                0xad4 (size before relaxing)
+ .stab          0x00001dc4      0x3f0 obj/Debug/kernel.o
+                                0x678 (size before relaxing)
+ .stab          0x000021b4      0x228 obj/Debug/main.o
+                                0x4b0 (size before relaxing)
+ .stab          0x000023dc      0x690 obj/Debug/pwm.o
+                                0x918 (size before relaxing)
+ .stab          0x00002a6c      0x30c obj/Debug/thread.o
+                                0x594 (size before relaxing)
+ .stab          0x00002d78      0x5c4 obj/Debug/uart.o
+                                0x84c (size before relaxing)
+ .stab          0x0000333c       0x54 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
                                  0x60 (size before relaxing)
- .stab          0x00002a9c       0x9c /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
+ .stab          0x00003390       0x9c /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
                                  0xa8 (size before relaxing)
- .stab          0x00002b38       0x78 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
+ .stab          0x0000342c       0x78 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
                                  0x84 (size before relaxing)
 
-.stabstr        0x00000000      0xf35
+.stabstr        0x00000000     0x113e
  *(.stabstr)
- .stabstr       0x00000000      0xf35 /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
+ .stabstr       0x00000000     0x113e /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
 
 .stab.excl
  *(.stab.excl)
@@ -437,19 +452,23 @@ __data_load_start                                 /usr/lib/gcc/avr/4.6.1/avr5/li
 __data_start                                      /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
 __do_clear_bss                                    /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
                                                   obj/Debug/uart.o
+                                                  obj/Debug/thread.o
                                                   obj/Debug/pwm.o
                                                   obj/Debug/main.o
                                                   obj/Debug/kernel.o
                                                   obj/Debug/i2c.o
                                                   obj/Debug/digital.o
+                                                  obj/Debug/button.o
                                                   obj/Debug/adc.o
 __do_copy_data                                    /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
                                                   obj/Debug/uart.o
+                                                  obj/Debug/thread.o
                                                   obj/Debug/pwm.o
                                                   obj/Debug/main.o
                                                   obj/Debug/kernel.o
                                                   obj/Debug/i2c.o
                                                   obj/Debug/digital.o
+                                                  obj/Debug/button.o
                                                   obj/Debug/adc.o
 __heap_end                                        /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
 __init                                            /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
@@ -461,7 +480,8 @@ __vector_12                                       /usr/lib/gcc/avr/4.6.1/../../.
 __vector_13                                       /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
 __vector_14                                       /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
 __vector_15                                       /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
-__vector_16                                       /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
+__vector_16                                       obj/Debug/kernel.o
+                                                  /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
 __vector_17                                       /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
 __vector_18                                       obj/Debug/uart.o
                                                   /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
@@ -480,7 +500,7 @@ __vector_5                                        /usr/lib/gcc/avr/4.6.1/../../.
 __vector_6                                        /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
 __vector_7                                        /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
 __vector_8                                        /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
-__vector_9                                        obj/Debug/digital.o
+__vector_9                                        obj/Debug/button.o
                                                   /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
 __vector_default                                  /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
 __vectors                                         /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
@@ -489,43 +509,55 @@ adc_change                                        obj/Debug/adc.o
 adc_start                                         obj/Debug/adc.o
                                                   obj/Debug/main.o
 adc_stop                                          obj/Debug/adc.o
-button                                            obj/Debug/uart.o
+button                                            obj/Debug/button.o
+check_buttons                                     obj/Debug/button.o
+dig_count                                         obj/Debug/uart.o
+                                                  obj/Debug/thread.o
                                                   obj/Debug/pwm.o
                                                   obj/Debug/main.o
+                                                  obj/Debug/kernel.o
                                                   obj/Debug/i2c.o
                                                   obj/Debug/digital.o
-                                                  obj/Debug/adc.o
-count                                             obj/Debug/uart.o
-                                                  obj/Debug/pwm.o
-                                                  obj/Debug/main.o
-                                                  obj/Debug/i2c.o
-                                                  obj/Debug/digital.o
+                                                  obj/Debug/button.o
                                                   obj/Debug/adc.o
 exit                                              /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
                                                   /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
-i_one                                             obj/Debug/uart.o
-                                                  obj/Debug/pwm.o
+init_buttons                                      obj/Debug/button.o
                                                   obj/Debug/main.o
-                                                  obj/Debug/i2c.o
-                                                  obj/Debug/digital.o
-                                                  obj/Debug/adc.o
-init_debounce                                     obj/Debug/digital.o
+init_kernel                                       obj/Debug/kernel.o
                                                   obj/Debug/main.o
 input_buffer                                      obj/Debug/uart.o
+                                                  obj/Debug/thread.o
                                                   obj/Debug/pwm.o
                                                   obj/Debug/main.o
+                                                  obj/Debug/kernel.o
                                                   obj/Debug/i2c.o
                                                   obj/Debug/digital.o
+                                                  obj/Debug/button.o
+                                                  obj/Debug/adc.o
+kernel_core                                       obj/Debug/kernel.o
+kernel_stack                                      obj/Debug/uart.o
+                                                  obj/Debug/thread.o
+                                                  obj/Debug/pwm.o
+                                                  obj/Debug/main.o
+                                                  obj/Debug/kernel.o
+                                                  obj/Debug/i2c.o
+                                                  obj/Debug/digital.o
+                                                  obj/Debug/button.o
                                                   obj/Debug/adc.o
 main                                              obj/Debug/main.o
                                                   /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
 mcp_data                                          obj/Debug/uart.o
+                                                  obj/Debug/thread.o
                                                   obj/Debug/pwm.o
                                                   obj/Debug/main.o
+                                                  obj/Debug/kernel.o
                                                   obj/Debug/i2c.o
                                                   obj/Debug/digital.o
+                                                  obj/Debug/button.o
                                                   obj/Debug/adc.o
 out                                               obj/Debug/digital.o
+                                                  obj/Debug/button.o
 pwm0A                                             obj/Debug/pwm.o
 pwm0B                                             obj/Debug/pwm.o
 pwm1A                                             obj/Debug/pwm.o
@@ -534,15 +566,23 @@ pwm2A                                             obj/Debug/pwm.o
 pwm2B                                             obj/Debug/pwm.o
 pwm_setup                                         obj/Debug/pwm.o
                                                   obj/Debug/main.o
-pwm_setup0                                        obj/Debug/pwm.o
-pwm_setup1                                        obj/Debug/pwm.o
-pwm_setup2                                        obj/Debug/pwm.o
 read_spot                                         obj/Debug/uart.o
+                                                  obj/Debug/thread.o
                                                   obj/Debug/pwm.o
                                                   obj/Debug/main.o
+                                                  obj/Debug/kernel.o
                                                   obj/Debug/i2c.o
                                                   obj/Debug/digital.o
+                                                  obj/Debug/button.o
                                                   obj/Debug/adc.o
+thread0                                           obj/Debug/thread.o
+                                                  obj/Debug/kernel.o
+thread1                                           obj/Debug/thread.o
+                                                  obj/Debug/kernel.o
+thread2                                           obj/Debug/thread.o
+                                                  obj/Debug/kernel.o
+thread3                                           obj/Debug/thread.o
+                                                  obj/Debug/kernel.o
 twi_mcp_dac                                       obj/Debug/i2c.o
 twi_mcp_read                                      obj/Debug/i2c.o
 twi_start                                         obj/Debug/i2c.o
@@ -550,11 +590,6 @@ twi_start                                         obj/Debug/i2c.o
 twi_tran                                          obj/Debug/i2c.o
 uart_get                                          obj/Debug/uart.o
 uart_sendint                                      obj/Debug/uart.o
-                                                  obj/Debug/pwm.o
-                                                  obj/Debug/main.o
-                                                  obj/Debug/i2c.o
-                                                  obj/Debug/digital.o
-                                                  obj/Debug/adc.o
 uart_sendint16                                    obj/Debug/uart.o
 uart_sendstr                                      obj/Debug/uart.o
 uart_start                                        obj/Debug/uart.o

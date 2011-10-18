@@ -20,11 +20,9 @@ freenode/#linuxandsci - JoshAshby
 //Prototypes
 //-------------------------------------------
 void out(char port, int pin, _Bool value);
-void init_debounce(void);
 
 //-------------------------------------------
 //Variables
 //-------------------------------------------
-uint8_t dig_count[1];
 
 #endif
