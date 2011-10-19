@@ -20,7 +20,8 @@ freenode/#linuxandsci - JoshAshby
 //-----------------------------------------------
 //Variables
 //-----------------------------------------------
-uint8_t dig_count[4];
+uint8_t dig_count[2];
+uint8_t once[2];
 
 //-----------------------------------------------
 //Structers and Unions and typedefs
@@ -30,6 +31,7 @@ uint8_t dig_count[4];
 //Prototypes
 //-----------------------------------------------
 void button(char which, char what);
+void button1_once(void);
 void check_buttons(void);
 void init_buttons(void);
 

@@ -10,6 +10,17 @@ freenode/#linuxandsci - JoshAshby
 //-------------------------------------------
 #include "global.h"
 
+void init_out(char port, int pin) {
+    switch (port) { //switch determines if which port it is
+        case 'D':
+            DDRD |= (1<<pin); //change the pin to output
+            break;
+        case 'B':
+            DDRB |= (1<<pin); //change pin to output
+            break;
+    }
+}
+
 void out(char port, int pin, _Bool value) {
     /*
     Change the state of a pin on given port
@@ -20,7 +31,7 @@ void out(char port, int pin, _Bool value) {
     */
     switch (port) { //switch determines if which port it is
         case 'D':
-            DDRD |= (1<<pin); //change the pin to output
+//            DDRD |= (1<<pin); //change the pin to output
             if(value == 1) { //sink or source current
                 PORTD |= (1<<pin);
             } else {
@@ -28,7 +39,7 @@ void out(char port, int pin, _Bool value) {
             }
             break;
         case 'B':
-            DDRB |= (1<<pin); //change pin to output
+//            DDRB |= (1<<pin); //change pin to output
             if(value == 1) { //sink or source current
                 PORTB |= (1<<pin);
             } else {

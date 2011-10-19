@@ -13,18 +13,31 @@ freenode/#linuxandsci - JoshAshby
 void button(char which, char what) {
     if(which == 1) {
         if(what == 1) {
-            out('D', stat_led1, 0);
+            //Runs once once per button press and no more.
+            if(once[which] == 1) {
+                return;
+            } else {
+                button1_once();
+            }
+            once[which] = 1;
         } else {
+            once[which] = 0;
             out('D', stat_led1, 1);
         }
     }
     if(which == 2) {
         if(what == 1) {
+            //runs for an infinit amount of time during the button press, stops when buttons been released.
             out('D', stat_led2, 0);
         } else {
             out('D', stat_led2, 1);
         }
     }
+}
+
+//What to run only once and once only when button 1 has been pressed.
+void button1_once(void) {
+    out('D', stat_led1, 0);
 }
 
 void check_buttons(void) {

@@ -22,6 +22,7 @@ freenode/#linuxandsci - JoshAshby
 #include <stdlib.h>
 #include <avr/sleep.h>
 
+#include "boot.h"
 #include "thread.h"
 #include "kernel.h"
 #include "adc.h"
@@ -40,6 +41,7 @@ freenode/#linuxandsci - JoshAshby
 #define DEBUG 0 //if true, anything inside of an if(DEBUG){} or #if DEBUG tag will run, DEBUG_KEYS are sent this way
 #define DEBUG_BEG 0 //if true, DEBUG_KEYS will also come with more info and a fancy LED. This comes at the price of a few extra CPU cycles for debug
 #define DEBUG_KERNEL 0 //set to debug the KERNEL and THREADs
+#define DEV 1 //Is this my dev board or BOB's hardware?
 
 //CPU power and Debug LEDs
 //========================
@@ -89,38 +91,5 @@ freenode/#linuxandsci - JoshAshby
 #define THREAD1_KEY 0x21
 #define THREAD2_KEY 0x22
 #define THREAD3_KEY 0x23
-
-
-//BIOS
-//========================
-/*
-This macro is to setup hardaware, it will start
-the pwm, adc, uart, and twi along with turn on the CPU power pin.
-If the pin isn't pulled hight then somethings gone wrong before the
-CPU is even up and running the code most of the time. Just so you know
-
-UART has to be started first if your deebuging and using the serial console to do so
-All debug keys get output to there
-
-We're only starting PWM1 because the kernel uses TIMER0 for context switches,
-and the button debouncer uses TIMER2 for the overflow interrupt
-*/
-#define bios() \
-    uart_start(); \
-    pwm_setup(2); \
-    adc_start(1); \
-    twi_start(); \
-    init_sensors(); \
-    DDRD |= (1<<CPU_POW); \
-    PORTD |= (1<<CPU_POW); \
-    if (DEBUG) { \
-        uart_sendint(BIOS_KEY); \
-        if (DEBUG_BEG) { \
-            uart_sendstr("0x01 - Hardware setup successful..."); \
-            uart_sendstr("Bios complete..."); \
-            uart_sendstr("Starting main code..."); \
-        }\
-    } \
-    sei();
 
 #endif

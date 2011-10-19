@@ -61,7 +61,7 @@
 1318914143 source:/home/josh/smb/code/Atmega328p-Dev-board-code/adc.c
 	"global.h"
 
-1318987505 /home/josh/smb/code/Atmega328p-Dev-board-code/global.h
+1319000042 /home/josh/smb/code/Atmega328p-Dev-board-code/global.h
 	<avr/io.h>
 	<stdio.h>
 	<avr/interrupt.h>
@@ -69,6 +69,7 @@
 	<inttypes.h>
 	<stdlib.h>
 	<avr/sleep.h>
+	"boot.h"
 	"thread.h"
 	"kernel.h"
 	"adc.h"
@@ -91,10 +92,10 @@
 1318567546 /home/josh/smb/code/Atmega328p-Dev-board-code/uart.h
 	"global.h"
 
-1318903671 /home/josh/smb/code/Atmega328p-Dev-board-code/digital.h
+1318999311 /home/josh/smb/code/Atmega328p-Dev-board-code/digital.h
 	"global.h"
 
-1318988111 source:/home/josh/smb/code/Atmega328p-Dev-board-code/digital.c
+1318999311 source:/home/josh/smb/code/Atmega328p-Dev-board-code/digital.c
 	"global.h"
 
 1318567546 source:/home/josh/smb/code/Atmega328p-Dev-board-code/i2c.c
@@ -118,18 +119,24 @@
 1318899776 /home/josh/smb/code/Atmega328p-Dev-board-code/thread.h
 	"global.h"
 
-1318987412 source:/home/josh/smb/code/Atmega328p-Dev-board-code/thread.c
+1319000150 source:/home/josh/smb/code/Atmega328p-Dev-board-code/thread.c
 	"global.h"
 
-1318907078 /home/josh/smb/code/Atmega328p-Dev-board-code/button.h
+1318998741 /home/josh/smb/code/Atmega328p-Dev-board-code/button.h
 	"global.h"
 
-1318988064 source:/home/josh/smb/code/Atmega328p-Dev-board-code/button.c
+1319000836 source:/home/josh/smb/code/Atmega328p-Dev-board-code/button.c
 	"global.h"
 
-1318988721 /home/josh/smb/code/Atmega328p-Dev-board-code/robot.h
+1318999310 /home/josh/smb/code/Atmega328p-Dev-board-code/robot.h
 	"global.h"
 
-1318988267 source:/home/josh/smb/code/Atmega328p-Dev-board-code/robot.c
+1319000659 source:/home/josh/smb/code/Atmega328p-Dev-board-code/robot.c
+	"global.h"
+
+1318999834 /home/josh/smb/code/Atmega328p-Dev-board-code/boot.h
+	"global.h"
+
+1319000073 source:/home/josh/smb/code/Atmega328p-Dev-board-code/boot.c
 	"global.h"
 

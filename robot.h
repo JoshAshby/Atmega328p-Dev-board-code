@@ -15,23 +15,46 @@ freenode/#linuxandsci - JoshAshby
 //-----------------------------------------------
 //Macros (defines)
 //-----------------------------------------------
-#define PWM1 1
-#define PWM2 2
-#define OUT1 3
-#define OUT2 4
+//Steering/Turn/Front Motor
+//========================
+#define PWM_FRONT 1
+#define PMW_FRONT_BIT 0b00000010
+
+#define RELAY_FRONT 3
+#define RELAY_FRONT_BIT 0b00001000
+
+//Drive/Back Motor
+//========================
+#define PWM_BACK 2
+#define PMW_BACK_BIT 0b00000100
+
+#define RELAY_BACK 4
+#define RELAY_BACK_BIT 0b00010000
+
+//Left Ultrasound
+//========================
 #define ULTRASOUND_LEFT 0
 #define ULTRASOUND_LEFT_BACK 1
+
+//Right Ultrasound
+//========================
 #define ULTRASOUND_RIGHT 2
 #define ULTRASOUND_RIGHT_BACK 3
+
+//Center Ultrasound
+//========================
 #define ULTRASOUND_CENTER 4
+
+//Extra Pins
+//========================
 #define ADC1 5
 
 #define EXTRA1 7 //PORTD 7
-#define EXTRA1_BIT 0b01000000
+#define EXTRA1_BIT 0b10000000
 #define EXTRA2 0 //PORTB 0
 #define EXTRA2_BIT 0b00000001
 #define EXTRA3 5 //PORTB 5
-#define EXTRA3_BIT 0b00010000
+#define EXTRA3_BIT 0b00100000
 
 //-----------------------------------------------
 //Variables
@@ -49,6 +72,7 @@ volatile uint8_t adc;
 //-----------------------------------------------
 //Prototypes
 //-----------------------------------------------
+void init_sensors(void);
 uint8_t ultrasound_filter(void);
 
 #endif

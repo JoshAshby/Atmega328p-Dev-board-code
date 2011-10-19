@@ -22,10 +22,15 @@ uint8_t thread0(void) {
 }
 
 uint8_t thread1(void) {
-    if((PINB  & EXTRA1_BIT)) {
-        out('B', OUT1, 0);
+    if((PIND & EXTRA1_BIT)) {
+        out('B', RELAY_FRONT, 0);
     } else {
-        out('B', OUT1, 1);
+        out('B', RELAY_FRONT, 1);
+    }
+    if((PINB & EXTRA2_BIT)) {
+        out('B', RELAY_BACK, 0);
+    } else {
+        out('B', RELAY_BACK, 1);
     }
     #if DEBUG_KERNEL
         uart_sendint(THREAD1_KEY);
@@ -37,6 +42,11 @@ uint8_t thread1(void) {
 }
 
 uint8_t thread2(void) {
+    if(ADCH > 100) {
+        out('B', EXTRA3, 0);
+    } else {
+        out('B', EXTRA3, 1);
+    }
     #if DEBUG_KERNEL
         uart_sendint(THREAD2_KEY);
         #if DEBUG_BEG

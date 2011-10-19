@@ -11,7 +11,15 @@ freenode/#linuxandsci - JoshAshby
 #include "global.h"
 
 void init_sensors(void) {
-    DDRB &= ~(1<<DDB0);
+    MCUCR |= (1<<PUD);
+    DDRB &= ~(1<<EXTRA2_BIT);
+    DDRD &= ~(1<<EXTRA1_BIT);
+
+    init_out('B', PWM_BACK);
+    init_out('B', PWM_FRONT);
+    init_out('B', RELAY_BACK);
+    init_out('B', RELAY_FRONT);
+    init_out('B', EXTRA3);
 }
 
 uint8_t ultrasound_filter(void) {
