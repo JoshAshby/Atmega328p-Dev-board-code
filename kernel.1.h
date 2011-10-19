@@ -1,6 +1,6 @@
 //-------------------------------------------
 /*
-THREAD.h
+KERNEL.h
 2011 - Josh Ashby
 joshuaashby@joshashby.com
 http://joshashby.com
@@ -8,30 +8,37 @@ http://github.com/JoshAshby
 freenode/#linuxandsci - JoshAshby
 */
 //-------------------------------------------
-#ifndef BUTTON_H
-#define BUTTON_H
+#ifndef KERNEL_H
+#define KERNEL_H
 #include "global.h"
 
 //-----------------------------------------------
 //Macros (defines)
 //-----------------------------------------------
-#define DEBOUNCE_TIME 10
+#define NUMBER_OF_THREADS 4
+#define KERNEL_LIN 0
 
 //-----------------------------------------------
 //Variables
 //-----------------------------------------------
-uint8_t dig_count[4];
 
 //-----------------------------------------------
 //Structers and Unions and typedefs
 //-----------------------------------------------
+typedef uint8_t (*thread_ptr)(void); //function pointer so we can store the function inside of the kernel_stack
+
+struct stack {
+    thread_ptr task_list[NUMBER_OF_THREADS];
+    uint8_t task_status[NUMBER_OF_THREADS];
+    uint8_t task_flags[NUMBER_OF_THREADS];
+    uint8_t task_priority[NUMBER_OF_THREADS];
+    uint8_t task_number;
+} kernel_stack; //the kernel stack that holds the function pointers for each thread and the
 
 //-----------------------------------------------
 //Prototypes
 //-----------------------------------------------
-void button(char which, char what);
-void check_buttons(void);
-void init_buttons(void);
+void init_kernel(void);
+void kernel_core(void);
 
 #endif
-

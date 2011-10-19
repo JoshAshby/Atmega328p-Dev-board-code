@@ -51,7 +51,7 @@ void check_buttons(void) {
     }
     if((PIND & button_two)) {
         dig_count[2]++;
-        if (dig_count[2] > DEBOUNCE_TIME) {
+        if (dig_count[2] > 5) {
             button(2, 1);
         }
     } else {
@@ -74,8 +74,8 @@ Buttons, this section uses timer2 because timer 1 is reserved for 16bit tasks
 and timer0 is reserved for the kernel and task switching
  */
 void init_buttons(void) {
-    DDRD &= ~(1<<DDD3)
-         & ~(1<<DDD4);
+    DDRD |= (0<<button_one);
+    DDRD |= (0<<button_two);
 
     TCNT2 = 0; //set the inital timer value to 0
     TCCR2B |= (1<<CS02); //set the clock prescaler to clock/256 or 62.5kHz

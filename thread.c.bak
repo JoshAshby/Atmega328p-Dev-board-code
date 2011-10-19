@@ -11,7 +11,7 @@ freenode/#linuxandsci - JoshAshby
 #include "global.h"
 
 uint8_t thread0(void) {
-    pwm1A(ADCH);
+    pwm1A(ADCL << (ADCH<<8));
     #if DEBUG_KERNEL
         uart_sendint(THREAD0_KEY);
         #if DEBUG_BEG
@@ -22,11 +22,6 @@ uint8_t thread0(void) {
 }
 
 uint8_t thread1(void) {
-    if((PINB  & EXTRA1_BIT)) {
-        out('B', OUT1, 0);
-    } else {
-        out('B', OUT1, 1);
-    }
     #if DEBUG_KERNEL
         uart_sendint(THREAD1_KEY);
         #if DEBUG_BEG

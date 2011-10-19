@@ -22,11 +22,7 @@ uint8_t thread0(void) {
 }
 
 uint8_t thread1(void) {
-    if((PINB  & EXTRA1_BIT)) {
-        out('B', OUT1, 0);
-    } else {
-        out('B', OUT1, 1);
-    }
+    if(PIND)
     #if DEBUG_KERNEL
         uart_sendint(THREAD1_KEY);
         #if DEBUG_BEG

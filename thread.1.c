@@ -22,7 +22,7 @@ uint8_t thread0(void) {
 }
 
 uint8_t thread1(void) {
-    if((PINB  & EXTRA1_BIT)) {
+    if((PINB  & 0b00000001)) {
         out('B', OUT1, 0);
     } else {
         out('B', OUT1, 1);

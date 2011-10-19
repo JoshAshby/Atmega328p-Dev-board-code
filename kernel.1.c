@@ -59,22 +59,30 @@ and the global counter is increased. If all the task have completed, loop
 back to the begining by clearing the status array.
 */
 void kernel_core(void) {
-    uint8_t task;
-    task = kernel_stack.task_number;
-    if(task > NUMBER_OF_THREADS) {
-        task = 0;
-        uint8_t tmp;
-        for(; tmp > NUMBER_OF_THREADS; tmp++) {
-            kernel_stack.task_status[tmp] = 0;
+    #if KERNEL_LIN
+        uint8_t task;
+        task = kernel_stack.task_number;
+        if(task > NUMBER_OF_THREADS) {
+            task = 0;
+            uint8_t tmp;
+            for(; tmp > NUMBER_OF_THREADS; tmp++) {
+                kernel_stack.task_status[tmp] = 0;
+            }
+            kernel_stack.task_status[0] = kernel_stack.task_list[0]();
         }
-        kernel_stack.task_status[0] = kernel_stack.task_list[0]();
+        if(kernel_stack.task_status[task]) {
+            task = task + 1;
+            kernel_stack.task_status[task] = kernel_stack.task_list[task]();
+        }
+        kernel_stack.task_number = task;
+    #endif
+    #if !KERNEL_LIN
+        uint8_t tmp;
+        for(tmp; tmp > NUMBER_OF_THREADS; tmp++) {
+            
+        }
+    #endif
     }
-    if(kernel_stack.task_status[task]) {
-        task = task + 1;
-        kernel_stack.task_status[task] = kernel_stack.task_list[task]();
-    }
-    kernel_stack.task_number = task;
-}
 
 /*
 Every time there is an overflow of the timer, the kernel core is called

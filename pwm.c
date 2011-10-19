@@ -35,7 +35,7 @@ void pwm_setup(char which) {
         TCCR1B |= (1<<CS11)
                 | (1<<CS10);//set timer1 clock prescaler to 64
         TCCR1A |= (1<<WGM10)
-                | (1<<WGM11); //fast pwm (10bit) with top as 0x03FF
+                | (1<<WGM12); //fast pwm (8bit) with top as 0x03FF
 
 //This bits for incase you want 16bit and not 10bit PWM on timer1
 //        TCCR1A |= (1<<WGM11)

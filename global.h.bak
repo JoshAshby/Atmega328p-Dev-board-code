@@ -15,7 +15,6 @@ freenode/#linuxandsci - JoshAshby
 //Libraries
 //-----------------------------------------------
 #include <avr/io.h>
-#include <util/delay.h>
 #include <stdio.h>
 #include <avr/interrupt.h>
 #include <compat/twi.h>
@@ -23,26 +22,28 @@ freenode/#linuxandsci - JoshAshby
 #include <stdlib.h>
 #include <avr/sleep.h>
 
+#include "thread.h"
 #include "kernel.h"
 #include "adc.h"
 #include "pwm.h"
 #include "i2c.h"
 #include "uart.h"
 #include "digital.h"
+#include "button.h"
+#include "robot.h"
 
 //-----------------------------------------------
 //Macros (defines)
 //-----------------------------------------------
 //Debug
 //========================
-#define DEBUG 1 //if true, anything inside of an if(DEBUG){} or #if DEBUG tag will run, DEBUG_KEYS are sent this way
+#define DEBUG 0 //if true, anything inside of an if(DEBUG){} or #if DEBUG tag will run, DEBUG_KEYS are sent this way
 #define DEBUG_BEG 0 //if true, DEBUG_KEYS will also come with more info and a fancy LED. This comes at the price of a few extra CPU cycles for debug
 #define DEBUG_KERNEL 0 //set to debug the KERNEL and THREADs
 
 //CPU power and Debug LEDs
 //========================
 #define CPU_POW 2 //PORTD
-#define DEBUG_PIN 4 //PORTD - Used for DEBUG_BEG
 
 //Status LEDs
 //========================
@@ -76,10 +77,13 @@ freenode/#linuxandsci - JoshAshby
 #define TWI_KEY 0x05
 #define MAIN_KEY 0x06
 #define DEBOUNCE_KEY 0x07
+#define BUTTON_KEY 0x08
 #define PWM_KEY 0x10 //0x10 - setup PWM_ALL
-//0x11 - setup PWM0
-//0x12 - setup PWM1
-//0x13 - setup PWM2
+    //0x11 - setup PWM0
+    //0x12 - setup PWM1
+    //0x13 - setup PWM2
+
+//KERNEL and related THREAD keys
 #define KERNEL_KEY 0x15
 #define THREAD0_KEY 0x20
 #define THREAD1_KEY 0x21
@@ -104,7 +108,7 @@ and the button debouncer uses TIMER2 for the overflow interrupt
 #define bios() \
     uart_start(); \
     pwm_setup(2); \
-    adc_start(1); \
+    adc_start(1+); \
     twi_start(); \
     DDRD |= (1<<CPU_POW); \
     PORTD |= (1<<CPU_POW); \
@@ -114,9 +118,8 @@ and the button debouncer uses TIMER2 for the overflow interrupt
             uart_sendstr("0x01 - Hardware setup successful..."); \
             uart_sendstr("Bios complete..."); \
             uart_sendstr("Starting main code..."); \
-            DDRD |= (1<<DEBUG_PIN); \
-            PORTD |= (1<<DEBUG_PIN); \
         }\
-    }
+    } \
+    sei();
 
 #endif

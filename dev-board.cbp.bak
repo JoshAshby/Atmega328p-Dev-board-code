@@ -55,6 +55,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="adc.h" />
+		<Unit filename="button.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="button.h" />
 		<Unit filename="digital.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -64,6 +68,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="i2c.h" />
+		<Unit filename="kernel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="kernel.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -71,6 +79,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="pwm.h" />
+		<Unit filename="thread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="thread.h" />
 		<Unit filename="uart.c">
 			<Option compilerVar="CC" />
 		</Unit>

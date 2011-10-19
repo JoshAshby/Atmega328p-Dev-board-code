@@ -74,9 +74,9 @@ Buttons, this section uses timer2 because timer 1 is reserved for 16bit tasks
 and timer0 is reserved for the kernel and task switching
  */
 void init_buttons(void) {
-    DDRD &= ~(1<<DDD3)
-         & ~(1<<DDD4);
-
+    DDRD &= ~(1<<3)
+         & ~(1<<4);
+         
     TCNT2 = 0; //set the inital timer value to 0
     TCCR2B |= (1<<CS02); //set the clock prescaler to clock/256 or 62.5kHz
     TIMSK2 |= (1<<TOIE0); //start the timer with the interrupt overflow turned on

@@ -30,6 +30,7 @@ freenode/#linuxandsci - JoshAshby
 #include "uart.h"
 #include "digital.h"
 #include "button.h"
+#include "robot.h"
 
 //-----------------------------------------------
 //Macros (defines)
@@ -109,6 +110,7 @@ and the button debouncer uses TIMER2 for the overflow interrupt
     pwm_setup(2); \
     adc_start(1); \
     twi_start(); \
+    init_sensors(); \
     DDRD |= (1<<CPU_POW); \
     PORTD |= (1<<CPU_POW); \
     if (DEBUG) { \

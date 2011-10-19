@@ -30,12 +30,6 @@ void adc_start(_Bool left) {//Passing a 0 will not left align results
     ADCSRA |= (1 << ADEN);  // Enable ADC
     ADCSRA |= (1 << ADIE);  // Enable ADC Interrupt
     sei();
-
-    ADMUX &= ~(1 << MUX0)
-          &  ~(1 << MUX1)
-          &  ~(1 << MUX2)
-          &  ~(1 << MUX3);
-
     ADCSRA |= (1 << ADSC);  // Start A2D Conversions
     #if DEBUG
         uart_sendint(ADC_KEY);
@@ -45,7 +39,7 @@ void adc_start(_Bool left) {//Passing a 0 will not left align results
     #endif
 }
 
-void adc_stop(void) {
+void adc_stop() {
     //stop the ADC
     ADCSRA &= ~(1 << ADSC);
 }

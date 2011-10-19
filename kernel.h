@@ -16,6 +16,7 @@ freenode/#linuxandsci - JoshAshby
 //Macros (defines)
 //-----------------------------------------------
 #define NUMBER_OF_THREADS 4
+#define KERNEL_LIN 1
 
 //-----------------------------------------------
 //Variables
@@ -26,9 +27,11 @@ freenode/#linuxandsci - JoshAshby
 //-----------------------------------------------
 typedef uint8_t (*thread_ptr)(void); //function pointer so we can store the function inside of the kernel_stack
 
-struct {
-    thread_ptr task_list[4];
-    uint8_t task_status[4];
+struct stack {
+    thread_ptr task_list[NUMBER_OF_THREADS];
+    uint8_t task_status[NUMBER_OF_THREADS];
+    uint8_t task_flags[NUMBER_OF_THREADS];
+    uint8_t task_priority[NUMBER_OF_THREADS];
     uint8_t task_number;
 } kernel_stack; //the kernel stack that holds the function pointers for each thread and the
 
