@@ -10,8 +10,8 @@ freenode/#linuxandsci - JoshAshby
 //-------------------------------------------
 #include "global.h"
 
-void button(char which, char what) {
-    if(which == 1) {
+void button(int which, int what) {
+    if(which == 0) {
         if(what == 1) {
             //Runs once once per button press and no more.
             if(once[which] == 1) {
@@ -22,22 +22,34 @@ void button(char which, char what) {
             once[which] = 1;
         } else {
             once[which] = 0;
-            out('D', stat_led1, 1);
+        }
+    }
+    if(which == 1) {
+        if(what == 1) {
+            //Runs once once per button press and no more.
+            if(once[which] == 1) {
+                return;
+            } else {
+                button2_once();
+            }
+            once[which] = 1;
+        } else {
+            once[which] = 0;
         }
     }
     if(which == 2) {
         if(what == 1) {
-            //runs for an infinit amount of time during the button press, stops when buttons been released.
-            out('D', stat_led2, 0);
+            //Runs once once per button press and no more.
+            if(once[which] == 1) {
+                return;
+            } else {
+                button3_once();
+            }
+            once[which] = 1;
         } else {
-            out('D', stat_led2, 1);
+            once[which] = 0;
         }
     }
-}
-
-//What to run only once and once only when button 1 has been pressed.
-void button1_once(void) {
-    out('D', stat_led1, 0);
 }
 
 void check_buttons(void) {
@@ -52,17 +64,7 @@ void check_buttons(void) {
     if the button is released, then the count is cleared
     and the button bounce function is called
     */
-    if((PIND & button_one)) {
-        dig_count[1]++;
-        if (dig_count[1] > DEBOUNCE_TIME) {
-            button(1, 1);
-        }
-    } else {
-        //if the button changes state, reset the count and trigger the button bounce function
-        dig_count[1] = 0;
-        button(1, 0);
-    }
-    if((PIND & button_two)) {
+    if((PIND & button_one) && (PIND & button_two)) {
         dig_count[2]++;
         if (dig_count[2] > DEBOUNCE_TIME) {
             button(2, 1);
@@ -71,6 +73,26 @@ void check_buttons(void) {
         //if the button changes state, reset the count and trigger the button bounce function
         dig_count[2] = 0;
         button(2, 0);
+        if((PIND & button_one)) {
+            dig_count[0]++;
+            if (dig_count[0] > DEBOUNCE_TIME) {
+                button(0, 1);
+            }
+        } else {
+            //if the button changes state, reset the count and trigger the button bounce function
+            dig_count[0] = 0;
+            button(0, 0);
+        }
+        if((PIND & button_two)) {
+            dig_count[1]++;
+            if (dig_count[1] > DEBOUNCE_TIME) {
+                button(1, 1);
+            }
+        } else {
+            //if the button changes state, reset the count and trigger the button bounce function
+            dig_count[1] = 0;
+            button(1, 0);
+        }
     }
     if ((PIND & button_one) | (PIND & button_two)) {
         #if DEBUG

@@ -10,8 +10,15 @@ freenode/#linuxandsci - JoshAshby
 //-------------------------------------------
 #include "global.h"
 
+/*
+Drive motor control thread
+This guy runs once in a while just to make sure BOB is moving
+(or attempting to). The priority doesn't need to be too high
+because  worse case you just pull the power (or one of the few
+fuses or relays pop).
+*/
 uint8_t thread0(void) {
-    pwm1A(ADCH);
+    pwm1A(led);
     #if DEBUG_KERNEL
         uart_sendint(THREAD0_KEY);
         #if DEBUG_BEG
@@ -21,17 +28,15 @@ uint8_t thread0(void) {
     return 1;
 }
 
+/*
+Turn motor control thread
+This guy takes care of controlling the turning motor and it's
+dirrection switching relay. If the ultrasound thread sets the
+turn bit (which may end up being this threads flag) then he
+is ran immediatly because that means BOB needs to turn, and
+that should perferably happen sooner than later.
+*/
 uint8_t thread1(void) {
-    if((PIND & EXTRA1_BIT)) {
-        out('B', RELAY_FRONT, 0);
-    } else {
-        out('B', RELAY_FRONT, 1);
-    }
-    if((PINB & EXTRA2_BIT)) {
-        out('B', RELAY_BACK, 0);
-    } else {
-        out('B', RELAY_BACK, 1);
-    }
     #if DEBUG_KERNEL
         uart_sendint(THREAD1_KEY);
         #if DEBUG_BEG
@@ -41,12 +46,12 @@ uint8_t thread1(void) {
     return 1;
 }
 
+/*
+This guy is the ultrasound thread. He'll get most of the
+attention because he's an important thread to run, making sure
+BOB doesn't run into anything.
+*/
 uint8_t thread2(void) {
-    if(ADCH > 100) {
-        out('B', EXTRA3, 0);
-    } else {
-        out('B', EXTRA3, 1);
-    }
     #if DEBUG_KERNEL
         uart_sendint(THREAD2_KEY);
         #if DEBUG_BEG
@@ -56,6 +61,12 @@ uint8_t thread2(void) {
     return 1;
 }
 
+/*
+Temperature control thread. This guy monitors the resistance
+of a thermocoupler on the back motor MOSFETs and converts it to
+degrees. In robot.h you can define what the temperature is for
+when the fan turns on to keep the MOSFETs cool. (In C, not F or K)
+*/
 uint8_t thread3(void) {
     #if DEBUG_KERNEL
         uart_sendint(THREAD3_KEY);

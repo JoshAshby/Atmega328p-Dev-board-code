@@ -11,15 +11,30 @@ freenode/#linuxandsci - JoshAshby
 #include "global.h"
 
 void init_sensors(void) {
-    MCUCR |= (1<<PUD);
-    DDRB &= ~(1<<EXTRA2_BIT);
-    DDRD &= ~(1<<EXTRA1_BIT);
+    DDRB &= ~(1<<SWITCH1_BIT);
+    DDRD &= ~(1<<SWITCH2_BIT);
 
     init_out('B', PWM_BACK);
     init_out('B', PWM_FRONT);
     init_out('B', RELAY_BACK);
     init_out('B', RELAY_FRONT);
-    init_out('B', EXTRA3);
+    init_out('B', FAN);
+}
+
+//What to run only once and once only when button 1 has been pressed.
+void button1_once(void) {
+    if(led <= 250) {
+        led += 5;
+    }
+}
+
+void button2_once(void) {
+    if(led >= 5) {
+        led -= 5;
+    }
+}
+
+void button3_once(void) {
 }
 
 uint8_t ultrasound_filter(void) {

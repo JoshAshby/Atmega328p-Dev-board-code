@@ -45,16 +45,20 @@ freenode/#linuxandsci - JoshAshby
 //========================
 #define ULTRASOUND_CENTER 4
 
-//Extra Pins
+//Temp control
 //========================
-#define ADC1 5
+#define FAN 5 //PORTB 5
+#define FAN_BIT 0b00100000
 
-#define EXTRA1 7 //PORTD 7
-#define EXTRA1_BIT 0b10000000
-#define EXTRA2 0 //PORTB 0
-#define EXTRA2_BIT 0b00000001
-#define EXTRA3 5 //PORTB 5
-#define EXTRA3_BIT 0b00100000
+#define TEMP 5
+
+//Switches
+//========================
+#define SWITCH1 7 //PORTD 7
+#define SWITCH1_BIT 0b10000000
+#define SWITCH2 0 //PORTB 0
+#define SWITCH2_BIT 0b00000001
+
 
 //-----------------------------------------------
 //Variables
@@ -65,6 +69,8 @@ volatile uint8_t average;
 volatile uint8_t j;
 volatile uint8_t adc;
 
+uint8_t led;
+
 //-----------------------------------------------
 //Structers and Unions and typedefs
 //-----------------------------------------------
@@ -73,6 +79,9 @@ volatile uint8_t adc;
 //Prototypes
 //-----------------------------------------------
 void init_sensors(void);
+void button1_once(void);
+void button2_once(void);
+void button3_once(void);
 uint8_t ultrasound_filter(void);
 
 #endif

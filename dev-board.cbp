@@ -55,6 +55,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="adc.h" />
+		<Unit filename="boot.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="boot.h" />
 		<Unit filename="button.c">
 			<Option compilerVar="CC" />
 		</Unit>

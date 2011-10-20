@@ -27,7 +27,7 @@ freenode/#linuxandsci - JoshAshby
 //-----------------------------------------------
 typedef uint8_t (*thread_ptr)(void); //function pointer so we can store the function inside of the kernel_stack
 
-struct stack {
+struct kstack {
     thread_ptr task_list[NUMBER_OF_THREADS];
     uint8_t task_status[NUMBER_OF_THREADS];
     uint8_t task_flags[NUMBER_OF_THREADS];

@@ -64,7 +64,7 @@ void kernel_core(void) {
         task = kernel_stack.task_number;
         if(task > NUMBER_OF_THREADS) {
             task = 0;
-            uint8_t tmp;
+            int tmp;
             for(; tmp > NUMBER_OF_THREADS; tmp++) {
                 kernel_stack.task_status[tmp] = 0;
             }
@@ -79,7 +79,10 @@ void kernel_core(void) {
     #if !KERNEL_LIN
         uint8_t tmp;
         for(tmp; tmp > NUMBER_OF_THREADS; tmp++) {
-
+            if(kernel_stack.task_flags[tmp]) {
+                kernel_stack.task_flags[tmp] = 0;
+                kernel_stack.task_status[tmp] = kernel_stack.task_list[tmp]();
+            }
         }
     #endif
     }
