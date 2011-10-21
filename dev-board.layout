@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Release" />
-	<File name="adc.c" open="0" top="0" tabpos="5">
+	<File name="adc.c" open="1" top="0" tabpos="5">
 		<Cursor position="1379" topLine="23" />
 	</File>
-	<File name="adc.h" open="0" top="0" tabpos="6">
+	<File name="adc.h" open="1" top="0" tabpos="6">
 		<Cursor position="278" topLine="0" />
 	</File>
 	<File name="boot.c" open="1" top="0" tabpos="0">
@@ -34,7 +34,7 @@
 	<File name="i2c.h" open="0" top="0" tabpos="8">
 		<Cursor position="52" topLine="0" />
 	</File>
-	<File name="kernel.c" open="1" top="0" tabpos="6">
+	<File name="kernel.c" open="1" top="1" tabpos="6">
 		<Cursor position="2972" topLine="38" />
 	</File>
 	<File name="kernel.h" open="1" top="0" tabpos="7">
@@ -55,7 +55,7 @@
 	<File name="robot.h" open="1" top="0" tabpos="0">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="thread.c" open="1" top="1" tabpos="8">
+	<File name="thread.c" open="1" top="0" tabpos="8">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="thread.h" open="1" top="0" tabpos="1">

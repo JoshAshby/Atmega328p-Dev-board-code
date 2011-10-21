@@ -31,5 +31,6 @@ uint8_t thread0(void);
 uint8_t thread1(void);
 uint8_t thread2(void);
 uint8_t thread3(void);
+uint8_t thread4(void);
 
 #endif

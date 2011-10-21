@@ -30,8 +30,10 @@ typedef uint8_t (*thread_ptr)(void); //function pointer so we can store the func
 struct kstack {
     thread_ptr task_list[NUMBER_OF_THREADS];
     uint8_t task_status[NUMBER_OF_THREADS];
-    uint8_t task_flags[NUMBER_OF_THREADS];
-    uint8_t task_priority[NUMBER_OF_THREADS];
+    #if !KERNEL_LIN
+        uint8_t task_flags[NUMBER_OF_THREADS];
+        uint8_t tc;
+    #endif
     uint8_t task_number;
 } kernel_stack; //the kernel stack that holds the function pointers for each thread and the
 

@@ -16,6 +16,9 @@ other wise, simply read from the data registers if data isn't all that important
 aka: you can miss a few bits of data and still be good to go
 */
 ISR(ADC_vect) {
+    #if !KERNEL_LIN
+        kernel_stack.task_flags[0] = 1;
+    #endif
 }
 
 void adc_start(_Bool left) {//Passing a 0 will not left align results

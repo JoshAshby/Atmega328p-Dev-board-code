@@ -76,3 +76,13 @@ uint8_t thread3(void) {
     #endif
     return 1;
 }
+
+uint8_t thread4(void) {
+    #if DEBUG_KERNEL
+        uart_sendint(THREAD3_KEY);
+        #if DEBUG_BEG
+            uart_sendstr("0x23 - THREAD3 is up...");
+        #endif
+    #endif
+    return 1;
+}
