@@ -20,8 +20,10 @@ void button(int which, int what) {
                 button1_once();
             }
             once[which] = 1;
+            return;
         } else {
             once[which] = 0;
+            return;
         }
     }
     if(which == 1) {
@@ -33,8 +35,10 @@ void button(int which, int what) {
                 button2_once();
             }
             once[which] = 1;
+            return;
         } else {
             once[which] = 0;
+            return;
         }
     }
     if(which == 2) {
@@ -46,10 +50,13 @@ void button(int which, int what) {
                 button3_once();
             }
             once[which] = 1;
+            return;
         } else {
             once[which] = 0;
+            return;
         }
     }
+    return;
 }
 
 void check_buttons(void) {
@@ -64,10 +71,19 @@ void check_buttons(void) {
     if the button is released, then the count is cleared
     and the button bounce function is called
     */
+    if ((PIND & button_one) | (PIND & button_two)) {
+        #if DEBUG
+            uart_sendint(BUTTON_KEY);
+            #if DEBUG_BEG
+                uart_sendstr("0x08 - Button pressed");
+            #endif
+        #endif
+    }
     if((PIND & button_one) && (PIND & button_two)) {
         dig_count[2]++;
         if (dig_count[2] > DEBOUNCE_TIME) {
             button(2, 1);
+            return;
         }
     } else {
         //if the button changes state, reset the count and trigger the button bounce function
@@ -77,6 +93,7 @@ void check_buttons(void) {
             dig_count[0]++;
             if (dig_count[0] > DEBOUNCE_TIME) {
                 button(0, 1);
+                return;
             }
         } else {
             //if the button changes state, reset the count and trigger the button bounce function
@@ -87,6 +104,7 @@ void check_buttons(void) {
             dig_count[1]++;
             if (dig_count[1] > DEBOUNCE_TIME) {
                 button(1, 1);
+                return;
             }
         } else {
             //if the button changes state, reset the count and trigger the button bounce function
@@ -94,14 +112,7 @@ void check_buttons(void) {
             button(1, 0);
         }
     }
-    if ((PIND & button_one) | (PIND & button_two)) {
-        #if DEBUG
-            uart_sendint(BUTTON_KEY);
-            #if DEBUG_BEG
-                uart_sendstr("0x08 - Button pressed");
-            #endif
-        #endif
-    }
+    return;
 }
 
 /*
@@ -123,6 +134,7 @@ void init_buttons(void) {
             uart_sendstr("0x07 - DEBOUNCE is up...");
         #endif
     #endif
+    return;
 }
 
 ISR(TIMER2_OVF_vect) {
@@ -130,4 +142,5 @@ ISR(TIMER2_OVF_vect) {
     Timer2 overflow interrupt servic routine for the debouncing of buttons.
     */
     check_buttons();
+    return;
 }

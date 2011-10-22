@@ -24,12 +24,13 @@ freenode/#linuxandsci - JoshAshby
     #define NUMBER_OF_THREADS 5
 #endif
 
-#define THREAD_SECONDS 2
-#define THREAD_COUNT (THREAD_SECONDS * 2000000)
+#define THREAD_SECONDS 1.0
+#define THREAD_COUNT (THREAD_SECONDS * 2UL)
 
 //-----------------------------------------------
 //Variables
 //-----------------------------------------------
+float countmax;
 
 //-----------------------------------------------
 //Structers and Unions and typedefs

@@ -35,6 +35,7 @@ led                 0x1               obj/Release/adc.o
 input_buffer        0x2bc             obj/Release/adc.o
 once                0x3               obj/Release/adc.o
 adc                 0x1               obj/Release/adc.o
+countmax            0x4               obj/Release/adc.o
 dig_count           0x3               obj/Release/adc.o
 rollAverage         0x10              obj/Release/adc.o
 kernel_stack        0x11              obj/Release/adc.o
@@ -185,7 +186,7 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x11a2
+.text           0x00000000     0x1276
  *(.vectors)
  .vectors       0x00000000       0x68 /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vectors
@@ -263,91 +264,91 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
                 0x000000a2                __vector_14
                 0x000000a2                __vector_10
                 0x000000a2                __vector_20
- .text          0x000000a6      0x15e obj/Release/adc.o
+ .text          0x000000a6      0x164 obj/Release/adc.o
                 0x000000a6                __vector_21
                 0x000000ba                adc_start
-                0x00000112                adc_stop
-                0x0000011e                adc_change
- .text          0x00000204       0x32 obj/Release/boot.o
-                0x00000204                bios
- .text          0x00000236      0x164 obj/Release/button.o
-                0x00000236                button
-                0x000002a6                check_buttons
-                0x00000330                init_buttons
-                0x00000352                __vector_9
- .text          0x0000039a       0x80 obj/Release/digital.o
-                0x0000039a                init_out
-                0x000003ce                out
- .text          0x0000041a      0x166 obj/Release/i2c.o
-                0x0000041a                twi_start
-                0x00000426                twi_tran
-                0x0000045a                twi_mcp_dac
-                0x0000052e                twi_mcp_read
- .text          0x00000580      0x142 obj/Release/kernel.o
-                0x00000580                init_kernel
-                0x000005d2                kernel_core
-                0x0000067a                __vector_16
- .text          0x000006c2        0x0 obj/Release/main.o
- .text          0x000006c2       0xd8 obj/Release/pwm.o
-                0x00000708                pwm_setup
-                0x0000073e                pwm0A
-                0x00000748                pwm0B
-                0x00000752                pwm1A
-                0x00000766                pwm1B
-                0x0000077a                pwm2A
-                0x0000078a                pwm2B
- .text          0x0000079a      0x122 obj/Release/robot.o
-                0x0000079a                init_sensors
-                0x000007d4                button1_once
-                0x000007e4                button2_once
-                0x000007f4                button3_once
-                0x000007f6                ultrasound_filter
- .text          0x000008bc       0x1c obj/Release/thread.o
-                0x000008bc                thread0
-                0x000008ca                thread1
-                0x000008ce                thread2
-                0x000008d2                thread3
-                0x000008d6                thread4
- .text          0x000008d8      0x126 obj/Release/uart.o
-                0x000008d8                uart_start
-                0x00000900                uart_sendint
-                0x0000091c                uart_sendint16
-                0x00000944                uart_sendstr
-                0x0000096a                uart_get
-                0x000009a8                __vector_18
- .text          0x000009fe        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
- .text          0x000009fe        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
- .text          0x000009fe        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
- .text          0x000009fe      0x382 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_addsub_sf.o)
-                0x00000ca8                __addsf3
-                0x00000d10                __subsf3
- .text          0x00000d80       0x62 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_ge_sf.o)
-                0x00000d80                __gesf2
- .text          0x00000de2        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_thenan_sf.o)
- .text          0x00000de2        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_prologue.o)
- .text          0x00000de2        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_epilogue.o)
- .text          0x00000de2      0x1b4 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_pack_sf.o)
-                0x00000de2                __pack_f
- .text          0x00000f96       0xd2 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_unpack_sf.o)
-                0x00000f96                __unpack_f
- .text          0x00001068       0xba /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_fpcmp_parts_sf.o)
-                0x00001068                __fpcmp_parts_f
-                0x00001122                . = ALIGN (0x2)
+                0x00000118                adc_stop
+                0x00000124                adc_change
+ .text          0x0000020a       0x38 obj/Release/boot.o
+                0x0000020a                bios
+ .text          0x00000242      0x184 obj/Release/button.o
+                0x00000242                button
+                0x000002b2                check_buttons
+                0x00000356                init_buttons
+                0x0000037e                __vector_9
+ .text          0x000003c6       0x80 obj/Release/digital.o
+                0x000003c6                init_out
+                0x000003fa                out
+ .text          0x00000446      0x16c obj/Release/i2c.o
+                0x00000446                twi_start
+                0x00000458                twi_tran
+                0x0000048c                twi_mcp_dac
+                0x00000560                twi_mcp_read
+ .text          0x000005b2      0x1a0 obj/Release/kernel.o
+                0x000005b2                init_kernel
+                0x00000622                kernel_core
+                0x0000070a                __vector_16
+ .text          0x00000752        0x0 obj/Release/main.o
+ .text          0x00000752       0xf4 obj/Release/pwm.o
+                0x000007aa                pwm_setup
+                0x000007ea                pwm0A
+                0x000007f4                pwm0B
+                0x000007fe                pwm1A
+                0x00000812                pwm1B
+                0x00000826                pwm2A
+                0x00000836                pwm2B
+ .text          0x00000846      0x122 obj/Release/robot.o
+                0x00000846                init_sensors
+                0x00000880                button1_once
+                0x00000890                button2_once
+                0x000008a0                button3_once
+                0x000008a2                ultrasound_filter
+ .text          0x00000968       0x38 obj/Release/thread.o
+                0x00000968                thread0
+                0x00000980                thread1
+                0x0000098e                thread2
+                0x00000990                thread3
+                0x0000099e                thread4
+ .text          0x000009a0      0x12c obj/Release/uart.o
+                0x000009a0                uart_sendint
+                0x000009bc                uart_start
+                0x000009ea                uart_sendint16
+                0x00000a12                uart_sendstr
+                0x00000a38                uart_get
+                0x00000a76                __vector_18
+ .text          0x00000acc        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+ .text          0x00000acc        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
+ .text          0x00000acc        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
+ .text          0x00000acc      0x382 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_addsub_sf.o)
+                0x00000d76                __addsf3
+                0x00000dde                __subsf3
+ .text          0x00000e4e       0x62 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_ge_sf.o)
+                0x00000e4e                __gesf2
+ .text          0x00000eb0        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_thenan_sf.o)
+ .text          0x00000eb0        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_prologue.o)
+ .text          0x00000eb0        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_epilogue.o)
+ .text          0x00000eb0      0x1b4 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_pack_sf.o)
+                0x00000eb0                __pack_f
+ .text          0x00001064       0xd2 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_unpack_sf.o)
+                0x00001064                __unpack_f
+ .text          0x00001136       0xba /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_fpcmp_parts_sf.o)
+                0x00001136                __fpcmp_parts_f
+                0x000011f0                . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x00001122        0xe obj/Release/main.o
-                0x00001122                main
- .text.libgcc   0x00001130        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x00001130        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
- .text.libgcc   0x00001130        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
- .text.libgcc   0x00001130       0x38 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_prologue.o)
-                0x00001130                __prologue_saves__
- .text.libgcc   0x00001168       0x36 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_epilogue.o)
-                0x00001168                __epilogue_restores__
-                0x0000119e                . = ALIGN (0x2)
+ .text.startup  0x000011f0       0x14 obj/Release/main.o
+                0x000011f0                main
+ .text.libgcc   0x00001204        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x00001204        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc   0x00001204        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00001204       0x38 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_prologue.o)
+                0x00001204                __prologue_saves__
+ .text.libgcc   0x0000123c       0x36 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_epilogue.o)
+                0x0000123c                __epilogue_restores__
+                0x00001272                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000119e        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
-                0x0000119e                exit
-                0x0000119e                _exit
+ .fini9         0x00001272        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+                0x00001272                exit
+                0x00001272                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -366,11 +367,11 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000119e        0x4 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+ .fini0         0x00001272        0x4 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x000011a2                _etext = .
+                0x00001276                _etext = .
 
-.data           0x00800100        0x8 load address 0x000011a2
+.data           0x00800100       0x14 load address 0x00001276
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
@@ -379,83 +380,85 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
  .data          0x00800100        0x0 obj/Release/button.o
  .data          0x00800100        0x0 obj/Release/digital.o
  .data          0x00800100        0x0 obj/Release/i2c.o
- .data          0x00800100        0x0 obj/Release/kernel.o
- .data          0x00800100        0x0 obj/Release/main.o
- .data          0x00800100        0x0 obj/Release/pwm.o
- .data          0x00800100        0x0 obj/Release/robot.o
- .data          0x00800100        0x0 obj/Release/thread.o
- .data          0x00800100        0x0 obj/Release/uart.o
- .data          0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
- .data          0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
- .data          0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
- .data          0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_addsub_sf.o)
- .data          0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_ge_sf.o)
- .data          0x00800100        0x8 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_thenan_sf.o)
-                0x00800100                __thenan_sf
- .data          0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_prologue.o)
- .data          0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_epilogue.o)
- .data          0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_pack_sf.o)
- .data          0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_unpack_sf.o)
- .data          0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_fpcmp_parts_sf.o)
+ .data          0x00800100        0xb obj/Release/kernel.o
+ .data          0x0080010b        0x0 obj/Release/main.o
+ .data          0x0080010b        0x0 obj/Release/pwm.o
+ .data          0x0080010b        0x0 obj/Release/robot.o
+ .data          0x0080010b        0x0 obj/Release/thread.o
+ .data          0x0080010b        0x0 obj/Release/uart.o
+ .data          0x0080010b        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+ .data          0x0080010b        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
+ .data          0x0080010b        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
+ .data          0x0080010b        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_addsub_sf.o)
+ .data          0x0080010b        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_ge_sf.o)
+ .data          0x0080010b        0x8 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_thenan_sf.o)
+                0x0080010b                __thenan_sf
+ .data          0x00800113        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_prologue.o)
+ .data          0x00800113        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_epilogue.o)
+ .data          0x00800113        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_pack_sf.o)
+ .data          0x00800113        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_unpack_sf.o)
+ .data          0x00800113        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_fpcmp_parts_sf.o)
  *(.data*)
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
-                0x00800108                . = ALIGN (0x2)
-                0x00800108                _edata = .
-                0x00800108                PROVIDE (__data_end, .)
+                0x00800114                . = ALIGN (0x2)
+ *fill*         0x00800113        0x1 00
+                0x00800114                _edata = .
+                0x00800114                PROVIDE (__data_end, .)
 
-.bss            0x00800108      0x2f0
-                0x00800108                PROVIDE (__bss_start, .)
+.bss            0x00800114      0x2f4
+                0x00800114                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
- .bss           0x00800108        0x0 obj/Release/adc.o
- .bss           0x00800108        0x0 obj/Release/boot.o
- .bss           0x00800108        0x0 obj/Release/button.o
- .bss           0x00800108        0x0 obj/Release/digital.o
- .bss           0x00800108        0x0 obj/Release/i2c.o
- .bss           0x00800108        0x0 obj/Release/kernel.o
- .bss           0x00800108        0x0 obj/Release/main.o
- .bss           0x00800108        0x0 obj/Release/pwm.o
- .bss           0x00800108        0x0 obj/Release/robot.o
- .bss           0x00800108        0x0 obj/Release/thread.o
- .bss           0x00800108        0x0 obj/Release/uart.o
- .bss           0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
- .bss           0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
- .bss           0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
- .bss           0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_addsub_sf.o)
- .bss           0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_ge_sf.o)
- .bss           0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_thenan_sf.o)
- .bss           0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_prologue.o)
- .bss           0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_epilogue.o)
- .bss           0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_pack_sf.o)
- .bss           0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_unpack_sf.o)
- .bss           0x00800108        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_fpcmp_parts_sf.o)
+ .bss           0x00800114        0x0 /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
+ .bss           0x00800114        0x0 obj/Release/adc.o
+ .bss           0x00800114        0x0 obj/Release/boot.o
+ .bss           0x00800114        0x0 obj/Release/button.o
+ .bss           0x00800114        0x0 obj/Release/digital.o
+ .bss           0x00800114        0x0 obj/Release/i2c.o
+ .bss           0x00800114        0x0 obj/Release/kernel.o
+ .bss           0x00800114        0x0 obj/Release/main.o
+ .bss           0x00800114        0x0 obj/Release/pwm.o
+ .bss           0x00800114        0x0 obj/Release/robot.o
+ .bss           0x00800114        0x0 obj/Release/thread.o
+ .bss           0x00800114        0x0 obj/Release/uart.o
+ .bss           0x00800114        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+ .bss           0x00800114        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
+ .bss           0x00800114        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
+ .bss           0x00800114        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_addsub_sf.o)
+ .bss           0x00800114        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_ge_sf.o)
+ .bss           0x00800114        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_thenan_sf.o)
+ .bss           0x00800114        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_prologue.o)
+ .bss           0x00800114        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_epilogue.o)
+ .bss           0x00800114        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_pack_sf.o)
+ .bss           0x00800114        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_unpack_sf.o)
+ .bss           0x00800114        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_fpcmp_parts_sf.o)
  *(.bss*)
  *(COMMON)
- COMMON         0x00800108      0x2f0 obj/Release/adc.o
-                0x00800108                j
-                0x00800109                average
-                0x0080010a                read_spot
-                0x0080010c                filt
-                0x0080010d                mcp_data
-                0x00800113                led
-                0x00800114                input_buffer
-                0x008003d0                once
-                0x008003d3                adc
-                0x008003d4                dig_count
-                0x008003d7                rollAverage
-                0x008003e7                kernel_stack
-                0x008003f8                PROVIDE (__bss_end, .)
-                0x000011a2                __data_load_start = LOADADDR (.data)
-                0x000011aa                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800114      0x2f4 obj/Release/adc.o
+                0x00800114                j
+                0x00800115                average
+                0x00800116                read_spot
+                0x00800118                filt
+                0x00800119                mcp_data
+                0x0080011f                led
+                0x00800120                input_buffer
+                0x008003dc                once
+                0x008003df                adc
+                0x008003e0                countmax
+                0x008003e4                dig_count
+                0x008003e7                rollAverage
+                0x008003f7                kernel_stack
+                0x00800408                PROVIDE (__bss_end, .)
+                0x00001276                __data_load_start = LOADADDR (.data)
+                0x0000128a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008003f8        0x0
-                0x008003f8                PROVIDE (__noinit_start, .)
+.noinit         0x00800408        0x0
+                0x00800408                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008003f8                PROVIDE (__noinit_end, .)
-                0x008003f8                _end = .
-                0x008003f8                PROVIDE (__heap_start, .)
+                0x00800408                PROVIDE (__noinit_end, .)
+                0x00800408                _end = .
+                0x00800408                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -660,6 +663,17 @@ button2_once                                      obj/Release/robot.o
 button3_once                                      obj/Release/robot.o
                                                   obj/Release/button.o
 check_buttons                                     obj/Release/button.o
+countmax                                          obj/Release/uart.o
+                                                  obj/Release/thread.o
+                                                  obj/Release/robot.o
+                                                  obj/Release/pwm.o
+                                                  obj/Release/main.o
+                                                  obj/Release/kernel.o
+                                                  obj/Release/i2c.o
+                                                  obj/Release/digital.o
+                                                  obj/Release/button.o
+                                                  obj/Release/boot.o
+                                                  obj/Release/adc.o
 dig_count                                         obj/Release/uart.o
                                                   obj/Release/thread.o
                                                   obj/Release/robot.o
@@ -811,8 +825,17 @@ twi_start                                         obj/Release/i2c.o
 twi_tran                                          obj/Release/i2c.o
 uart_get                                          obj/Release/uart.o
 uart_sendint                                      obj/Release/uart.o
+                                                  obj/Release/thread.o
+                                                  obj/Release/pwm.o
+                                                  obj/Release/main.o
+                                                  obj/Release/kernel.o
+                                                  obj/Release/i2c.o
+                                                  obj/Release/button.o
+                                                  obj/Release/boot.o
+                                                  obj/Release/adc.o
 uart_sendint16                                    obj/Release/uart.o
 uart_sendstr                                      obj/Release/uart.o
+                                                  obj/Release/kernel.o
 uart_start                                        obj/Release/uart.o
                                                   obj/Release/boot.o
 ultrasound_filter                                 obj/Release/robot.o

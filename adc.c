@@ -46,11 +46,13 @@ void adc_start(_Bool left) {//Passing a 0 will not left align results
             uart_sendstr("0x03 - ADC is up...");
         #endif
     #endif
+    return;
 }
 
 void adc_stop(void) {
     //stop the ADC
     ADCSRA &= ~(1 << ADSC);
+    return;
 }
 
 void adc_change(char chan) {
@@ -116,4 +118,5 @@ void adc_change(char chan) {
     }
     //re-enable ADC conversions now that the channel is selected
     ADCSRA |= (1 << ADSC);
+    return;
 }
