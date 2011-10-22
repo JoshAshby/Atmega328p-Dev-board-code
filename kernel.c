@@ -42,7 +42,7 @@ void init_kernel(void) {
     simply copy the style below and increment the number
     and replace threadX with the name of your new thread
     */
-    #if KERNEL_LIN
+    #if KERNEL_COOP
         kernel_stack.task_list[0] = &thread0;
         kernel_stack.task_list[1] = &thread1;
         kernel_stack.task_list[2] = &thread2;
@@ -50,18 +50,18 @@ void init_kernel(void) {
     #endif
     //If we're not in linear kernel mode, order the tasks by priority so we can just run down the array
     //when we need to and pick out the flagged tasks.
-    #if !KERNEL_LIN
+    #if !KERNEL_COOP
         kernel_stack.task_list[0] = &thread0;
         kernel_stack.task_list[1] = &thread1;
         kernel_stack.task_list[2] = &thread2;
         kernel_stack.task_list[3] = &thread3;
         kernel_stack.task_list[4] = &thread4;
-
     #endif
 
     //bootstrap the process and start the first thread
     kernel_stack.task_number = 0;
     kernel_stack.task_status[0] = kernel_stack.task_list[0]();
+    return;
 }
 
 /*
@@ -71,7 +71,7 @@ and the global counter is increased. If all the task have completed, loop
 back to the begining by clearing the status array.
 */
 void kernel_core(void) {
-    #if KERNEL_LIN
+    #if KERNEL_COOP
         uint8_t task;
         task = kernel_stack.task_number;
         if(task > NUMBER_OF_THREADS) {
@@ -80,21 +80,24 @@ void kernel_core(void) {
             for(; tmp > NUMBER_OF_THREADS; tmp++) {
                 kernel_stack.task_status[tmp] = 0;
             }
+            kernel_stack.task_number = 0;
             kernel_stack.task_status[0] = kernel_stack.task_list[0]();
+            return;
         }
         if(kernel_stack.task_status[task]) {
             task = task+1;
+            kernel_stack.task_number = task;
             kernel_stack.task_status[task] = kernel_stack.task_list[task]();
+            return;
         }
-        kernel_stack.task_number = task;
     #endif
     /*
-    if we're no in KERNEL_LIN or also known as linear kernel mode, the tasks
+    if we're no in KERNEL_COOP or also known as linear kernel mode, the tasks
     are laid out in the stack by priority, highest at the top, lowest at the bottom
     Which means we simply look at the flag of the task to see if we need to run it,
     and we just slowly work our way down the list.
     */
-    #if !KERNEL_LIN
+    #if !KERNEL_COOP
         uint8_t tmp;
         //check for any running tasks, let them finish if they're still going.
         for(tmp; tmp > NUMBER_OF_THREADS; tmp++) {
@@ -110,14 +113,16 @@ void kernel_core(void) {
             for(tmp; tmp > NUMBER_OF_THREADS; tmp++) {
                 if(kernel_stack.task_flags[tmp]) { //if there is a task waiting to be ran
                     kernel_stack.task_flags[tmp] = 0; //reset it's run flag to make sure the next time
-                    //we check it it's not just running because we forgot to clear this
-                    kernel_stack.task_status[tmp] = kernel_stack.task_list[tmp]();
+                    uint8_t tmp_tmp;
+                    tmp_tmp = tmp;
                     //increase the stacks thread count as long as it's not above the number of threads
                     if((tmp + 1) > NUMBER_OF_THREADS) {
                         kernel_stack.tc = 0;
                     } else {
                         kernel_stack.tc = tmp+1;
                     }
+                    kernel_stack.task_status[tmp_tmp] = kernel_stack.task_list[tmp_tmp]();
+                    return;
                 }
             }
         }

@@ -23,7 +23,7 @@ void init_sensors(void) {
 
 //What to run only once and once only when button 1 has been pressed.
 void button1_once(void) {
-    #if !KERNEL_LIN
+    #if !KERNEL_COOP
         kernel_stack.task_flags[0] = 1;
     #endif
     if(led <= 250) {
@@ -32,7 +32,7 @@ void button1_once(void) {
 }
 
 void button2_once(void) {
-    #if !KERNEL_LIN
+    #if !KERNEL_COOP
         kernel_stack.task_flags[0] = 1;
     #endif
     if(led >= 5) {

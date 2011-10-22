@@ -16,7 +16,7 @@ other wise, simply read from the data registers if data isn't all that important
 aka: you can miss a few bits of data and still be good to go
 */
 ISR(ADC_vect) {
-    #if !KERNEL_LIN
+    #if !KERNEL_COOP
         kernel_stack.task_flags[0] = 1;
     #endif
 }

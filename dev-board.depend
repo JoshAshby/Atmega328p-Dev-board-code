@@ -140,3 +140,85 @@
 1319000073 source:/home/josh/smb/code/Atmega328p-Dev-board-code/boot.c
 	"global.h"
 
+1319257263 source:/home/josh/repos/Atmega328p-Dev-board-code/adc.c
+	"global.h"
+
+1319238356 /home/josh/repos/Atmega328p-Dev-board-code/global.h
+	<avr/io.h>
+	<stdio.h>
+	<avr/interrupt.h>
+	<compat/twi.h>
+	<inttypes.h>
+	<stdlib.h>
+	<avr/sleep.h>
+	"boot.h"
+	"thread.h"
+	"kernel.h"
+	"adc.h"
+	"pwm.h"
+	"i2c.h"
+	"uart.h"
+	"digital.h"
+	"button.h"
+	"robot.h"
+
+1319238356 /home/josh/repos/Atmega328p-Dev-board-code/boot.h
+	"global.h"
+
+1319238357 /home/josh/repos/Atmega328p-Dev-board-code/thread.h
+	"global.h"
+
+1319257471 /home/josh/repos/Atmega328p-Dev-board-code/kernel.h
+	"global.h"
+
+1319238356 /home/josh/repos/Atmega328p-Dev-board-code/adc.h
+	"global.h"
+
+1319238357 /home/josh/repos/Atmega328p-Dev-board-code/pwm.h
+	"global.h"
+
+1319238357 /home/josh/repos/Atmega328p-Dev-board-code/i2c.h
+	"global.h"
+
+1319238357 /home/josh/repos/Atmega328p-Dev-board-code/uart.h
+	"global.h"
+
+1319238356 /home/josh/repos/Atmega328p-Dev-board-code/digital.h
+	"global.h"
+
+1319238356 /home/josh/repos/Atmega328p-Dev-board-code/button.h
+	"global.h"
+
+1319238357 /home/josh/repos/Atmega328p-Dev-board-code/robot.h
+	"global.h"
+
+1319238356 source:/home/josh/repos/Atmega328p-Dev-board-code/button.c
+	"global.h"
+
+1319238356 source:/home/josh/repos/Atmega328p-Dev-board-code/digital.c
+	"global.h"
+
+1319238357 source:/home/josh/repos/Atmega328p-Dev-board-code/i2c.c
+	"global.h"
+
+1319238357 source:/home/josh/repos/Atmega328p-Dev-board-code/main.c
+	"global.h"
+
+1319238357 source:/home/josh/repos/Atmega328p-Dev-board-code/pwm.c
+	"global.h"
+
+1319238357 source:/home/josh/repos/Atmega328p-Dev-board-code/thread.c
+	"global.h"
+
+1319238357 source:/home/josh/repos/Atmega328p-Dev-board-code/uart.c
+	"global.h"
+
+1319238356 source:/home/josh/repos/Atmega328p-Dev-board-code/boot.c
+	"global.h"
+
+1319257263 source:/home/josh/repos/Atmega328p-Dev-board-code/robot.c
+	"global.h"
+
+1319257471 source:/home/josh/repos/Atmega328p-Dev-board-code/kernel.c
+	"global.h"
+

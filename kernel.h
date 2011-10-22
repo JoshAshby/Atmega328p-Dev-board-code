@@ -15,8 +15,14 @@ freenode/#linuxandsci - JoshAshby
 //-----------------------------------------------
 //Macros (defines)
 //-----------------------------------------------
-#define NUMBER_OF_THREADS 4
-#define KERNEL_LIN 1
+#define KERNEL_COOP 1
+
+#if KERNEL_COOP
+    #define NUMBER_OF_THREADS 4
+#endif
+#if !KERNEL_COOP
+    #define NUMBER_OF_THREADS 5
+#endif
 
 //-----------------------------------------------
 //Variables
@@ -30,7 +36,7 @@ typedef uint8_t (*thread_ptr)(void); //function pointer so we can store the func
 struct kstack {
     thread_ptr task_list[NUMBER_OF_THREADS];
     uint8_t task_status[NUMBER_OF_THREADS];
-    #if !KERNEL_LIN
+    #if !KERNEL_COOP
         uint8_t task_flags[NUMBER_OF_THREADS];
         uint8_t tc;
     #endif

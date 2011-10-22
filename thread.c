@@ -78,6 +78,9 @@ uint8_t thread3(void) {
 }
 
 uint8_t thread4(void) {
+    while(1) {
+        NULL;
+    }
     #if DEBUG_KERNEL
         uart_sendint(THREAD3_KEY);
         #if DEBUG_BEG
