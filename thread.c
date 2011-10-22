@@ -25,6 +25,9 @@ uint8_t thread0(void) {
             uart_sendstr("0x20 - THREAD0 is up...");
         #endif
     #endif
+    #if !KERNEL_COOP
+        kernel_stack.task_lock[0] = 0;
+    #endif
     return 1;
 }
 
@@ -43,6 +46,9 @@ uint8_t thread1(void) {
             uart_sendstr("0x21 - THREAD1 is up...");
         #endif
     #endif
+    #if !KERNEL_COOP
+        kernel_stack.task_lock[1] = 0;
+    #endif
     return 1;
 }
 
@@ -57,6 +63,9 @@ uint8_t thread2(void) {
         #if DEBUG_BEG
             uart_sendstr("0x22 - THREAD2 is up...");
         #endif
+    #endif
+    #if !KERNEL_COOP
+        kernel_stack.task_lock[2] = 0;
     #endif
     return 1;
 }
@@ -74,6 +83,9 @@ uint8_t thread3(void) {
             uart_sendstr("0x23 - THREAD3 is up...");
         #endif
     #endif
+    #if !KERNEL_COOP
+        kernel_stack.task_lock[3] = 0;
+    #endif
     return 1;
 }
 
@@ -86,6 +98,9 @@ uint8_t thread4(void) {
         #if DEBUG_BEG
             uart_sendstr("0x23 - THREAD3 is up...");
         #endif
+    #endif
+    #if !KERNEL_COOP
+        kernel_stack.task_lock[4] = 0;
     #endif
     return 1;
 }

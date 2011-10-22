@@ -42,7 +42,7 @@ struct kstack {
     float task_timer;
     #if !KERNEL_COOP
         uint8_t task_flags[NUMBER_OF_THREADS];
-        uint8_t tc;
+        uint8_t task_lock[NUMBER_OF_THREADS];
     #endif
     uint8_t task_number;
 } kernel_stack; //the kernel stack that holds the function pointers for each thread and the
