@@ -76,19 +76,27 @@ void kernel_core(void) {
         task = kernel_stack.task_number;
         if(task > NUMBER_OF_THREADS) {
             task = 0;
-            int tmp;
-            for(; tmp > NUMBER_OF_THREADS; tmp++) {
+            uint8_t tmp;
+            for(tmp; tmp > NUMBER_OF_THREADS; tmp++) {
                 kernel_stack.task_status[tmp] = 0;
             }
-            kernel_stack.task_number = 0;
-            kernel_stack.task_status[0] = kernel_stack.task_list[0]();
-            return;
-        }
-        if(kernel_stack.task_status[task]) {
-            task = task+1;
             kernel_stack.task_number = task;
             kernel_stack.task_status[task] = kernel_stack.task_list[task]();
             return;
+        }
+        if(kernel_stack.task_status[task]) {
+            task++;
+            kernel_stack.task_number = task;
+            kernel_stack.task_status[task] = kernel_stack.task_list[task]();
+            return;
+        } else {
+            kernel_stack.task_timer++;
+            if(kernel_stack.task_timer > THREAD_COUNT) {
+                task++;
+                kernel_stack.task_number = task;
+                kernel_stack.task_status[task] = kernel_stack.task_list[task]();
+                return;
+            }
         }
     #endif
     /*
@@ -101,29 +109,31 @@ void kernel_core(void) {
         uint8_t tmp;
         //check for any running tasks, let them finish if they're still going.
         for(tmp; tmp > NUMBER_OF_THREADS; tmp++) {
-            if(kernel_stack.task_status[tmp] == 1) {
+            if(kernel_stack.task_lock[tmp] == 1) {
+                kernel_stack.task_timer++;
+                if(kernel_stack.task_timer > THREAD_COUNT) {
+                    kernel_stack.task_lock[tmp] = 0;
+                    tmp++;
+                    kernel_stack.task_number = tmp;
+                    kernel_stack.task_status[tmp] = kernel_stack.task_list[tmp]();
+                    return;
+                }
                 return;
             }
         }
-        //if thats happened and no thread was still running then we can go on with running more threads
-        if(tmp > NUMBER_OF_THREADS) {
-            //set the tmp variable to the thread count so we know where we left off on the stack
-            tmp = kernel_stack.tc;
-            //go through the stack and check for run flags, if set then run that task
-            for(tmp; tmp > NUMBER_OF_THREADS; tmp++) {
-                if(kernel_stack.task_flags[tmp]) { //if there is a task waiting to be ran
-                    kernel_stack.task_flags[tmp] = 0; //reset it's run flag to make sure the next time
-                    uint8_t tmp_tmp;
-                    tmp_tmp = tmp;
-                    //increase the stacks thread count as long as it's not above the number of threads
-                    if((tmp + 1) > NUMBER_OF_THREADS) {
-                        kernel_stack.tc = 0;
-                    } else {
-                        kernel_stack.tc = tmp+1;
-                    }
-                    kernel_stack.task_status[tmp_tmp] = kernel_stack.task_list[tmp_tmp]();
-                    return;
+        //set the tmp variable to the thread count so we know where we left off on the stack
+        tmp = kernel_stack.tc;
+        for(tmp; tmp > NUMBER_OF_THREADS; tmp++) {
+            if(kernel_stack.task_flags[tmp]) { //if there is a task waiting to be ran
+                kernel_stack.task_flags[tmp] = 0; //reset it's run flag to make sure the next time
+                //increase the stacks thread count as long as it's not above the number of threads
+                if((tmp + 1) > NUMBER_OF_THREADS) {
+                    kernel_stack.tc = 0;
+                } else {
+                    kernel_stack.tc = tmp+1;
                 }
+                kernel_stack.task_status[tmp] = kernel_stack.task_list[tmp]();
+                return;
             }
         }
     #endif

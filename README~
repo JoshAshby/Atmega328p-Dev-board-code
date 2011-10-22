@@ -1,8 +1,0 @@
-Atmega328p Dev Board
-Josh Ashby - 2010
-http://joshashby.com
-joshuaashby@joshashby.com
-
-Released under the Creative Commons V3 Share Alike, Non-Commercial Open Source License.
-
-Included in this project are the project files, and a workspace for Code::Blocks. Code::Blocks takes care of the makefile so there is no makefile included. Code::Blocks will also take care of the avrdude upload, avr-size. 

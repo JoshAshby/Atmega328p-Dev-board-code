@@ -24,6 +24,9 @@ freenode/#linuxandsci - JoshAshby
     #define NUMBER_OF_THREADS 5
 #endif
 
+#define THREAD_SECONDS 2
+#define THREAD_COUNT (THREAD_SECONDS * 2000000)
+
 //-----------------------------------------------
 //Variables
 //-----------------------------------------------
@@ -36,6 +39,7 @@ typedef uint8_t (*thread_ptr)(void); //function pointer so we can store the func
 struct kstack {
     thread_ptr task_list[NUMBER_OF_THREADS];
     uint8_t task_status[NUMBER_OF_THREADS];
+    float task_timer;
     #if !KERNEL_COOP
         uint8_t task_flags[NUMBER_OF_THREADS];
         uint8_t tc;
