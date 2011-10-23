@@ -126,7 +126,6 @@ void init_buttons(void) {
     TCNT2 = 0; //set the inital timer value to 0
     TCCR2B |= (1<<CS02); //set the clock prescaler to clock/256 or 62.5kHz
     TIMSK2 |= (1<<TOIE0); //start the timer with the interrupt overflow turned on
-    sei();
 
     #if DEBUG
         uart_sendint(DEBOUNCE_KEY);

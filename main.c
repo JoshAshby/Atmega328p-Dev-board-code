@@ -11,7 +11,7 @@ freenode/#linuxandsci - JoshAshby
 #include "global.h"
 
 int main(void) { //Main loop, runs once but can have an infinit loop in it
-
+    cli();
     /*
     First we need to set the hardaware up, this is a macro in global.h which takes care of calling the various funtions that
     setup the registers to the proper seting, and also pulls the CPU_POW pin high
@@ -19,7 +19,6 @@ int main(void) { //Main loop, runs once but can have an infinit loop in it
     when this function is called
     */
     bios();
-
     //if we're in debug mode, make sure you send stuff saying we got to the main code
     #if DEBUG
         uart_sendint(MAIN_KEY);
@@ -28,15 +27,11 @@ int main(void) { //Main loop, runs once but can have an infinit loop in it
         #endif
     #endif
 
-    //button code, not called by the bios because the use oif this may vary
-    init_buttons();
-
-    //start the kernel and thread system. After this is going nothing else should happen in this
-    //file because everything should be in the threads... hopefully.
-    init_kernel();
+    sei();
 
     //infinit loop that doesn't stop running. (always true since 1 is always 1
     while(1) {
+        NULL;
     };
     return 0; //never reached since 1 is always true
 }

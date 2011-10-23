@@ -56,7 +56,6 @@ void bios(void) {
             uart_sendstr("Starting main code...");
         #endif
     #endif
-    sei();
 
     //button code
     init_buttons();
@@ -64,4 +63,5 @@ void bios(void) {
     //start the kernel and thread system. After this is going nothing else should happen in main.c or boot.c
     // because everything should be in the threads... hopefully.
     init_kernel();
+    return;
 }

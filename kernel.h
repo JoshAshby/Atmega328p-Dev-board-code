@@ -24,28 +24,27 @@ freenode/#linuxandsci - JoshAshby
     #define NUMBER_OF_THREADS 5
 #endif
 
-#define THREAD_SECONDS 1.0
-#define THREAD_COUNT (THREAD_SECONDS * 2UL)
+#define THREAD_SECONDS 1
+#define THREAD_COUNT (THREAD_SECONDS * 2000000)
 
 //-----------------------------------------------
 //Variables
 //-----------------------------------------------
-float countmax;
 
 //-----------------------------------------------
 //Structers and Unions and typedefs
 //-----------------------------------------------
-typedef uint8_t (*thread_ptr)(void); //function pointer so we can store the function inside of the kernel_stack
+typedef int8_t (*thread_ptr)(void); //function pointer so we can store the function inside of the kernel_stack
 
 struct kstack {
     thread_ptr task_list[NUMBER_OF_THREADS];
-    uint8_t task_status[NUMBER_OF_THREADS];
-    float task_timer;
+    int8_t task_status[NUMBER_OF_THREADS];
     #if !KERNEL_COOP
-        uint8_t task_flags[NUMBER_OF_THREADS];
-        uint8_t task_lock[NUMBER_OF_THREADS];
+        _Bool task_flags[NUMBER_OF_THREADS];
+        _Bool task_lock[NUMBER_OF_THREADS];
     #endif
-    uint8_t task_number;
+    int8_t task_number;
+    long task_timer;
 } kernel_stack; //the kernel stack that holds the function pointers for each thread and the
 
 //-----------------------------------------------

@@ -92,7 +92,7 @@ void pwm_setup(char which) {
             pwm2();
             break;
     }
-    sei();
+    return;
 }
 
 void pwm0A(uint8_t value) {

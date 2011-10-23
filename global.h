@@ -38,9 +38,9 @@ freenode/#linuxandsci - JoshAshby
 //-----------------------------------------------
 //Debug
 //========================
-#define DEBUG 1 //if true, anything inside of an if(DEBUG){} or #if DEBUG tag will run, DEBUG_KEYS are sent this way
+#define DEBUG 0 //if true, anything inside of an if(DEBUG){} or #if DEBUG tag will run, DEBUG_KEYS are sent this way
 #define DEBUG_BEG 0 //if true, DEBUG_KEYS will also come with more info and a fancy LED. This comes at the price of a few extra CPU cycles for debug
-#define DEBUG_KERNEL 1 //set to debug the KERNEL and THREADs
+#define DEBUG_KERNEL 0 //set to debug the KERNEL and THREADs
 #define DEV 1 //Is this my dev board or BOB's hardware?
 
 //CPU power and Debug LEDs

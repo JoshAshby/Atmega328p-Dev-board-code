@@ -19,7 +19,6 @@ void uart_start(void) {
     UBRR0H = (BAUD_PRESCALE >> 8); //high end of baud register
 
     UCSR0B |= (1 << RXCIE0); //recieve data interrupt, makes sure we don't loose data
-    sei(); //enable system interrupts
 
     #if DEBUG
         uart_sendint(UART_KEY);
@@ -72,9 +71,9 @@ uint8_t uart_get(void) {
     */
     UCSR0B |= (1<<RXCIE0);
 
-    sei();
-    sleep_mode();
-    cli();
+//    sei();
+//    sleep_mode();
+//    cli();
     uint8_t b;
     if(read_spot == 0)
         b = input_buffer[sizeof(input_buffer) - 1];

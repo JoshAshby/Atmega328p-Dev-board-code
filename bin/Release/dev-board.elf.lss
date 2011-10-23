@@ -694,7 +694,7 @@ Disassembly of section .text:
      6ba:	0e 94 09 05 	call	0xa12	;  0xa12
      6be:	81 e0       	ldi	r24, 0x01	; 1
      6c0:	88 87       	std	Y+8, r24	; 0x08
-     6c2:	1f 5f       	subi	r17, 0xFF	; 255
+     6c2:	1e 5f       	subi	r17, 0xFE	; 254
      6c4:	40 e0       	ldi	r20, 0x00	; 0
      6c6:	50 e0       	ldi	r21, 0x00	; 0
      6c8:	60 e0       	ldi	r22, 0x00	; 0

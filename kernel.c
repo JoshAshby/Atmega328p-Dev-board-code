@@ -27,7 +27,6 @@ void init_kernel(void) {
     TCNT0 = 0; //set the inital timer value to 0
     TCCR0B |= (1<<CS01); //system clock speed
     TIMSK0 |= (1<<TOIE0); //start the timer with the interrupt overflow turned on
-    sei();
 
     #if DEBUG
         uart_sendint(KERNEL_KEY);
@@ -59,7 +58,6 @@ void init_kernel(void) {
     #endif
 
     //bootstrap the process and start the first thread
-    countmax = 2000000;
     kernel_stack.task_number = 0;
     kernel_stack.task_status[0] = kernel_stack.task_list[0]();
     return;
@@ -72,6 +70,7 @@ and the global counter is increased. If all the task have completed, loop
 back to the begining by clearing the status array.
 */
 void kernel_core(void) {
+    cli();
     #if KERNEL_COOP
         uint8_t task;
         task = kernel_stack.task_number;
@@ -81,29 +80,25 @@ void kernel_core(void) {
             }
             task = 0;
             kernel_stack.task_number = task;
-            uart_sendint(task);
             kernel_stack.task_list[task]();
             return;
         }
         if(kernel_stack.task_status[task]) {
             task += 1;
             kernel_stack.task_number = task;
-            uart_sendint(task);
             kernel_stack.task_list[task]();
             return;
         } else {
             kernel_stack.task_timer++;
-            uart_sendstr("count");
-            if(kernel_stack.task_timer >= countmax) {
-                uart_sendstr("dead");
+            if(kernel_stack.task_timer >= THREAD_COUNT) {
                 kernel_stack.task_status[task] = 1;
                 task += 1;
                 kernel_stack.task_timer = 0;
                 kernel_stack.task_number = task;
-                uart_sendint(task);
                 kernel_stack.task_list[task]();
                 return;
             }
+            return;
         }
     #endif
     /*
@@ -182,6 +177,7 @@ void kernel_core(void) {
             uart_sendstr("0x16 - KERNEL is up...");
         #endif
     #endif
+    sei();
     return;
 }
 

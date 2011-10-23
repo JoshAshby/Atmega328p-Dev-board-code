@@ -32,7 +32,6 @@ void adc_start(_Bool left) {//Passing a 0 will not left align results
     ADCSRA |= (1 << ADATE);
     ADCSRA |= (1 << ADEN);  // Enable ADC
     ADCSRA |= (1 << ADIE);  // Enable ADC Interrupt
-    sei();
 
     ADMUX &= ~(1 << MUX0)
           &  ~(1 << MUX1)

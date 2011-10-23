@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Release" />
-	<File name="adc.c" open="1" top="0" tabpos="5">
-		<Cursor position="1379" topLine="23" />
+	<ActiveTarget name="Debug" />
+	<File name="adc.c" open="0" top="0" tabpos="16">
+		<Cursor position="3435" topLine="93" />
 	</File>
 	<File name="adc.h" open="1" top="0" tabpos="6">
 		<Cursor position="278" topLine="0" />
 	</File>
-	<File name="boot.c" open="1" top="0" tabpos="0">
+	<File name="boot.c" open="1" top="0" tabpos="4">
+		<Cursor position="1892" topLine="39" />
+	</File>
+	<File name="button.c" open="0" top="0" tabpos="15">
+		<Cursor position="3965" topLine="117" />
+	</File>
+	<File name="button.h" open="0" top="0" tabpos="1">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="boot.h" open="1" top="0" tabpos="0">
-		<Cursor position="0" topLine="0" />
+	<File name="digital.c" open="0" top="0" tabpos="7">
+		<Cursor position="1115" topLine="22" />
 	</File>
-	<File name="button.c" open="1" top="0" tabpos="0">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="button.h" open="1" top="0" tabpos="0">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="digital.c" open="1" top="0" tabpos="5">
-		<Cursor position="964" topLine="0" />
-	</File>
-	<File name="digital.h" open="1" top="0" tabpos="6">
+	<File name="digital.h" open="0" top="0" tabpos="8">
 		<Cursor position="656" topLine="0" />
 	</File>
-	<File name="global.h" open="1" top="0" tabpos="4">
-		<Cursor position="1114" topLine="0" />
+	<File name="global.h" open="1" top="0" tabpos="5">
+		<Cursor position="894" topLine="27" />
 	</File>
 	<File name="i2c.c" open="0" top="0" tabpos="7">
 		<Cursor position="252" topLine="0" />
@@ -34,37 +31,37 @@
 	<File name="i2c.h" open="0" top="0" tabpos="8">
 		<Cursor position="52" topLine="0" />
 	</File>
-	<File name="kernel.c" open="1" top="1" tabpos="7">
-		<Cursor position="2972" topLine="50" />
+	<File name="kernel.c" open="1" top="1" tabpos="1">
+		<Cursor position="2413" topLine="47" />
 	</File>
-	<File name="kernel.h" open="1" top="0" tabpos="8">
-		<Cursor position="639" topLine="0" />
+	<File name="kernel.h" open="1" top="0" tabpos="2">
+		<Cursor position="611" topLine="15" />
 	</File>
 	<File name="main.c" open="1" top="0" tabpos="3">
-		<Cursor position="1057" topLine="0" />
+		<Cursor position="935" topLine="8" />
 	</File>
-	<File name="pwm.c" open="0" top="0" tabpos="3">
-		<Cursor position="2734" topLine="13" />
+	<File name="pwm.c" open="0" top="0" tabpos="17">
+		<Cursor position="2810" topLine="83" />
 	</File>
 	<File name="pwm.h" open="0" top="0" tabpos="4">
 		<Cursor position="525" topLine="0" />
 	</File>
-	<File name="robot.c" open="1" top="0" tabpos="0">
+	<File name="robot.c" open="0" top="0" tabpos="2">
+		<Cursor position="885" topLine="16" />
+	</File>
+	<File name="robot.h" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="robot.h" open="1" top="0" tabpos="1">
+	<File name="thread.c" open="0" top="0" tabpos="11">
+		<Cursor position="1670" topLine="57" />
+	</File>
+	<File name="thread.h" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="thread.c" open="1" top="0" tabpos="9">
-		<Cursor position="0" topLine="0" />
+	<File name="uart.c" open="0" top="0" tabpos="12">
+		<Cursor position="1552" topLine="36" />
 	</File>
-	<File name="thread.h" open="1" top="0" tabpos="2">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="uart.c" open="0" top="0" tabpos="9">
-		<Cursor position="53" topLine="0" />
-	</File>
-	<File name="uart.h" open="0" top="0" tabpos="10">
-		<Cursor position="845" topLine="0" />
+	<File name="uart.h" open="0" top="0" tabpos="13">
+		<Cursor position="685" topLine="12" />
 	</File>
 </CodeBlocks_layout_file>

@@ -97,7 +97,12 @@
 		<Unit filename="uart.h" />
 		<Extensions>
 			<code_completion />
-			<debugger />
+			<debugger>
+				<search_path add="../Atmega328p-Dev-board-code" />
+				<remote_debugging target="Debug">
+					<options conn_type="0" serial_baud="9600" ip_address="127.0.0.1" ip_port="1234" additional_cmds="load&#x0A;" />
+				</remote_debugging>
+			</debugger>
 			<envvars />
 		</Extensions>
 	</Project>

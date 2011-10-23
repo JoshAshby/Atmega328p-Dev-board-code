@@ -60,6 +60,7 @@ attention because he's an important thread to run, making sure
 BOB doesn't run into anything.
 */
 uint8_t thread2(void) {
+    sei();
     while(1) {
         NULL;
     }
@@ -73,6 +74,7 @@ uint8_t thread2(void) {
         kernel_stack.task_lock[2] = 0;
     #endif
     kernel_stack.task_status[2] = 1;
+    cli();
     return 1;
 }
 
