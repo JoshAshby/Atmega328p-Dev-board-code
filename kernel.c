@@ -46,21 +46,21 @@ void init_kernel(void) {
         kernel_stack.task_list[1] = &thread1;
         kernel_stack.task_list[2] = &thread2;
         kernel_stack.task_list[3] = &thread3;
+        kernel_stack.task_list[4] = &thread4;
     #endif
     //If we're not in linear kernel mode, order the tasks by priority so we can just run down the array
     //when we need to and pick out the flagged tasks.
-    #if !KERNEL_COOP
-        kernel_stack.task_list[0] = &thread0;
-        kernel_stack.task_list[1] = &thread1;
-        kernel_stack.task_list[2] = &thread2;
-        kernel_stack.task_list[3] = &thread3;
-        kernel_stack.task_list[4] = &thread4;
-    #endif
+//    #if !KERNEL_COOP
+//        kernel_stack.task_list[0] = &thread0;
+//        kernel_stack.task_list[1] = &thread1;
+//        kernel_stack.task_list[2] = &thread2;
+//        kernel_stack.task_list[3] = &thread3;
+//        kernel_stack.task_list[4] = &thread4;
+//    #endif
 
     //bootstrap the process and start the first thread
     kernel_stack.task_number = 0;
-    kernel_stack.task_status[0] = kernel_stack.task_list[0]();
-    return;
+    goto *kernel_stack.task_list[0];
 }
 
 /*
@@ -75,19 +75,17 @@ void kernel_core(void) {
         uint8_t task;
         task = kernel_stack.task_number;
         if(task >= NUMBER_OF_THREADS) {
-            for(task = 0; task >= NUMBER_OF_THREADS; task++) {
+            for(task = 0; task <= NUMBER_OF_THREADS; task++) {
                 kernel_stack.task_status[task] = 0;
             }
             task = 0;
             kernel_stack.task_number = task;
-            kernel_stack.task_list[task]();
-            return;
+            goto *kernel_stack.task_list[task];
         }
         if(kernel_stack.task_status[task]) {
             task += 1;
             kernel_stack.task_number = task;
-            kernel_stack.task_list[task]();
-            return;
+            goto *kernel_stack.task_list[task];
         } else {
             kernel_stack.task_timer++;
             if(kernel_stack.task_timer >= THREAD_COUNT) {
@@ -95,8 +93,7 @@ void kernel_core(void) {
                 task += 1;
                 kernel_stack.task_timer = 0;
                 kernel_stack.task_number = task;
-                kernel_stack.task_list[task]();
-                return;
+                goto *kernel_stack.task_list[task];
             }
             return;
         }
@@ -119,58 +116,58 @@ void kernel_core(void) {
     if there is a flag bit set then we run it. if there isn't a task with a flag
     bit set, we drop into thread4 which is a null idle loop until the kernel runs again.
     */
-    #if !KERNEL_COOP
-        uint8_t task;
-        uart_sendstr("count");
-        if(kernel_stack.task_number == 0) {
-            task = kernel_stack.task_number;
-        } else {
-            task = kernel_stack.task_number - 1;
-        }
-        uart_sendint(task);
-        //look for a lock
-        if(kernel_stack.task_lock[task]) {
-            uart_sendstr("lock");
-            kernel_stack.task_timer++; //if there is a lock then increase the timer
-            //if the timer is over it's alloted time
-            if(kernel_stack.task_timer >= THREAD_COUNT) {
-               kernel_stack.task_lock[task] = 0; //remove the tasks lock
-               kernel_stack.task_timer = 0; //reset the timer
-               if((task+1) >= (NUMBER_OF_THREADS-1)) {
-                    kernel_stack.task_number = 0;
-                } else {
-                    kernel_stack.task_number = task+1; //increase the task counter for next run through
-                }
-               uart_sendstr("NULL");
-               //drop into the null loop until the next time the kernel runs
-               kernel_stack.task_status[4] = kernel_stack.task_list[4]();
-               return;
-            }
-        }
-        //run through the task flags and check for
-        for(task = kernel_stack.task_number; task >= (NUMBER_OF_THREADS-1); task++) {
-            uart_sendint(task);
-            //if there is a flag set
-            if(kernel_stack.task_flags[task]) {
-                uart_sendstr("flag");
-                if((task+1) >= (NUMBER_OF_THREADS-1)) {
-                    kernel_stack.task_number = 0;
-                } else {
-                    kernel_stack.task_number = task+1; //increase the task counter for next run through
-                }
-                uart_sendint(task);
-                kernel_stack.task_lock[task] = 1; //set the new tasks lock
-                kernel_stack.task_status[task] = kernel_stack.task_list[task]();
-                return;
-            } else {
-                kernel_stack.task_number = 0;
-                uart_sendstr("NULL2");
-                //drop into the null loop until the next time the kernel runs
-               kernel_stack.task_status[4] = kernel_stack.task_list[4]();
-               return;
-            }
-        }
-    #endif
+//    #if !KERNEL_COOP
+//        uint8_t task;
+//        uart_sendstr("count");
+//        if(kernel_stack.task_number == 0) {
+//            task = kernel_stack.task_number;
+//        } else {
+//            task = kernel_stack.task_number - 1;
+//        }
+//        uart_sendint(task);
+//        //look for a lock
+//        if(kernel_stack.task_lock[task]) {
+//            uart_sendstr("lock");
+//            kernel_stack.task_timer++; //if there is a lock then increase the timer
+//            //if the timer is over it's alloted time
+//            if(kernel_stack.task_timer >= THREAD_COUNT) {
+//               kernel_stack.task_lock[task] = 0; //remove the tasks lock
+//               kernel_stack.task_timer = 0; //reset the timer
+//               if((task+1) >= (NUMBER_OF_THREADS-1)) {
+//                    kernel_stack.task_number = 0;
+//                } else {
+//                    kernel_stack.task_number = task+1; //increase the task counter for next run through
+//                }
+//               uart_sendstr("NULL");
+//               //drop into the null loop until the next time the kernel runs
+//               kernel_stack.task_status[4] = kernel_stack.task_list[4]();
+//               return;
+//            }
+//        }
+//        //run through the task flags and check for
+//        for(task = kernel_stack.task_number; task >= (NUMBER_OF_THREADS-1); task++) {
+//            uart_sendint(task);
+//            //if there is a flag set
+//            if(kernel_stack.task_flags[task]) {
+//                uart_sendstr("flag");
+//                if((task+1) >= (NUMBER_OF_THREADS-1)) {
+//                    kernel_stack.task_number = 0;
+//                } else {
+//                    kernel_stack.task_number = task+1; //increase the task counter for next run through
+//                }
+//                uart_sendint(task);
+//                kernel_stack.task_lock[task] = 1; //set the new tasks lock
+//                kernel_stack.task_status[task] = kernel_stack.task_list[task]();
+//                return;
+//            } else {
+//                kernel_stack.task_number = 0;
+//                uart_sendstr("NULL2");
+//                //drop into the null loop until the next time the kernel runs
+//               kernel_stack.task_status[4] = kernel_stack.task_list[4]();
+//               return;
+//            }
+//        }
+//    #endif
     #if DEBUG_KERNEL
         uart_sendint(KERNEL_CORE_KEY);
         #if DEBUG_BEG
@@ -192,4 +189,3 @@ ISR(TIMER0_OVF_vect) {
     kernel_core();
     return;
 }
-

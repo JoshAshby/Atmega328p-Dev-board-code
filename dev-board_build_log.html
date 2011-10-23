@@ -4,30 +4,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 <tt>
-Build started on: <u>23-10-2011 at 12:11.57</u><br />
-Build ended on: <u>23-10-2011 at 12:11.59</u><p />
+Build started on: <u>23-10-2011 at 12:47.14</u><br />
+Build ended on: <u>23-10-2011 at 12:47.17</u><p />
 <b>-------------- Build: Debug in dev-board ---------------</b><br />
 avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -g    -I/usr/include  -I/home/josh/repos/Atmega328p-Dev-board-code/ -c kernel.c -o obj/Debug/kernel.o<br />
-avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -g    -I/usr/include  -I/home/josh/repos/Atmega328p-Dev-board-code/ -c thread.c -o obj/Debug/thread.o<br />
-kernel.c: In function 'init_kernel':<br />
-<font color="#0000ff">kernel.c:45:35: warning: assignment from incompatible pointer type [enabled by default]</font><br />
-<font color="#0000ff">kernel.c:46:35: warning: assignment from incompatible pointer type [enabled by default]</font><br />
-<font color="#0000ff">kernel.c:47:35: warning: assignment from incompatible pointer type [enabled by default]</font><br />
-<font color="#0000ff">kernel.c:48:35: warning: assignment from incompatible pointer type [enabled by default]</font><br />
 avr-g++ -L/usr/lib/gcc/avr/  -o bin/Debug/dev-board.elf obj/Debug/adc.o obj/Debug/boot.o obj/Debug/button.o obj/Debug/digital.o obj/Debug/i2c.o obj/Debug/kernel.o obj/Debug/main.o obj/Debug/pwm.o obj/Debug/robot.o obj/Debug/thread.o obj/Debug/uart.o   -mmcu=atmega328p -Wl,-Map=bin/Debug/dev-board.elf.map,--cref<br />
-thread.c: In function 'thread2':<br />
-<font color="#0000ff">thread.c:65:9: warning: statement with no effect [-Wunused-value]</font><br />
-thread.c: In function 'thread4':<br />
-<font color="#0000ff">thread.c:112:9: warning: statement with no effect [-Wunused-value]</font><br />
-Output size is 40.23 KB<br />
+Output size is 40.19 KB<br />
 avr-size bin/Debug/dev-board.elf<br />
    text	   data	    bss	    dec	    hex	filename<br />
-   5352	      0	    752	   6104	   17d8	bin/Debug/dev-board.elf<br />
+   5368	      0	    755	   6123	   17eb	bin/Debug/dev-board.elf<br />
 avr-objcopy -O ihex -R .eeprom -R .eesafe bin/Debug/dev-board.elf bin/Debug/dev-board.elf.hex<br />
 avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex bin/Debug/dev-board.elf bin/Debug/dev-board.elf.eep.hex<br />
 avr-objdump -h -S bin/Debug/dev-board.elf > bin/Debug/dev-board.elf.lss<br />
-<font color="#0000ff">Process terminated with status 0 (0 minutes, 1 seconds)</font><br />
-<font color="#0000ff">0 errors, 6 warnings</font><br />
+<font color="#0000ff">Process terminated with status 0 (0 minutes, 2 seconds)</font><br />
+<font color="#0000ff">0 errors, 0 warnings</font><br />
 </tt>
 </body>
 </html>

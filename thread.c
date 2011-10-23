@@ -29,7 +29,8 @@ uint8_t thread0(void) {
         kernel_stack.task_lock[0] = 0;
     #endif
     kernel_stack.task_status[0] = 1;
-    return 1;
+    goto *kernel_stack.task_list[4];
+    return 0;
 }
 
 /*
@@ -51,7 +52,8 @@ uint8_t thread1(void) {
         kernel_stack.task_lock[1] = 0;
     #endif
     kernel_stack.task_status[1] = 1;
-    return 1;
+    goto *kernel_stack.task_list[4];
+    return 0;
 }
 
 /*
@@ -75,7 +77,8 @@ uint8_t thread2(void) {
     #endif
     kernel_stack.task_status[2] = 1;
     cli();
-    return 1;
+    goto *kernel_stack.task_list[4];
+    return 0;
 }
 
 /*
@@ -95,7 +98,8 @@ uint8_t thread3(void) {
         kernel_stack.task_lock[3] = 0;
     #endif
     kernel_stack.task_status[3] = 1;
-    return 1;
+    goto *kernel_stack.task_list[4];
+    return 0;
 }
 
 
@@ -105,6 +109,7 @@ removes its lock then runs a null loop for the processor
 until another task is ran
 */
 uint8_t thread4(void) {
+    sei();
     #if !KERNEL_COOP
         kernel_stack.task_lock[4] = 0;
     #endif
@@ -118,5 +123,7 @@ uint8_t thread4(void) {
         #endif
     #endif
     kernel_stack.task_status[4] = 1;
-    return 1;
+    cli();
+    goto *kernel_stack.task_list[4];
+    return 0;
 }

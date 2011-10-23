@@ -18,7 +18,7 @@ freenode/#linuxandsci - JoshAshby
 #define KERNEL_COOP 1
 
 #if KERNEL_COOP
-    #define NUMBER_OF_THREADS 4
+    #define NUMBER_OF_THREADS 5
 #endif
 #if !KERNEL_COOP
     #define NUMBER_OF_THREADS 5
@@ -34,16 +34,16 @@ freenode/#linuxandsci - JoshAshby
 //-----------------------------------------------
 //Structers and Unions and typedefs
 //-----------------------------------------------
-typedef int8_t (*thread_ptr)(void); //function pointer so we can store the function inside of the kernel_stack
+typedef uint8_t (*thread_ptr)(void); //function pointer so we can store the function inside of the kernel_stack
 
 struct kstack {
     thread_ptr task_list[NUMBER_OF_THREADS];
-    int8_t task_status[NUMBER_OF_THREADS];
+    uint8_t task_status[NUMBER_OF_THREADS];
     #if !KERNEL_COOP
-        _Bool task_flags[NUMBER_OF_THREADS];
-        _Bool task_lock[NUMBER_OF_THREADS];
+        uint8_t task_flags[NUMBER_OF_THREADS];
+        uint8_t task_lock[NUMBER_OF_THREADS];
     #endif
-    int8_t task_number;
+    uint8_t task_number;
     long task_timer;
 } kernel_stack; //the kernel stack that holds the function pointers for each thread and the
 
