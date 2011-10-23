@@ -41,11 +41,22 @@ void init_kernel(void) {
     simply copy the style below and increment the number
     and replace threadX with the name of your new thread
     */
-    kernel_stack.task_list[0] = &thread0;
-    kernel_stack.task_list[1] = &thread1;
-    kernel_stack.task_list[2] = &thread2;
-    kernel_stack.task_list[3] = &thread3;
-    kernel_stack.task_list[4] = &thread4;
+    #if KERNEL_COOP
+        kernel_stack.task_list[0] = &thread0;
+        kernel_stack.task_list[1] = &thread1;
+        kernel_stack.task_list[2] = &thread2;
+        kernel_stack.task_list[3] = &thread3;
+        kernel_stack.task_list[4] = &thread4;
+    #endif
+    //If we're not in linear kernel mode, order the tasks by priority so we can just run down the array
+    //when we need to and pick out the flagged tasks.
+//    #if !KERNEL_COOP
+//        kernel_stack.task_list[0] = &thread0;
+//        kernel_stack.task_list[1] = &thread1;
+//        kernel_stack.task_list[2] = &thread2;
+//        kernel_stack.task_list[3] = &thread3;
+//        kernel_stack.task_list[4] = &thread4;
+//    #endif
 
     //bootstrap the process and start the first thread
     kernel_stack.task_number = 0;
@@ -72,22 +83,15 @@ void kernel_core(void) {
             goto *kernel_stack.task_list[task];
         }
         if(kernel_stack.task_status[task]) {
-            if((task+1) >= NUMBER_OF_THREADS) {
-                task = 0;
-            } else {
-                task += 1;
-            }
+            task += 1;
             kernel_stack.task_number = task;
             goto *kernel_stack.task_list[task];
         } else {
             kernel_stack.task_timer++;
             if(kernel_stack.task_timer >= THREAD_COUNT) {
                 kernel_stack.task_status[task] = 1;
-                if((task+1) >= NUMBER_OF_THREADS) {
-                    task = 0;
-                } else {
-                    task += 1;
-                }
+                if(task+1)
+                task += 1;
                 kernel_stack.task_timer = 0;
                 kernel_stack.task_number = task;
                 goto *kernel_stack.task_list[task];
