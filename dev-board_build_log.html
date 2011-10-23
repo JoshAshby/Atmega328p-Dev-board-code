@@ -4,20 +4,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 <tt>
-Build started on: <u>23-10-2011 at 12:47.14</u><br />
-Build ended on: <u>23-10-2011 at 12:47.17</u><p />
+Build started on: <u>23-10-2011 at 14:04.01</u><br />
+Build ended on: <u>23-10-2011 at 14:04.08</u><p />
 <b>-------------- Build: Debug in dev-board ---------------</b><br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -g    -I/usr/include  -I/home/josh/repos/Atmega328p-Dev-board-code/ -c adc.c -o obj/Debug/adc.o<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -g    -I/usr/include  -I/home/josh/repos/Atmega328p-Dev-board-code/ -c boot.c -o obj/Debug/boot.o<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -g    -I/usr/include  -I/home/josh/repos/Atmega328p-Dev-board-code/ -c button.c -o obj/Debug/button.o<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -g    -I/usr/include  -I/home/josh/repos/Atmega328p-Dev-board-code/ -c digital.c -o obj/Debug/digital.o<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -g    -I/usr/include  -I/home/josh/repos/Atmega328p-Dev-board-code/ -c i2c.c -o obj/Debug/i2c.o<br />
 avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -g    -I/usr/include  -I/home/josh/repos/Atmega328p-Dev-board-code/ -c kernel.c -o obj/Debug/kernel.o<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -g    -I/usr/include  -I/home/josh/repos/Atmega328p-Dev-board-code/ -c main.c -o obj/Debug/main.o<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -g    -I/usr/include  -I/home/josh/repos/Atmega328p-Dev-board-code/ -c pwm.c -o obj/Debug/pwm.o<br />
+main.c: In function 'main':<br />
+<font color="#0000ff">main.c:34:9: warning: statement with no effect [-Wunused-value]</font><br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -g    -I/usr/include  -I/home/josh/repos/Atmega328p-Dev-board-code/ -c robot.c -o obj/Debug/robot.o<br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -g    -I/usr/include  -I/home/josh/repos/Atmega328p-Dev-board-code/ -c thread.c -o obj/Debug/thread.o<br />
+robot.c: In function 'init_sensors':<br />
+<font color="#0000ff">robot.c:14:5: warning: left shift count >= width of type [enabled by default]</font><br />
+avr-gcc -mmcu=atmega168 -Wall -DF_CPU=16000000UL  -g    -I/usr/include  -I/home/josh/repos/Atmega328p-Dev-board-code/ -c uart.c -o obj/Debug/uart.o<br />
+thread.c: In function 'thread2':<br />
+<font color="#0000ff">thread.c:73:9: warning: statement with no effect [-Wunused-value]</font><br />
+thread.c: In function 'thread4':<br />
+<font color="#0000ff">thread.c:123:9: warning: statement with no effect [-Wunused-value]</font><br />
 avr-g++ -L/usr/lib/gcc/avr/  -o bin/Debug/dev-board.elf obj/Debug/adc.o obj/Debug/boot.o obj/Debug/button.o obj/Debug/digital.o obj/Debug/i2c.o obj/Debug/kernel.o obj/Debug/main.o obj/Debug/pwm.o obj/Debug/robot.o obj/Debug/thread.o obj/Debug/uart.o   -mmcu=atmega328p -Wl,-Map=bin/Debug/dev-board.elf.map,--cref<br />
 Output size is 40.19 KB<br />
 avr-size bin/Debug/dev-board.elf<br />
    text	   data	    bss	    dec	    hex	filename<br />
-   5368	      0	    755	   6123	   17eb	bin/Debug/dev-board.elf<br />
+   5368	      0	    754	   6122	   17ea	bin/Debug/dev-board.elf<br />
 avr-objcopy -O ihex -R .eeprom -R .eesafe bin/Debug/dev-board.elf bin/Debug/dev-board.elf.hex<br />
 avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex bin/Debug/dev-board.elf bin/Debug/dev-board.elf.eep.hex<br />
 avr-objdump -h -S bin/Debug/dev-board.elf > bin/Debug/dev-board.elf.lss<br />
-<font color="#0000ff">Process terminated with status 0 (0 minutes, 2 seconds)</font><br />
-<font color="#0000ff">0 errors, 0 warnings</font><br />
+<font color="#0000ff">Process terminated with status 0 (0 minutes, 6 seconds)</font><br />
+<font color="#0000ff">0 errors, 4 warnings</font><br />
 </tt>
 </body>
 </html>

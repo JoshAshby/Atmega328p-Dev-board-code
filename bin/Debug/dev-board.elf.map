@@ -21,7 +21,7 @@ once                0x3               obj/Debug/adc.o
 adc                 0x1               obj/Debug/adc.o
 dig_count           0x3               obj/Debug/adc.o
 rollAverage         0x10              obj/Debug/adc.o
-kernel_stack        0x14              obj/Debug/adc.o
+kernel_stack        0x13              obj/Debug/adc.o
 
 Memory Configuration
 
@@ -334,7 +334,7 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
                 0x0000000000800100                _edata = .
                 0x0000000000800100                PROVIDE (__data_end, .)
 
-.bss            0x0000000000800100      0x2f3
+.bss            0x0000000000800100      0x2f2
                 0x0000000000800100                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x0000000000800100        0x0 /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
@@ -354,7 +354,7 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
  .bss           0x0000000000800100        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
  *(.bss*)
  *(COMMON)
- COMMON         0x0000000000800100      0x2f3 obj/Debug/adc.o
+ COMMON         0x0000000000800100      0x2f2 obj/Debug/adc.o
                 0x0000000000800100                j
                 0x0000000000800101                average
                 0x0000000000800102                read_spot
@@ -367,16 +367,16 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
                 0x00000000008003cc                dig_count
                 0x00000000008003cf                rollAverage
                 0x00000000008003df                kernel_stack
-                0x00000000008003f3                PROVIDE (__bss_end, .)
+                0x00000000008003f2                PROVIDE (__bss_end, .)
                 0x00000000000014f8                __data_load_start = LOADADDR (.data)
                 0x00000000000014f8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00000000008003f3        0x0
-                0x00000000008003f3                PROVIDE (__noinit_start, .)
+.noinit         0x00000000008003f2        0x0
+                0x00000000008003f2                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00000000008003f3                PROVIDE (__noinit_end, .)
-                0x00000000008003f3                _end = .
-                0x00000000008003f3                PROVIDE (__heap_start, .)
+                0x00000000008003f2                PROVIDE (__noinit_end, .)
+                0x00000000008003f2                _end = .
+                0x00000000008003f2                PROVIDE (__heap_start, .)
 
 .eeprom         0x0000000000810000        0x0
  *(.eeprom*)

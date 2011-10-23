@@ -5,7 +5,7 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .text         000014f8  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          000002f3  00800100  00800100  0000156c  2**0
+  1 .bss          000002f2  00800100  00800100  0000156c  2**0
                   ALLOC
   2 .stab         00004df4  00000000  00000000  0000156c  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -73,7 +73,7 @@ Disassembly of section .text:
       92:	1d 92       	st	X+, r1
 
 00000094 <.do_clear_bss_start>:
-      94:	a3 3f       	cpi	r26, 0xF3	; 243
+      94:	a2 3f       	cpi	r26, 0xF2	; 242
       96:	b1 07       	cpc	r27, r17
       98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
       9a:	0e 94 e0 06 	call	0xdc0	; 0xdc0 <main>
@@ -2099,14 +2099,14 @@ void init_kernel(void) {
      bd6:	90 e0       	ldi	r25, 0x00	; 0
      bd8:	fc 01       	movw	r30, r24
      bda:	10 82       	st	Z, r1
-    TCCR0B |= (1<<CS01); //system clock speed
+    TCCR0B |= (1<<CS02) | (1<<CS01); //system clock speed
      bdc:	85 e4       	ldi	r24, 0x45	; 69
      bde:	90 e0       	ldi	r25, 0x00	; 0
      be0:	25 e4       	ldi	r18, 0x45	; 69
      be2:	30 e0       	ldi	r19, 0x00	; 0
      be4:	f9 01       	movw	r30, r18
      be6:	20 81       	ld	r18, Z
-     be8:	22 60       	ori	r18, 0x02	; 2
+     be8:	26 60       	ori	r18, 0x06	; 6
      bea:	fc 01       	movw	r30, r24
      bec:	20 83       	st	Z, r18
     TIMSK0 |= (1<<TOIE0); //start the timer with the interrupt overflow turned on
@@ -2155,7 +2155,7 @@ void init_kernel(void) {
 
     //bootstrap the process and start the first thread
     kernel_stack.task_number = 0;
-     c3c:	10 92 ee 03 	sts	0x03EE, r1
+     c3c:	10 92 ed 03 	sts	0x03ED, r1
     goto *kernel_stack.task_list[0];
      c40:	80 91 df 03 	lds	r24, 0x03DF
      c44:	90 91 e0 03 	lds	r25, 0x03E0
@@ -2180,11 +2180,11 @@ void kernel_core(void) {
     #if KERNEL_COOP
         uint8_t task;
         task = kernel_stack.task_number;
-     c5a:	80 91 ee 03 	lds	r24, 0x03EE
+     c5a:	80 91 ed 03 	lds	r24, 0x03ED
      c5e:	89 83       	std	Y+1, r24	; 0x01
         if(task >= NUMBER_OF_THREADS) {
      c60:	89 81       	ldd	r24, Y+1	; 0x01
-     c62:	85 30       	cpi	r24, 0x05	; 5
+     c62:	84 30       	cpi	r24, 0x04	; 4
      c64:	00 f1       	brcs	.+64     	; 0xca6 <kernel_core+0x58>
             for(task = 0; task <= NUMBER_OF_THREADS; task++) {
      c66:	19 82       	std	Y+1, r1	; 0x01
@@ -2207,7 +2207,7 @@ void kernel_core(void) {
      c7a:	8f 5f       	subi	r24, 0xFF	; 255
      c7c:	89 83       	std	Y+1, r24	; 0x01
      c7e:	89 81       	ldd	r24, Y+1	; 0x01
-     c80:	86 30       	cpi	r24, 0x06	; 6
+     c80:	85 30       	cpi	r24, 0x05	; 5
      c82:	98 f3       	brcs	.-26     	; 0xc6a <kernel_core+0x1c>
                 kernel_stack.task_status[task] = 0;
             }
@@ -2215,7 +2215,7 @@ void kernel_core(void) {
      c84:	19 82       	std	Y+1, r1	; 0x01
             kernel_stack.task_number = task;
      c86:	89 81       	ldd	r24, Y+1	; 0x01
-     c88:	80 93 ee 03 	sts	0x03EE, r24
+     c88:	80 93 ed 03 	sts	0x03ED, r24
             goto *kernel_stack.task_list[task];
      c8c:	89 81       	ldd	r24, Y+1	; 0x01
      c8e:	88 2f       	mov	r24, r24
@@ -2247,7 +2247,7 @@ void kernel_core(void) {
      cbc:	89 83       	std	Y+1, r24	; 0x01
             kernel_stack.task_number = task;
      cbe:	89 81       	ldd	r24, Y+1	; 0x01
-     cc0:	80 93 ee 03 	sts	0x03EE, r24
+     cc0:	80 93 ed 03 	sts	0x03ED, r24
             goto *kernel_stack.task_list[task];
      cc4:	89 81       	ldd	r24, Y+1	; 0x01
      cc6:	88 2f       	mov	r24, r24
@@ -2262,22 +2262,22 @@ void kernel_core(void) {
      cd8:	e3 cf       	rjmp	.-58     	; 0xca0 <kernel_core+0x52>
         } else {
             kernel_stack.task_timer++;
-     cda:	80 91 ef 03 	lds	r24, 0x03EF
-     cde:	90 91 f0 03 	lds	r25, 0x03F0
-     ce2:	a0 91 f1 03 	lds	r26, 0x03F1
-     ce6:	b0 91 f2 03 	lds	r27, 0x03F2
+     cda:	80 91 ee 03 	lds	r24, 0x03EE
+     cde:	90 91 ef 03 	lds	r25, 0x03EF
+     ce2:	a0 91 f0 03 	lds	r26, 0x03F0
+     ce6:	b0 91 f1 03 	lds	r27, 0x03F1
      cea:	01 96       	adiw	r24, 0x01	; 1
      cec:	a1 1d       	adc	r26, r1
      cee:	b1 1d       	adc	r27, r1
-     cf0:	80 93 ef 03 	sts	0x03EF, r24
-     cf4:	90 93 f0 03 	sts	0x03F0, r25
-     cf8:	a0 93 f1 03 	sts	0x03F1, r26
-     cfc:	b0 93 f2 03 	sts	0x03F2, r27
+     cf0:	80 93 ee 03 	sts	0x03EE, r24
+     cf4:	90 93 ef 03 	sts	0x03EF, r25
+     cf8:	a0 93 f0 03 	sts	0x03F0, r26
+     cfc:	b0 93 f1 03 	sts	0x03F1, r27
             if(kernel_stack.task_timer >= THREAD_COUNT) {
-     d00:	80 91 ef 03 	lds	r24, 0x03EF
-     d04:	90 91 f0 03 	lds	r25, 0x03F0
-     d08:	a0 91 f1 03 	lds	r26, 0x03F1
-     d0c:	b0 91 f2 03 	lds	r27, 0x03F2
+     d00:	80 91 ee 03 	lds	r24, 0x03EE
+     d04:	90 91 ef 03 	lds	r25, 0x03EF
+     d08:	a0 91 f0 03 	lds	r26, 0x03F0
+     d0c:	b0 91 f1 03 	lds	r27, 0x03F1
      d10:	80 38       	cpi	r24, 0x80	; 128
      d12:	f4 e8       	ldi	r31, 0x84	; 132
      d14:	9f 07       	cpc	r25, r31
@@ -2300,13 +2300,13 @@ void kernel_core(void) {
      d32:	8f 5f       	subi	r24, 0xFF	; 255
      d34:	89 83       	std	Y+1, r24	; 0x01
                 kernel_stack.task_timer = 0;
-     d36:	10 92 ef 03 	sts	0x03EF, r1
-     d3a:	10 92 f0 03 	sts	0x03F0, r1
-     d3e:	10 92 f1 03 	sts	0x03F1, r1
-     d42:	10 92 f2 03 	sts	0x03F2, r1
+     d36:	10 92 ee 03 	sts	0x03EE, r1
+     d3a:	10 92 ef 03 	sts	0x03EF, r1
+     d3e:	10 92 f0 03 	sts	0x03F0, r1
+     d42:	10 92 f1 03 	sts	0x03F1, r1
                 kernel_stack.task_number = task;
      d46:	89 81       	ldd	r24, Y+1	; 0x01
-     d48:	80 93 ee 03 	sts	0x03EE, r24
+     d48:	80 93 ed 03 	sts	0x03ED, r24
                 goto *kernel_stack.task_list[task];
      d4c:	89 81       	ldd	r24, Y+1	; 0x01
      d4e:	88 2f       	mov	r24, r24

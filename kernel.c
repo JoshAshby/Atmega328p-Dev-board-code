@@ -25,7 +25,7 @@ void init_kernel(void) {
     //first we have to get the timer up and running, it'll run at 2MHz and the ISR
     //will happen everytime it overflows
     TCNT0 = 0; //set the inital timer value to 0
-    TCCR0B |= (1<<CS01); //system clock speed
+    TCCR0B |= (1<<CS02) | (1<<CS01); //system clock speed
     TIMSK0 |= (1<<TOIE0); //start the timer with the interrupt overflow turned on
 
     #if DEBUG
@@ -98,76 +98,7 @@ void kernel_core(void) {
             return;
         }
     #endif
-    /*
-    if we're not in KERNEL_COOP mode, then we are to act like a preemptive scheduler.
-    this means we check for task that has a flag ubit set, meaning the task wants to run
-    This flag is typically set from an outside source such as an interrupt.
 
-    So what we need to do in order is this: look for a lock bit which means a task
-    is still running, if there is a lock bit then let it task run and increase the
-    kernel counter . if the counter excedes it's declared value (set by changing KERNEL_SECONDS
-    for how many seconds a task has to run before it's declared dead) then the tasks
-    ock bit is cleared, the task counter is increased by one, and the next task in
-    the stack runs, setting it's lock bit.
-
-    When all this is done and there isn't a running task with it's lock bit set
-    then we run from where we left off in the stack last time through and work our way
-    down the stack. During this time we check for any tasks with their flag bit set,
-    if there is a flag bit set then we run it. if there isn't a task with a flag
-    bit set, we drop into thread4 which is a null idle loop until the kernel runs again.
-    */
-//    #if !KERNEL_COOP
-//        uint8_t task;
-//        uart_sendstr("count");
-//        if(kernel_stack.task_number == 0) {
-//            task = kernel_stack.task_number;
-//        } else {
-//            task = kernel_stack.task_number - 1;
-//        }
-//        uart_sendint(task);
-//        //look for a lock
-//        if(kernel_stack.task_lock[task]) {
-//            uart_sendstr("lock");
-//            kernel_stack.task_timer++; //if there is a lock then increase the timer
-//            //if the timer is over it's alloted time
-//            if(kernel_stack.task_timer >= THREAD_COUNT) {
-//               kernel_stack.task_lock[task] = 0; //remove the tasks lock
-//               kernel_stack.task_timer = 0; //reset the timer
-//               if((task+1) >= (NUMBER_OF_THREADS-1)) {
-//                    kernel_stack.task_number = 0;
-//                } else {
-//                    kernel_stack.task_number = task+1; //increase the task counter for next run through
-//                }
-//               uart_sendstr("NULL");
-//               //drop into the null loop until the next time the kernel runs
-//               kernel_stack.task_status[4] = kernel_stack.task_list[4]();
-//               return;
-//            }
-//        }
-//        //run through the task flags and check for
-//        for(task = kernel_stack.task_number; task >= (NUMBER_OF_THREADS-1); task++) {
-//            uart_sendint(task);
-//            //if there is a flag set
-//            if(kernel_stack.task_flags[task]) {
-//                uart_sendstr("flag");
-//                if((task+1) >= (NUMBER_OF_THREADS-1)) {
-//                    kernel_stack.task_number = 0;
-//                } else {
-//                    kernel_stack.task_number = task+1; //increase the task counter for next run through
-//                }
-//                uart_sendint(task);
-//                kernel_stack.task_lock[task] = 1; //set the new tasks lock
-//                kernel_stack.task_status[task] = kernel_stack.task_list[task]();
-//                return;
-//            } else {
-//                kernel_stack.task_number = 0;
-//                uart_sendstr("NULL2");
-//                //drop into the null loop until the next time the kernel runs
-//               kernel_stack.task_status[4] = kernel_stack.task_list[4]();
-//               return;
-//            }
-//        }
-//    #endif
     #if DEBUG_KERNEL
         uart_sendint(KERNEL_CORE_KEY);
         #if DEBUG_BEG

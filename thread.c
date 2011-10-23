@@ -11,6 +11,12 @@ freenode/#linuxandsci - JoshAshby
 #include "global.h"
 
 /*
+Be warned: if your going to write a blocking thread, then you need
+to enable interrupts before the blocking with an sei(); or else
+the kernel can't check in on the task and potentually kill it.
+*/
+
+/*
 Drive motor control thread
 This guy runs once in a while just to make sure BOB is moving
 (or attempting to). The priority doesn't need to be too high
@@ -75,8 +81,8 @@ uint8_t thread2(void) {
     #if !KERNEL_COOP
         kernel_stack.task_lock[2] = 0;
     #endif
-    kernel_stack.task_status[2] = 1;
     cli();
+    kernel_stack.task_status[2] = 1;
     goto *kernel_stack.task_list[4];
     return 0;
 }
@@ -122,8 +128,8 @@ uint8_t thread4(void) {
             uart_sendstr("0x23 - THREAD3 is up...");
         #endif
     #endif
-    kernel_stack.task_status[4] = 1;
     cli();
+    kernel_stack.task_status[4] = 1;
     goto *kernel_stack.task_list[4];
     return 0;
 }
