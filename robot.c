@@ -22,34 +22,6 @@ void init_sensors(void) {
     return;
 }
 
-//What to run only once and once only when button 1 has been pressed.
-void button1_once(void) {
-    #if !KERNEL_COOP
-        kernel_stack.task_flags[0] = 1;
-    #endif
-    if(led <= 250) {
-        led += 5;
-    }
-    return;
-}
-
-void button2_once(void) {
-    #if !KERNEL_COOP
-        kernel_stack.task_flags[0] = 1;
-    #endif
-    if(led >= 5) {
-        led -= 5;
-    }
-    return;
-}
-
-void button3_once(void) {
-    #if !KERNEL_COOP
-        kernel_stack.task_flags[0] = 1;
-    #endif
-    return;
-}
-
 uint8_t ultrasound_filter(void) {
     filt = (average>>1);
     adc = ADCH;

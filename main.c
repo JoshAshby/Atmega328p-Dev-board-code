@@ -5,6 +5,7 @@ MAIN.c
 joshuaashby@joshashby.com
 http://joshashby.com
 http://github.com/JoshAshby
+
 freenode/#linuxandsci - JoshAshby
 */
 //-------------------------------------------
@@ -29,7 +30,8 @@ int main(void) { //Main loop, runs once but can have an infinit loop in it
 
     sei();
 
-    //infinit loop that doesn't stop running. (always true since 1 is always 1
+    init_out('D', 5);
+    //infinit loop that doesn't stop running. (always true since 1 is always 1 )
     while(1) {
         NULL;
     };

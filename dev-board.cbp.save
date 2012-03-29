@@ -19,6 +19,7 @@
 					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
 					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
 					<Add after="avr-objdump -h -S $(TARGET_OUTPUT_FILE) &gt; $(TARGET_OUTPUT_FILE).lss" />
+					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
 			<Target title="Release">
@@ -63,6 +64,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="button.h" />
+		<Unit filename="camera.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="camera.h" />
 		<Unit filename="digital.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -72,10 +77,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="i2c.h" />
-		<Unit filename="kernel.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="kernel.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -87,10 +88,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="robot.h" />
-		<Unit filename="thread.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="thread.h" />
 		<Unit filename="uart.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -100,8 +97,11 @@
 			<code_completion />
 			<debugger>
 				<search_path add="../Atmega328p-Dev-board-code" />
+				<remote_debugging>
+					<options conn_type="0" serial_baud="9600" ip_address="127.0.0.1" ip_port="1234" additional_cmds="load" />
+				</remote_debugging>
 				<remote_debugging target="Debug">
-					<options conn_type="0" serial_baud="9600" ip_address="127.0.0.1" ip_port="1234" additional_cmds="load&#x0A;" />
+					<options conn_type="0" serial_baud="9600" additional_cmds="&#x0A;" />
 				</remote_debugging>
 			</debugger>
 		</Extensions>

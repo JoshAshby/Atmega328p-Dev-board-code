@@ -69,7 +69,6 @@ volatile uint8_t average;
 volatile uint8_t j;
 volatile uint8_t adc;
 
-uint8_t led;
 
 //-----------------------------------------------
 //Structers and Unions and typedefs
@@ -79,9 +78,6 @@ uint8_t led;
 //Prototypes
 //-----------------------------------------------
 void init_sensors(void);
-void button1_once(void);
-void button2_once(void);
-void button3_once(void);
 uint8_t ultrasound_filter(void);
 
 #endif

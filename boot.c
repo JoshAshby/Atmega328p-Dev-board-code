@@ -34,6 +34,9 @@ void bios(void) {
     //Start sensors from robot.h
     init_sensors();
 
+    //button code
+    init_buttons();
+
     //set the CPU_POW led pin to high to show we have power
     DDRD |= (1<<CPU_POW);
     PORTD |= (1<<CPU_POW);
@@ -56,12 +59,5 @@ void bios(void) {
             uart_sendstr("Starting main code...");
         #endif
     #endif
-
-    //button code
-    init_buttons();
-
-    //start the kernel and thread system. After this is going nothing else should happen in main.c or boot.c
-    // because everything should be in the threads... hopefully.
-    init_kernel();
     return;
 }

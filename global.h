@@ -21,10 +21,9 @@ freenode/#linuxandsci - JoshAshby
 #include <inttypes.h>
 #include <stdlib.h>
 #include <avr/sleep.h>
+#include <avr/delay.h>
 
 #include "boot.h"
-#include "thread.h"
-#include "kernel.h"
 #include "adc.h"
 #include "pwm.h"
 #include "i2c.h"
@@ -32,16 +31,16 @@ freenode/#linuxandsci - JoshAshby
 #include "digital.h"
 #include "button.h"
 #include "robot.h"
+#include "camera.h"
 
 //-----------------------------------------------
 //Macros (defines)
 //-----------------------------------------------
 //Debug
 //========================
-#define DEBUG 0 //if true, anything inside of an if(DEBUG){} or #if DEBUG tag will run, DEBUG_KEYS are sent this way
+#define DEBUG 1 //if true, anything inside of an if(DEBUG){} or #if DEBUG tag will run, DEBUG_KEYS are sent this way
 #define DEBUG_BEG 0 //if true, DEBUG_KEYS will also come with more info and a fancy LED. This comes at the price of a few extra CPU cycles for debug
-#define DEBUG_KERNEL 0 //set to debug the KERNEL and THREADs
-#define DEV 1 //Is this my dev board or BOB's hardware?
+#define DEV 0 //Is this my dev board or BOB's hardware?
 
 //CPU power and Debug LEDs
 //========================
@@ -80,6 +79,9 @@ freenode/#linuxandsci - JoshAshby
 #define MAIN_KEY 0x06
 #define DEBOUNCE_KEY 0x07
 #define BUTTON_KEY 0x08
+#define BUTTON1_KEY 0x81
+#define BUTTON2_KEY 0x82
+#define BUTTON3_KEY 0x83
 #define PWM_KEY 0x10 //0x10 - setup PWM_ALL
     //0x11 - setup PWM0
     //0x12 - setup PWM1

@@ -30,6 +30,9 @@ uint8_t once[3];
 //-----------------------------------------------
 //Prototypes
 //-----------------------------------------------
+void button1_once(void);
+void button2_once(void);
+void button3_once(void);
 void button(int which, int what);
 void check_buttons(void);
 void init_buttons(void);

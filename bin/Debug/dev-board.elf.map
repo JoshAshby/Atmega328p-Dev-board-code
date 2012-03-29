@@ -142,7 +142,7 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1518
+.text           0x00000000     0x152c
  *(.vectors)
  .vectors       0x00000000       0x68 /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vectors
@@ -260,32 +260,32 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
                 0x00001100                button2_once
                 0x00001120                button3_once
                 0x0000112e                ultrasound_filter
- .text          0x0000122a       0x7a obj/Debug/thread.o
+ .text          0x0000122a       0x8e obj/Debug/thread.o
                 0x0000122a                thread0
-                0x00001254                thread1
-                0x00001270                thread2
-                0x0000127c                thread3
-                0x00001298                thread4
- .text          0x000012a4      0x270 obj/Debug/uart.o
-                0x000012a4                uart_start
-                0x000012fa                uart_sendint
-                0x0000134e                uart_sendint16
-                0x000013cc                uart_sendstr
-                0x00001442                uart_get
-                0x0000149a                __vector_18
- .text          0x00001514        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
- .text          0x00001514        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
- .text          0x00001514        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
-                0x00001514                . = ALIGN (0x2)
+                0x00001252                thread1
+                0x0000126e                thread2
+                0x0000128a                thread3
+                0x000012a6                thread4
+ .text          0x000012b8      0x270 obj/Debug/uart.o
+                0x000012b8                uart_start
+                0x0000130e                uart_sendint
+                0x00001362                uart_sendint16
+                0x000013e0                uart_sendstr
+                0x00001456                uart_get
+                0x000014ae                __vector_18
+ .text          0x00001528        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+ .text          0x00001528        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
+ .text          0x00001528        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
+                0x00001528                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x00001514        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x00001514        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
- .text.libgcc   0x00001514        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
-                0x00001514                . = ALIGN (0x2)
+ .text.libgcc   0x00001528        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x00001528        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc   0x00001528        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_clear_bss.o)
+                0x00001528                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001514        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
-                0x00001514                exit
-                0x00001514                _exit
+ .fini9         0x00001528        0x0 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+                0x00001528                exit
+                0x00001528                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -304,11 +304,11 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001514        0x4 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
+ .fini0         0x00001528        0x4 /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x00001518                _etext = .
+                0x0000152c                _etext = .
 
-.data           0x00800100        0x0 load address 0x00001518
+.data           0x00800100        0x0 load address 0x0000152c
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x0 /usr/lib/gcc/avr/4.6.1/../../../../avr/lib/avr5/crtm328p.o
@@ -368,8 +368,8 @@ LOAD /usr/lib/gcc/avr/4.6.1/avr5/libgcc.a
                 0x008003cf                rollAverage
                 0x008003df                kernel_stack
                 0x008003f2                PROVIDE (__bss_end, .)
-                0x00001518                __data_load_start = LOADADDR (.data)
-                0x00001518                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000152c                __data_load_start = LOADADDR (.data)
+                0x0000152c                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x008003f2        0x0
                 0x008003f2                PROVIDE (__noinit_start, .)

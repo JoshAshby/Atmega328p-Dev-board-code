@@ -58,10 +58,10 @@
 	"uart.h"
 	"digital.h"
 
-1319403853 source:/home/josh/smb/code/Atmega328p-Dev-board-code/adc.c
+1333052293 source:/home/josh/smb/code/Atmega328p-Dev-board-code/adc.c
 	"global.h"
 
-1319403853 /home/josh/smb/code/Atmega328p-Dev-board-code/global.h
+1333059453 /home/josh/smb/code/Atmega328p-Dev-board-code/global.h
 	<avr/io.h>
 	<stdio.h>
 	<avr/interrupt.h>
@@ -69,9 +69,8 @@
 	<inttypes.h>
 	<stdlib.h>
 	<avr/sleep.h>
+	<avr/delay.h>
 	"boot.h"
-	"thread.h"
-	"kernel.h"
 	"adc.h"
 	"pwm.h"
 	"i2c.h"
@@ -79,6 +78,7 @@
 	"digital.h"
 	"button.h"
 	"robot.h"
+	"camera.h"
 
 1318487541 /home/josh/smb/code/Atmega328p-Dev-board-code/adc.h
 	"global.h"
@@ -101,7 +101,7 @@
 1318567546 source:/home/josh/smb/code/Atmega328p-Dev-board-code/i2c.c
 	"global.h"
 
-1319403853 source:/home/josh/smb/code/Atmega328p-Dev-board-code/main.c
+1333059174 source:/home/josh/smb/code/Atmega328p-Dev-board-code/main.c
 	"global.h"
 
 1319403853 source:/home/josh/smb/code/Atmega328p-Dev-board-code/pwm.c
@@ -113,31 +113,31 @@
 1319407912 /home/josh/smb/code/Atmega328p-Dev-board-code/kernel.h
 	"global.h"
 
-1319409519 source:/home/josh/smb/code/Atmega328p-Dev-board-code/kernel.c
+1319693109 source:/home/josh/smb/code/Atmega328p-Dev-board-code/kernel.c
 	"global.h"
 
 1319320068 /home/josh/smb/code/Atmega328p-Dev-board-code/thread.h
 	"global.h"
 
-1319408669 source:/home/josh/smb/code/Atmega328p-Dev-board-code/thread.c
+1319693109 source:/home/josh/smb/code/Atmega328p-Dev-board-code/thread.c
 	"global.h"
 
-1319151509 /home/josh/smb/code/Atmega328p-Dev-board-code/button.h
+1333058973 /home/josh/smb/code/Atmega328p-Dev-board-code/button.h
 	"global.h"
 
-1319409519 source:/home/josh/smb/code/Atmega328p-Dev-board-code/button.c
+1333062151 source:/home/josh/smb/code/Atmega328p-Dev-board-code/button.c
 	"global.h"
 
-1319151509 /home/josh/smb/code/Atmega328p-Dev-board-code/robot.h
+1333059174 /home/josh/smb/code/Atmega328p-Dev-board-code/robot.h
 	"global.h"
 
-1319408968 source:/home/josh/smb/code/Atmega328p-Dev-board-code/robot.c
+1333058973 source:/home/josh/smb/code/Atmega328p-Dev-board-code/robot.c
 	"global.h"
 
 1318999834 /home/josh/smb/code/Atmega328p-Dev-board-code/boot.h
 	"global.h"
 
-1319403853 source:/home/josh/smb/code/Atmega328p-Dev-board-code/boot.c
+1333057989 source:/home/josh/smb/code/Atmega328p-Dev-board-code/boot.c
 	"global.h"
 
 1319335900 source:/home/josh/repos/Atmega328p-Dev-board-code/adc.c
@@ -220,5 +220,11 @@
 	"global.h"
 
 1319399247 source:/home/josh/repos/Atmega328p-Dev-board-code/kernel.c
+	"global.h"
+
+1333057210 /home/josh/smb/code/Atmega328p-Dev-board-code/camera.h
+	"global.h"
+
+1333053785 source:/home/josh/smb/code/Atmega328p-Dev-board-code/camera.c
 	"global.h"
 
