@@ -7,7 +7,7 @@
 	<File name="adc.h" open="1" top="0" tabpos="6">
 		<Cursor position="278" topLine="0" />
 	</File>
-	<File name="boot.c" open="0" top="0" tabpos="7">
+	<File name="boot.c" open="1" top="0" tabpos="7">
 		<Cursor position="1868" topLine="0" />
 	</File>
 	<File name="button.c" open="1" top="1" tabpos="7">
@@ -40,7 +40,7 @@
 	<File name="main.c" open="1" top="0" tabpos="1">
 		<Cursor position="1008" topLine="0" />
 	</File>
-	<File name="pwm.c" open="0" top="0" tabpos="3">
+	<File name="pwm.c" open="1" top="0" tabpos="3">
 		<Cursor position="549" topLine="13" />
 	</File>
 	<File name="pwm.h" open="0" top="0" tabpos="4">

@@ -18,10 +18,9 @@ void button1_once(void) {
             uart_sendstr("0x81 - Button 1 pressed");
         #endif
     #endif
-/*    if(led <= 250) {
+    if(led <= 250) {
         led += 5;
-    }*/
-    camera_Canon_IR('D', 5);
+    }
     return;
 }
 
@@ -32,9 +31,9 @@ void button2_once(void) {
             uart_sendstr("0x82 - Button 2 pressed");
         #endif
     #endif
-/*    if(led >= 5) {
+    if(led >= 5) {
         led -= 5;
-    }*/
+    }
     return;
 }
 
@@ -109,14 +108,14 @@ void check_buttons(void) {
     and the button bounce function is called
     */
     cli();
-    if ((PIND & button_one) | (PIND & button_two)) {
-        #if DEBUG_BUT
+    #if DEBUG_BUT
+        if ((PIND & button_one) | (PIND & button_two)) {
             uart_sendint(BUTTON_KEY);
             #if DEBUG_BEG
                 uart_sendstr("0x08 - Button pressed");
             #endif
-        #endif
-    }
+        }
+    #endif
     if((PIND & button_one) && (PIND & button_two)) {
         dig_count[2]++;
         if (dig_count[2] > DEBOUNCE_TIME) {

@@ -87,13 +87,17 @@ freenode/#linuxandsci - JoshAshby
     //0x12 - setup PWM1
     //0x13 - setup PWM2
 
-//KERNEL and related THREAD keys
-#define KERNEL_KEY 0x15
-#define KERNEL_CORE_KEY 0x016
-#define THREAD0_KEY 0x20
-#define THREAD1_KEY 0x21
-#define THREAD2_KEY 0x22
-#define THREAD3_KEY 0x23
-#define THREAD4_KEY 0x24
+//-----------------------------------------------
+//Variables
+//-----------------------------------------------
+uint8_t led;
+
+//-----------------------------------------------
+//Structers and Unions and typedefs
+//-----------------------------------------------
+
+//-----------------------------------------------
+//Prototypes
+//-----------------------------------------------
 
 #endif
